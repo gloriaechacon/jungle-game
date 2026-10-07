@@ -5,7 +5,7 @@ import { controlText } from './control-labels';
 import { mountPanel } from './ui-panel';
 import { mountRestartDialog } from './restart-dialog';
 import { tutorialCoach, type PracticeHint, type CoachHint } from './tutorial-coach';
-import { TIRE_GUIDE, tireCoach } from './level-hints';
+import { TIRE_GUIDE, tireCoach, vineCoach } from './level-hints';
 import type { EndingChoice } from './demo-scenes';
 import './console.css';
 
@@ -134,7 +134,7 @@ export function mountConsole(panel:HTMLElement,controls:InputController,onEnding
   }
   function updateGuide(){
     // Tutorial actions live in one card, never repeated below the console.
-    guide.textContent=practice||guideText.startsWith('TUTORIAL ·')?'':controlText(guideText.startsWith('SALTO:')||guideText===TIRE_GUIDE?'':guideText,controls.touchLayout);
+    guide.textContent=practice||guideText.startsWith('TUTORIAL ·')?'':controlText(guideText.startsWith('SALTO:')||guideText===TIRE_GUIDE||vineCoach(guideText,controls.touchLayout)?'':guideText,controls.touchLayout);
     guide.hidden=!guide.textContent||!ready||!!practice?.complete||(!controls.touchLayout&&!!practice)||screenName==='title'||screenName==='map'||screenName==='intro';
   }
   function finish(){
@@ -171,18 +171,19 @@ export function mountConsole(panel:HTMLElement,controls:InputController,onEnding
   function updateCoach(){
     const mobile=controls.touchLayout;
     const tireHint=screenName==='level'&&!practice&&guideText===TIRE_GUIDE;
+    const vineHint=screenName==='level'&&!practice?vineCoach(guideText,mobile):undefined;
     const mineJump=screenName==='minecart'&&guideText.startsWith('SALTO:');
     const hint:CoachHint|undefined=ready?(screenName==='minecart'&&guideText.startsWith('SALTO:')?
       {title:'',action:mobile?'Toca el botón A para saltar':'Presiona la tecla K para saltar',detail:'',target:'a'}:
-      screenName==='level'&&!practice&&guideText===TIRE_GUIDE?tireCoach(mobile):
+      tireHint?tireCoach(mobile):vineHint??
       tutorialCoach(screenName,practice,mobile,completedStages)):undefined;
-    // Only contextual jump reminders have external words. Title/map/tutorial
+    // Only contextual level reminders have external words. Title/map/tutorial
     // use the LCD and rings, including after restarting the entire Game Boy.
-    const target=hint?.target??'',label=tireHint||mineJump?hint?.action??'':'';
+    const target=hint?.target??'',label=tireHint||mineJump||vineHint?hint?.action??'':'';
     coachTargets=hint?.targets??(target?[target]:[]);
     coachTarget=target?shell.querySelector<HTMLElement>(`#touch-${target}`)??undefined:undefined;
     coach.hidden=!label;coach.dataset.target=target;coach.dataset.mode=mobile?'touch':'keyboard';
-    coach.dataset.hint=tireHint?'tire':mineJump?'minecart':'rings';
+    coach.dataset.hint=tireHint?'tire':mineJump?'minecart':vineHint?'vine':'rings';
     if(coachAction.textContent!==label){
       coachAction.replaceChildren();
       for(const part of label.split(/(\b(?:K|J|W|S|A|D|B)\b|[←→↑↓])/)){
@@ -219,16 +220,10 @@ export function mountConsole(panel:HTMLElement,controls:InputController,onEnding
       marker.style.width=`${rect.width+6}px`;marker.style.height=`${rect.height+6}px`;
     }
     if(coach.hidden)return;
-    if(coach.dataset.hint==='tire'){
-      // A compact top-left reminder leaves the mute button, LCD and all touch
-      // targets clear, without shifting or rescaling the console for a hint.
-      const lcd=space.getBoundingClientRect();
-      coach.style.left='10px';coach.style.top=`${Math.max(4,Math.min(16,lcd.top-p.top-coach.offsetHeight-6))}px`;
-      coach.style.removeProperty('--arrow-x');return;
-    }
     const b=coachTarget?bounds(coach.dataset.target!):undefined;
     const width=coach.offsetWidth,cx=b?b.x+b.width/2-p.x:p.width/2;
-    // Anchor every lesson to the same clear bezel area, not each target's height.
+    // Tire, vine and mine reminders share the bezel below the LCD.
+    // Only the arrow moves to the control; the console never shifts.
     const lcd=space.getBoundingClientRect(),firstKey=Math.min(bounds('up').top,bounds('a').top);
     const left=Math.max(10,(p.width-width)/2);
     const top=Math.max(lcd.bottom-p.top+8,firstKey-p.top-100);

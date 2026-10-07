@@ -1,5 +1,11 @@
 # Donkey Kong — contexto para continuar
 
+## Vigente — avisos contextuales alineados con la mina, 07/10/2026
+
+AMBAS versiones, por petición explícita del usuario: en teléfono, el recordatorio «Mantén A para saltar más alto» pasa del borde superior a la misma zona bajo el LCD que el aviso de la mina, con flecha al botón A y su círculo. Se elimina solo la excepción de posición/estilo de llanta; no cambia encuadre ni geometría de controles. Conserva la frecuencia vigente: SOLO primera llanta, incluidos reintentos; las siguientes no repiten. También se unifica el recordatorio de la primera liana de Ropey (antes de x250): acercarse/agarrar con ↑; al colgarse, ↑/↓ para trepar y A para soltar/saltar. Una única tarjeta externa, sin copia LCD/pie. El tutorial sigue dentro del LCD con círculos fuera; laboratorio conserva sus instrucciones. Desktop mantiene teclas K/W/S y ubicación de aviso de mina existente. No cambia física, dificultad, terrenos, música, arte ni finales distintos de ambas ediciones.
+
+Verificado en ambas: build/tipos, test:input/pausa y unitarias fases7/8/10 PASS. Nueva prueba node tests/context-hints-browser.mjs PASS en Edge154:1366x768,390x844,375x667,320x568, primer neumático y silencio del siguiente, misma altura que mina, liana por controles reales (teclado/táctil emulado), desaparición posterior, ayuda, ausencia de duplicados y encuadre inmóvil; lección8 conserva tarjeta LCD. Escena/posición inicial sembradas SOLO en test; NO recorrido integral ni teléfono físico. Capturas390/320 inspeccionadas, cero errores de ejecución. tests/phase8.mjs actualiza expectativa de ubicación. Bundles general index-DgZRZTTo.js / Roberto index-CXFGuKwa.js. No commit/push/despliegue, servidores temporales de prueba cerrados. Revisión final de publicación sigue pendiente.
+
 ## Vigente — final una sola vez por partida, 07/10/2026
 
 AMBAS versiones: tras ver el final de los tres niveles y elegir Volver al mapa, completar de nuevo cualquier nivel devuelve al mapa, sin repetir GANASTE, foto ni extra. Campaign registra endingSeen por partida; completionScene centraliza el destino de plataformas, mina y entradas antiguas al extra/final. La confirmación del nivel repetido dice VOLVER AL MAPA. Progreso, letras y puntajes se conservan; una campaña nueva vuelve a habilitar extra y final. La presentación personal de Roberto no se copia a la general.

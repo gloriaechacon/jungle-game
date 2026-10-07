@@ -3,7 +3,7 @@ import {InputController} from '../src/input.ts';
 import {padActions} from '../src/touch-controls.ts';
 import {controlText,TOUCH_LESSONS} from '../src/control-labels.ts';
 import {tutorialCoach} from '../src/tutorial-coach.ts';
-import {nearTire,tireCoach,TIRE_GUIDE} from '../src/level-hints.ts';
+import {nearTire,tireCoach,TIRE_GUIDE,vineCoach,VINE_GRAB_GUIDE,VINE_CLIMB_GUIDE} from '../src/level-hints.ts';
 import {REPTILE} from '../src/reptile-layout.ts';
 import {LESSONS,barrelLessonPhase,barrelLessonInstruction} from '../src/tutorial.ts';
 import {Campaign,STAGES} from '../src/campaign.ts';
@@ -61,6 +61,12 @@ assert(LESSONS.every(lines=>lines.length<=3)&&TOUCH_LESSONS.every(lines=>lines.l
 for(const touch of [false,true]){
   assert.deepEqual(tutorialCoach('title',undefined,touch),{title:'',action:touch?'Toca el botón A para empezar':'Pulsa la tecla K para empezar',detail:'',target:'a'});
   assert.deepEqual(tireCoach(touch),{title:'',action:touch?'Mantén A para saltar más alto':TIRE_GUIDE,detail:'',target:'a'});
+  assert.equal(vineCoach(VINE_GRAB_GUIDE,touch).action,touch?'Mantén ↑ para agarrar la liana':VINE_GRAB_GUIDE);
+  assert.equal(vineCoach(VINE_GRAB_GUIDE,touch).target,'up');
+  assert.equal(vineCoach(VINE_CLIMB_GUIDE,touch).action,touch?'↑ / ↓: trepa · A: suelta y salta':VINE_CLIMB_GUIDE);
+  assert.deepEqual(vineCoach(VINE_CLIMB_GUIDE,touch).targets,['a','up']);
+  assert.equal(vineCoach('TUTORIAL · liana',touch),undefined);
+  assert.equal(vineCoach(TIRE_GUIDE,touch),undefined);
   assert.equal(tutorialCoach('intro',undefined,touch),undefined,'No redundant A ring on Aprende jugando card');
   assert.deepEqual(tutorialCoach('map',undefined,touch),{title:'',action:touch?'Toca el botón A para entrar':'Presiona la tecla K para entrar',detail:'',target:'a'});
   const campaign=new Campaign();

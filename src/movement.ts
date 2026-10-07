@@ -18,7 +18,7 @@ import { LESSONS, practiceLevel, lessonDone, lessonNeedsRetry, lessonRetryInstru
 import { DK, FONTS } from './art-spec';
 import { GAME_SOUND, SoundObserver, type SoundFrame } from './audio-events';
 import { controlText, TOUCH_LESSONS } from './control-labels';
-import { nearTire, TIRE_GUIDE } from './level-hints';
+import { nearTire, TIRE_GUIDE, VINE_GRAB_GUIDE, VINE_CLIMB_GUIDE } from './level-hints';
 import { PauseMenu } from './pause-menu';
 
 export const RESTART_LAB = 'berto:restart-lab';
@@ -558,14 +558,16 @@ export class MovementLabScene extends Phaser.Scene {
     this.ropeView?.render(this.gameTime, this.showSilhouette);
     let instruction='';
     const tireHint=this.level.id===REPTILE.id&&this.player.centerX>285&&this.player.centerX<435;
+    const vineHint=!!this.registry.get('cinematic')&&this.practiceStep===undefined
+      &&this.level.id===ROPEY.id&&this.player.centerX<250;
     if(this.practiceStep!==undefined)instruction=this.practiceSuccess?'BIEN!':LESSONS[this.practiceStep].join('\n');
     if(this.practiceStep===8&&!this.practiceSuccess)instruction=!this.ropes.attached?'ACERCATE A LA LIANA\nMANTEN LA TECLA W':this.climbed?'PULSA K: SUELTA\nY SALTA DE LA LIANA':'MANTEN LA TECLA W\nPARA SEGUIR SUBIENDO';
-    else if(this.level.id===ROPEY.id&&this.player.centerX<250)instruction=this.ropes.attached?'W / S: SUBE / BAJA\nK SUELTA Y SALTA':'SALTA A LA LIANA\nEN EL SUELO: W';
+    else if(!vineHint&&this.level.id===ROPEY.id&&this.player.centerX<250)instruction=this.ropes.attached?'W / S: SUBE / BAJA\nK SUELTA Y SALTA':'SALTA A LA LIANA\nEN EL SUELO: W';
     else if(tireHint&&!this.registry.get('cinematic'))instruction='SALTA A LA LLANTA\nMANTEN K: MAS ALTO';
     if(this.controls.touchLayout){
       if(this.practiceStep!==undefined&&this.practiceStep!==8&&!this.practiceSuccess)instruction=TOUCH_LESSONS[this.practiceStep].join('\n');
       else if(this.practiceStep===8&&!this.practiceSuccess)instruction=!this.ropes.attached?'ACERCATE A LA LIANA\nMANTEN FLECHA ARRIBA':this.climbed?'TOCA A: SUELTA\nY SALTA DE LA LIANA':'MANTEN FLECHA ARRIBA\nPARA SEGUIR SUBIENDO';
-      else if(this.level.id===ROPEY.id&&this.player.centerX<250)instruction=this.ropes.attached?'ARRIBA / ABAJO: TREPA\nA SUELTA Y SALTA':'SALTA A LA LIANA\nEN EL SUELO: ARRIBA';
+      else if(!vineHint&&this.level.id===ROPEY.id&&this.player.centerX<250)instruction=this.ropes.attached?'ARRIBA / ABAJO: TREPA\nA SUELTA Y SALTA':'SALTA A LA LIANA\nEN EL SUELO: ARRIBA';
       else instruction=controlText(instruction,true);
     }
     if(this.practiceStep===9&&!this.practiceSuccess&&!this.practiceDropped&&this.player.grounded&&this.player.centerY>110)
@@ -592,8 +594,9 @@ export class MovementLabScene extends Phaser.Scene {
     const terrainHint=onLedge?(this.controls.touchLayout?'Abajo: baja al siguiente suelo. A: salta para seguir subiendo.':'S / ↓: baja al siguiente suelo. K: salta para seguir subiendo.'):'';
     if(this.minecartExit&&this.finished)instruction='';
     const tireReminder=!this.finished&&!this.rules?.dying&&nearTire(this.level.tires,this.player.centerX,this.player.feet)?TIRE_GUIDE:'';
+    const vineReminder=vineHint&&!this.finished&&!this.rules?.dying?(this.ropes.attached?VINE_CLIMB_GUIDE:VINE_GRAB_GUIDE):'';
     // Keep this first-encounter cue outside the tiny LCD, never over the hazard.
-    this.game.events.emit('berto:guide',this.practiceStep!==undefined?(this.practiceSuccess?'':`TUTORIAL · Paso ${this.practiceStep+1}/${LESSONS.length}: ${instruction.replace('\n',' · ')}.`):tireReminder||instruction.replace('\n',' · ')||terrainHint||encounterHint);
+    this.game.events.emit('berto:guide',this.practiceStep!==undefined?(this.practiceSuccess?'':`TUTORIAL · Paso ${this.practiceStep+1}/${LESSONS.length}: ${instruction.replace('\n',' · ')}.`):tireReminder||instruction.replace('\n',' · ')||vineReminder||terrainHint||encounterHint);
     this.game.events.emit(TELEMETRY, {
       x: this.player.centerX, y: this.player.centerY,
       vx: this.player.body.velocity.x, vy: this.player.body.velocity.y,

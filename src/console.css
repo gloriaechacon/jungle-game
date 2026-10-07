@@ -18,9 +18,6 @@
 .touch-console #power-start span {font-size:11px;}
 .touch-console #console-coach {transform:none;box-sizing:border-box;max-width:calc(100% - 20px);padding:8px 12px;}
 .touch-console #console-coach strong {font-size:16px;}
-.touch-console #console-coach[data-hint='tire'] {max-width:calc(100% - 76px);padding:2px 8px;}
-.touch-console #console-coach[data-hint='tire'] strong {font-size:13px;white-space:nowrap;}
-.touch-console #console-coach[data-hint='tire']::after {display:none;}
 .touch-console #console-coach>span {display:none;}
 .touch-console #console-coach small {font-size:11px;}
 .touch-console #console-coach[data-target]:not([data-target=''])::after {content:'';position:absolute;left:var(--arrow-x);top:100%;transform:translateX(-50%);height:18px;width:14px;background:#edf1ee;clip-path:polygon(38% 0,62% 0,62% 52%,100% 52%,50% 100%,0 52%,38% 52%);}

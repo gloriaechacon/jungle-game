@@ -60,9 +60,12 @@ export async function testPhase8(page, inAdventure = false) {
       assert(!(await state()).guide.visible);
       const coach=await page.locator('#console-coach').boundingBox(),lcd=await page.locator('canvas').boundingBox(),mute=await page.locator('#quick-mute').boundingBox();
       assert(coach.x>=0&&coach.y>=0&&coach.x+coach.width<=size.width,'Reminder fits the phone');
-      assert(coach.y+coach.height<=lcd.y-2,'Reminder sits above the LCD, never on the game');
+      assert(coach.y>=lcd.y+lcd.height+7,'Reminder sits below the LCD like the mine, never on the game');
+      const ring=await page.locator('.coach-ring:not([hidden])').boundingBox();
+      assert(coach.y+coach.height+18<ring.y,'Card and arrow leave the A button clear');
+      assert.equal(await page.locator('#console-coach').evaluate(e=>getComputedStyle(e,'::after').display),'block','Arrow points at A');
       assert(coach.x+coach.width<=mute.x||coach.y>=mute.y+mute.height,'Reminder never covers mute');
-      assert(await page.locator('#console-coach').evaluate(e=>e.scrollWidth<=e.clientWidth),'No clipped sentence');
+      assert(await page.locator('#console-coach strong').evaluate(e=>e.scrollWidth<=e.clientWidth),'No clipped sentence');
       await page.screenshot({path:`artifacts/tire-reminder-phone-${size.width}.png`});
     }
     await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});await cdp.detach();
