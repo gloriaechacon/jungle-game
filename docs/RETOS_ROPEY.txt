@@ -1,0 +1,49 @@
+NIVEL 2 — MONTICULOS QUE EXIGEN ACCION, 04/10/2026
+
+Pedido: la ruta inferior de Ropey dejaba ignorar todas las alturas y caminar
+por largos tramos. El usuario pide montículos sólidos que obliguen a saltar,
+sin convertir todo en una ruta lineal ni eliminar la exploración.
+
+Solo cambia src/ropey-layout.ts en runtime:
+- Zona888: base156 de76px de ancho y segundo escalón132 desde924.
+- Zona1300 (torre de la captura): base156 de80px y escalón132 desde1332.
+  La base ahora exige dos ascensos; la torre108/76/44/12 sigue opcional.
+- Zona1660, después del segundo checkpoint: roca156, ancho64, un salto.
+- Zona1940, después de la última liana: base156, ancho64, escalón132 desde1972.
+- Todos los ascensos nuevos son24px, frente al salto B-01 de~41px. Se usa
+  la unión visual de sólidos existente: roca continua con el piso, sin franja
+  que parezca permitir pasar por delante. Otras fachadas siguen atravesables.
+- Se retiran las cuatro repisas que ocupaban las antiguas bases140 para no
+  dejar bordes flotantes. Dos patrullas se alinean a las nuevas cimas132
+  (948/126 y1988/126); cuatro bananas se apoyan visualmente sobre las bases.
+- No enemigos extra, ni cambios de velocidad, hitboxes, combate o física.
+
+Conservado: largo2400, salida2300, cuatro lianas y sus barridos/topes,
+checkpoints650/1560, todos los huecos y suelos originales, ocho enemigos,
+cantidad/identidad de bananas, tres racimos, N/U y recuperación, barriles
+(incluido2158/132). Jungle, Reptile, tutorial, consola, interfaz y audio intactos.
+
+Verificación:
+- Build/tipos, test:unit y test:phase10 PASS (incluye encuentros, terreno y
+  unión visual). Sigue el aviso conocido de tamaño de bundle Phaser.
+- tests/phase7-unit.mjs cubre geometría, apoyos, terreno continuo, seguridad
+  de patrullas/reaparición, huecos originales y barrido íntegro de las lianas.
+- tests/terrain-unit.mjs comprueba ahora que la escalera de la prueba existe
+  en los datos reales, no solo una copia hipotética de las coordenadas viejas.
+- Edge154.0.4258.53/Windows --phase7-only PASS: cuatro bloqueos al caminar,
+  salto sin correr al primer escalón de cada montaña y S sin atravesar roca;
+  recorrido completo, lianas, torre/racimo, descenso, ambos checkpoints con
+  caídas deliberadas, barril final y salida/reinicio. Cero errores de ejecución.
+- Bot actualizado para los escalones reales y para subir la nueva base antes
+  de probar la torre. Sin teletransportar, mutar personajes ni invulnerabilidad.
+- Capturas artifacts/ropey-retos-wall-888/1300/1660/1940.png revisadas.
+- Hashes de77 archivos protegidos (demás src,37 audios y carcasa) idénticos.
+- Edge/Windows --demo-only PASS: diez lecciones, tres niveles (incluidas las
+  cuatro comprobaciones de montículos), mapas, bonus, cierre en tres tamaños,
+  mapa táctil simulado, repetición Jungle/cueva sin repetir bonus y nueva partida.
+  Cero errores de ejecución. No npm test completo ni iPhone físico.
+- Preview LAN4173 HTTP200, index-BBC6kUY5.js, revision=ropey-retos.
+
+Balance humano y teléfono físico pendientes; pruebas automáticas no equivalen
+a aprobación de dificultad. No publicación; revisión final OWASP pendiente.
+Ruta local: /?adventure=1&revision=ropey-retos.

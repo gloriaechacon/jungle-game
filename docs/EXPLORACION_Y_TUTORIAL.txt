@@ -1,0 +1,84 @@
+EXPLORACIÓN, OBJETOS Y TUTORIAL — 03/10/2026
+
+Petición vigente
+Corregir apoyos de objetos en Ropey, enseñar descenso S/↓, variar montículos,
+añadir alturas opcionales en Jungle y terreno continuo que sí obliga a saltar.
+Mejorar abeja/lagarto y preservar toda la muestra musical, no solo el inicio.
+No publicar hasta revisión final OWASP y pendientes de lanzamiento.
+
+Cambios
+1. Tutorial paso10: spawn80/80 sobre repisa44/88/72/8, piso124. Termina solo
+   tras usar el descenso real y aterrizar abajo. Caminar fuera no completa;
+   puede volver saltando (aviso y flecha A/K) y probar S/↓. Misma paleta nocturna
+   legible. Etiquetas/flecha táctiles apuntan a Abajo, teclado indica S/↓.
+2. Ropey: barril2168/148 estaba suspendido bajo el borde2110/140. Ahora2158/132
+   sobre repisa2110/140, con base entera apoyada, alcanzable desde el suelo.
+   Bananas antesy142 pasan14px
+   sobre sus respectivas superficies. Corredores inferiores continúan libres.
+   Secuencia888/140 →964/108 →1054/76, y1940/140 →2012/108 →2110/140.
+   Racimos y abejas del tramo se elevan con las superficies, no se incrustan.
+3. Jungle: repisa944/84 →1008/52 →1068/20 →1008/-12, racimo extra1036/-28.
+   Subida opcional, ruta baja abierta. Escalón1376 ahora32px; montaña continua
+   x1808–1888 con dos subidas24px, ninguna pared de48px obligatoria sin apoyo.
+   Repisa1904 elevada60, patrulla/banana ajustadas. Piso/hueco40px preservados.
+4. Cámara de Jungle sigue subida y descenso. Ropey mantiene mínimo48 junto a
+   las4lianas, y doseles elevados en claros860–1200(-64),1200–1620(-96),
+   1920–2220(-32). Los claros contiguos no se superponen visualmente.
+5. Abeja: abdomen segmentado, cintura, alas de dos poses, ojo y aguijón.
+   Misma mecánica: peligrosa al pisar/rodar; barriles sí la derrotan.
+   Lagarto: mandíbula/dientes/ceja/cresta más definidos; salto24px en560ms,
+   período1800ms frente a2400 anterior. Ventana en suelo1240ms para atacarlo.
+   No cambian hitboxes, velocidades del jugador ni sprites de DK.
+6. Música de tres niveles: pasaje completo51,334s dos veces, total102,668s,
+   incluyendo el ritmo posterior. -23,1LUFS medidos,17SFX intactos. Ver
+   SOUNDTRACK_NIVELES.txt. Respaldo de la copia corta guardado.
+
+Revisión de publicación
+Requisito permanente en AGENTS.md y ANTES_DE_PUBLICAR.txt. Está PENDIENTE.
+No se publicó, no se cambió firewall ni se hizo auditoría de seguridad aquí.
+
+Verificación
+- Tipos y build PASS. Unitarias generales/fases6–9/bonus, fase10, encuentros,
+  terreno, entrada, audio, cierre y bonus-final PASS.
+- Edge154.0.4258.53/Windows --terrain-only PASS, dos pasadas: descenso/foco/
+  orientación, mirador nuevo hasta la recompensa con cámara negativa, descenso
+  de una repisa y montaña sólida de dos saltos. S no atraviesa sus escalones.
+- --demo-only PASS: entrada, diez lecciones (caminar fuera y recuperar paso10),
+  tres niveles, ambos checkpoints Ropey, llantas/lizard-counter en cueva,
+  bonus ganador+20/sin premio, final a tres tamaños, mapa conserva y replay
+  reinicia. Después de esta pasada se afinó cámara de dos claros y el apoyo
+  final del barril; lo cubren los bloques específicos siguientes del build final.
+- --touch-only PASS en cuatro tamaños: diez lecciones, flecha Abajo, acciones
+  simultáneas/cruceta cardinal, pérdidas de toque, rotación, pausa y regreso.
+  Primer intento detectó una lista de expectativas de nueve flechas en el TEST;
+  actualizada a diez. No se cambió el juego para eludir esa comprobación.
+- --phase7-only PASS sobre build final: cuatro lianas, ascenso opcional,
+  dos retornos a checkpoint, barril final2158/132 apoyado, salto desde abajo,
+  recogida y lanzamiento reales, N/U y salida. Tres retornos durante el bot
+  (incluye dos caídas deliberadas), no una medida de dificultad humana.
+- --audio-only PASS build final: AAC decodificado102,667979s, pico0,354077,
+  señal desde0,000125s. Gesto inicial, silencio/volumen/persistencia, pausa/foco,
+  efectos reales, selección de pista en los tres niveles y recuperación de carga.
+  Música final medida-23,1LUFS / -9,0dBTP; efectos deterministas17/17 intactos.
+- Cero errores de ejecución en esos bloques. No se ejecutó npm test entero.
+- Capturas revisadas: artifacts/touch-drop-coach.png, terrain-jungle-summit.png,
+  terrain-jungle-mountain.png, terrain-ropey-barrel.png, terrain-ropey-summit.png.
+- Hashes conservados: tuning87f02c4b…f9, DK376e2d3f…54dc,
+  carcasa1e2ce780…fd3. Atlas nuevo585c8de5…3224 (solo enemigos solicitados).
+- Preview LAN existente devuelve200 y sirve index-NnggNkWO.js con audio nuevo.
+  URL: http://192.168.1.55:4173/?adventure=1&revision=exploracion
+  Abrir/recargar reinicia progreso de sesión. No despliegue público.
+- Aprobación auditiva/empalmes, dificultad y Safari/iPhone físico PENDIENTES.
+
+Pruebas humanas prioritarias
+- Paso10: caminar fuera sin S, volver saltando, luego S; hacer lo mismo en
+  teléfono con flecha Abajo. Debe pasar a NIVEL1 solo tras descenso/aterrizaje.
+- Explorar el mirador de Jungle; bajar por repisas pulsando S varias veces,
+  nunca atravesar el suelo sólido. Cámara debe enseñar el siguiente apoyo.
+- Montaña sólida después de O: saltar sus dos escalones, intentar S arriba.
+- Último barril de Ropey: subir a repisa, recogerlo con B/J, lanzar y volver
+  al checkpoint. Debe apoyarse también tras reaparecer, no flotar en el costado.
+- Comparar silueta de abeja/lagarto a tamaño real y dificultad de los saltos.
+- Escuchar niveles hasta pasada la sección35–50s y el empalme51,334s. Los
+  cambios musicales deben estar; avisar segundo exacto de cualquier ruido/corte.
+- iPhone/Safari real y estética/balance siguen pendientes de aprobación.

@@ -1,0 +1,90 @@
+TUTORIAL, PREMIO DEL BONUS Y CIERRE EN LCD — 03/10/2026
+
+Petición vigente
+Usar audio2469715243.m4a tanto en el tutorial como al terminar el juego.
+Tres símbolos iguales en el bonus dan 20 bananas y una celebración feliz.
+El final muestra el total incluyendo el premio, las letras realmente recogidas
+y las opciones dentro del LCD, no debajo de la consola. No cambiar efectos.
+
+Audio
+- Fuente de Zoom íntegra preservada en docs/audio/tutorial-ending-soundtrack-original.m4a.
+  SHA256 dc40458c363761f34347aa66b2c407c3ba873fca4e315f6cfc00997570778db1.
+- Grabación 79,27475 s; primera señal capturada ~3,416625 s. Corte desde
+  3,4105 s hasta 65,985625 s, conservando ~6 ms antes del ataque.
+- Candidato de bucle 62,575125 s: repetición de la apertura medida mediante
+  correlación de señal (.856 en 2 s / .599 en 4 s). Se conservan las frases
+  intermedias en vez de repetir solamente un motivo corto.
+- Ganancia -8 dB; AAC 128 kb/s, estéreo 44,1 kHz. Medido a -22,8 LUFS,
+  pico verdadero -8,6 dBFS. Entrada 2 ms y salida 4 ms anticlic.
+- No se cambiaron notas/tempo, no se compuso una pista ni se separaron fuentes.
+  El empalme musical y cualquier ruido mezclado necesitan escucha del usuario.
+- Archivo de juego: public/audio/soundtrack/tutorial-ending.m4a + JSON.
+  Regeneración: npm run audio:tutorial-ending -- --ffmpeg <ruta a ffmpeg.exe>.
+  La aplicación no depende de Zoom, Python ni FFmpeg para jugar.
+- TUTORIAL_ENDING_TRACK se usa en la cartela de tutorial, sus nueve lecciones,
+  sus reintentos y DemoEndingScene. No reinicia entre lecciones/reintentos.
+  El fondo continúa durante el resumen y las opciones finales; salir cambia
+  de pista a mapa o portada. Pausa/foco/silencio/volúmenes siguen funcionando.
+- Intro, mapa, tres niveles y bonus conservan sus pistas; los 17 efectos y la
+  antigua grabación de celebración (ahora respaldo) permanecen intactos.
+
+Premio
+- bonusReward verifica exactamente tres índices válidos e iguales, cualquiera
+  de los cuatro símbolos. Una pareja, tres diferentes o una ronda incompleta
+  dan cero. No hay premio por omitir o salir antes del tercer barril.
+- Campaign.awardFinalBonus acredita 20 bananas al confirmar el último barril,
+  solo si los tres niveles están completos. Se registra una vez por campaña:
+  reabrir el final/repetir la cueva no acumula premios duplicados. Si se pierde,
+  una futura ronda ganadora aún puede obtener el premio.
+- Salir al mapa durante el resultado conserva el premio ya ganado. Nunca se
+  otorgan letras ausentes. summary separa levelBananas/bonusBananas y suma ambas
+  en bananas. Nueva partida borra todo el progreso, no preferencias de sonido.
+- Tarjeta inicial explica el premio de 20. Mantiene espera de lectura,
+  confirmación consumida, soltar todos los botones y espacio seguro de entrada.
+- Tras tres iguales DK levanta brazos/aplaude con las poses frontales existentes
+  y aparece +20 BANANAS. Resultado visible durante 3 s activos; luego cierre.
+  Si no hay coincidencia: SIN PREMIO / BUEN INTENTO, sin castigo ni atasco.
+
+Cierre
+- Conserva celebración de 5,8 s y muestra solo letras ganadas.
+- Después presenta NIVELES, BONUS y TOTAL junto a DK feliz; dos filas pixel
+  dentro de 160x144: VOLVER AL MAPA / CONSERVAR PARTIDA y VOLVER A JUGAR /
+  EMPEZAR DE CERO. La palabra BONUS solo aparece completa si se ganó realmente.
+- Flechas/WASD eligen, K/Espacio o A/START confirman. Ambas filas también se
+  pueden tocar/clicar directamente: botones HTML transparentes sobre las mismas
+  coordenadas del LCD, con etiquetas accesibles y foco Tab/Enter.
+- No se achica la consola al abrir el menú. En móviles pequeños las filas son
+  objetivos de 24 píxeles lógicos (menores que 44 CSS); A/START ofrecen objetivos
+  grandes alternativos. Debe validarse la comodidad en el iPhone real.
+- No se redibujaron DK, niveles ni carcasa. B-01 y reglas de combate intactos.
+- Se agregaron los glifos + y > a la fuente pixel (faltaban y desaparecían).
+  Orden de glifos anteriores preservado; npm run art regenera las láminas.
+  Atlas de personajes/objetos idéntico antes y después de regenerar.
+
+Verificación
+PASS tipos/build, test:unit, test:phase10 (incluye encuentros), test:input,
+test:ending, test:final-bonus y test:audio.
+Premio probado con las 64 combinaciones, índices inválidos, sin completar,
+repeticiones, salida inmediata al mapa, nuevo juego y contacto real de escena.
+Los efectos coinciden byte a byte con sus generadores. Hashes B-01, carcasa,
+intro/mapa/niveles/bonus y antigua celebración iguales a la entrega anterior.
+Primera pasada --demo-only y --audio-only PASS en Edge154/Windows. Revisión
+visual detectó el + ausente y subtítulos demasiado pequeños: corregidos con
+glifos nuevos y texto secundario de8px. Segunda pasada --demo-only y
+--audio-only PASS en Edge154.0.4258.53/Windows, cero errores de ejecución.
+- Nueve lecciones con su pista correcta; continuidad al cambiar de lección,
+  pausa/reanudación del tutorial, cambio a mapa y música de los niveles.
+- AAC real decodificado:62,575s, primer sonido medido a0,00098s, pico0,371.
+- Tres niveles reales, bonus ganador por saltos temporizados (sin manipular
+  el juego), +20 acreditadas y festejo; segunda ronda táctil sin premio extra.
+- Cierre con pista continua, regreso al mapa sin perder premio/progreso,
+  reinicio desde cero y preferencias de audio intactas. Menú dentro del LCD
+  en390x844,375x667,320x568; toque directo y teclado. Capturas revisadas:
+  artifacts/demo-ending.png, ending-menu-*.png y final-bonus-result.png.
+- Preview existente4173 sirve el build nuevo y la pista conHTTP200 por LAN.
+  Intentar levantar otro preview encontró el puerto ocupado: se conservó
+  el servidor existente, sin detener procesos ni cambiar firewall.
+No se ejecutó npm test completo. Escucha, estética y Safari/iPhone pendientes.
+
+Preview local (no publicado):
+http://192.168.1.55:4173/?adventure=1&revision=tutorial-final

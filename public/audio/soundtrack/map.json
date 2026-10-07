@@ -1,0 +1,16 @@
+{
+  "source": "docs/audio/map-soundtrack-original.m4a",
+  "sourceSha256": "932d8e485aed6529835e291d54f4c7c7da96efdfb6d88a2fb7239b2314b381d4",
+  "outputSha256": "e80bad3bee4e1db04f863139b14043d8879bbcd91e6fc47b137d0e1e7eae8df4",
+  "sourceSeconds": 156.010667,
+  "start": 2.744,
+  "end": 99.119,
+  "firstCapturedAttackSeconds": 2.74967,
+  "fadeInSeconds": 0.002,
+  "gainDb": -6.5,
+  "sourceIntegratedLUFS": -16.95,
+  "sourceTruePeakDb": -0.38,
+  "loop": true,
+  "loopSeconds": 96.375,
+  "notes": "Start at the first captured note, not the recording margin. End aligned to a recurrence of the opening (waveform comparison). No recomposition, pitch/tempo change or source separation. Human listening and loop approval pending."
+}

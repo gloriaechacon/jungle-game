@@ -1,0 +1,1641 @@
+{
+ "generatedBy": "tools/art/build-art.mjs",
+ "note": "Original pixel art for this project, drawn procedurally after the GBC reference. No pixels copied from the game.",
+ "sprites": {
+  "mine-wall": {
+   "w": 160,
+   "h": 144,
+   "anchor": [
+    80,
+    72
+   ],
+   "colors": 7
+  },
+  "mine-beam": {
+   "w": 64,
+   "h": 128,
+   "anchor": [
+    32,
+    64
+   ],
+   "colors": 4
+  },
+  "mine-entrance": {
+   "w": 88,
+   "h": 88,
+   "anchor": [
+    44,
+    44
+   ],
+   "colors": 11
+  },
+  "jungle-entrance": {
+   "w": 80,
+   "h": 80,
+   "anchor": [
+    40,
+    80
+   ],
+   "colors": 14
+  },
+  "night-entrance": {
+   "w": 80,
+   "h": 80,
+   "anchor": [
+    40,
+    80
+   ],
+   "colors": 14
+  },
+  "treehouse": {
+   "w": 80,
+   "h": 76,
+   "anchor": [
+    40,
+    76
+   ],
+   "colors": 14
+  },
+  "exit-cave": {
+   "w": 64,
+   "h": 72,
+   "anchor": [
+    32,
+    72
+   ],
+   "colors": 5
+  },
+  "bonus-oops-0": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "bonus-oops-1": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "bonus-oops-2": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "bonus-oops-3": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-0": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-1": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-2": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-3": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-4": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-5": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-6": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "demo-cheer-7": {
+   "w": 48,
+   "h": 48,
+   "anchor": [
+    24,
+    48
+   ],
+   "colors": 12
+  },
+  "mine-cannon": {
+   "w": 44,
+   "h": 44,
+   "anchor": [
+    22,
+    22
+   ],
+   "colors": 10
+  },
+  "bonus-slot-0": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-0-turn-0": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-0-turn-1": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-0-turn-2": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 17
+  },
+  "bonus-slot-0-turn-3": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-0-turn-4": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-0-turn-5": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-0-turn-6": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 17
+  },
+  "bonus-slot-0-turn-7": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 18
+  },
+  "bonus-slot-1": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-0": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-1": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-2": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-3": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-4": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-5": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-6": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-1-turn-7": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-0": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-1": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-2": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-3": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-4": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-5": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-6": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-2-turn-7": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 16
+  },
+  "bonus-slot-3": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "bonus-slot-3-turn-0": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "bonus-slot-3-turn-1": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "bonus-slot-3-turn-2": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 20
+  },
+  "bonus-slot-3-turn-3": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "bonus-slot-3-turn-4": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "bonus-slot-3-turn-5": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "bonus-slot-3-turn-6": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 20
+  },
+  "bonus-slot-3-turn-7": {
+   "w": 34,
+   "h": 36,
+   "anchor": [
+    17,
+    18
+   ],
+   "colors": 21
+  },
+  "palm-crown": {
+   "w": 64,
+   "h": 36,
+   "anchor": [
+    32,
+    4
+   ],
+   "colors": 8
+  },
+  "dk-carry-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-carry-walk-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-carry-walk-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-carry-walk-2": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-carry-walk-3": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-carry-walk-4": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-carry-walk-5": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-cheer-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 10
+  },
+  "dk-cheer-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 10
+  },
+  "dk-climb-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-climb-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-climb-2": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-climb-3": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-climb-grip-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 5
+  },
+  "dk-climb-grip-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 5
+  },
+  "dk-climb-grip-2": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 5
+  },
+  "dk-climb-grip-3": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 5
+  },
+  "dk-hurt": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 10
+  },
+  "dk-hurt-head": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 10
+  },
+  "dk-idle-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-idle-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-jump-down": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-jump-up": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-2": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-3": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-4": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-5": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-6": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-roll-7": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-run-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-run-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-run-2": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-run-3": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-run-4": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-run-5": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-teeter-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-teeter-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-throw": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-walk-0": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-walk-1": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-walk-2": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-walk-3": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-walk-4": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "dk-walk-5": {
+   "w": 32,
+   "h": 32,
+   "anchor": [
+    16,
+    32
+   ],
+   "colors": 11
+  },
+  "palm-trunk": {
+   "w": 16,
+   "h": 32,
+   "anchor": [
+    8,
+    16
+   ],
+   "colors": 5
+  },
+  "minecart-0": {
+   "w": 36,
+   "h": 28,
+   "anchor": [
+    18,
+    28
+   ],
+   "colors": 8
+  },
+  "minecart-1": {
+   "w": 36,
+   "h": 28,
+   "anchor": [
+    18,
+    28
+   ],
+   "colors": 8
+  },
+  "banana-bunch": {
+   "w": 22,
+   "h": 22,
+   "anchor": [
+    11,
+    11
+   ],
+   "colors": 6
+  },
+  "exit-sign": {
+   "w": 26,
+   "h": 22,
+   "anchor": [
+    13,
+    22
+   ],
+   "colors": 8
+  },
+  "jungle-fern": {
+   "w": 32,
+   "h": 22,
+   "anchor": [
+    16,
+    22
+   ],
+   "colors": 4
+  },
+  "lizard-walk-0": {
+   "w": 28,
+   "h": 22,
+   "anchor": [
+    14,
+    22
+   ],
+   "colors": 7
+  },
+  "lizard-walk-1": {
+   "w": 28,
+   "h": 22,
+   "anchor": [
+    14,
+    22
+   ],
+   "colors": 7
+  },
+  "lizard-walk-2": {
+   "w": 28,
+   "h": 22,
+   "anchor": [
+    14,
+    22
+   ],
+   "colors": 7
+  },
+  "barrel-debris-0": {
+   "w": 24,
+   "h": 20,
+   "anchor": [
+    12,
+    10
+   ],
+   "colors": 4
+  },
+  "barrel-debris-1": {
+   "w": 24,
+   "h": 20,
+   "anchor": [
+    12,
+    10
+   ],
+   "colors": 4
+  },
+  "bee-walk-0": {
+   "w": 24,
+   "h": 20,
+   "anchor": [
+    12,
+    16
+   ],
+   "colors": 11
+  },
+  "bee-walk-1": {
+   "w": 24,
+   "h": 20,
+   "anchor": [
+    12,
+    16
+   ],
+   "colors": 10
+  },
+  "star-barrel-0": {
+   "w": 18,
+   "h": 20,
+   "anchor": [
+    9,
+    20
+   ],
+   "colors": 11
+  },
+  "star-barrel-1": {
+   "w": 18,
+   "h": 20,
+   "anchor": [
+    9,
+    20
+   ],
+   "colors": 11
+  },
+  "barrel-0": {
+   "w": 16,
+   "h": 18,
+   "anchor": [
+    8,
+    9
+   ],
+   "colors": 9
+  },
+  "barrel-1": {
+   "w": 16,
+   "h": 18,
+   "anchor": [
+    8,
+    9
+   ],
+   "colors": 9
+  },
+  "barrel-2": {
+   "w": 16,
+   "h": 18,
+   "anchor": [
+    8,
+    9
+   ],
+   "colors": 9
+  },
+  "barrel-3": {
+   "w": 16,
+   "h": 18,
+   "anchor": [
+    8,
+    9
+   ],
+   "colors": 9
+  },
+  "vine-tuft": {
+   "w": 34,
+   "h": 18,
+   "anchor": [
+    17,
+    14
+   ],
+   "colors": 5
+  },
+  "gnawty-walk-0": {
+   "w": 22,
+   "h": 16,
+   "anchor": [
+    11,
+    16
+   ],
+   "colors": 7
+  },
+  "gnawty-walk-1": {
+   "w": 22,
+   "h": 16,
+   "anchor": [
+    11,
+    16
+   ],
+   "colors": 7
+  },
+  "hit-0": {
+   "w": 16,
+   "h": 16,
+   "anchor": [
+    8,
+    8
+   ],
+   "colors": 3
+  },
+  "hit-1": {
+   "w": 16,
+   "h": 16,
+   "anchor": [
+    8,
+    8
+   ],
+   "colors": 3
+  },
+  "comodin": {
+   "w": 12,
+   "h": 14,
+   "anchor": [
+    6,
+    7
+   ],
+   "colors": 5
+  },
+  "tire-0": {
+   "w": 24,
+   "h": 14,
+   "anchor": [
+    12,
+    14
+   ],
+   "colors": 5
+  },
+  "tire-1": {
+   "w": 24,
+   "h": 14,
+   "anchor": [
+    12,
+    14
+   ],
+   "colors": 5
+  },
+  "banana-0": {
+   "w": 10,
+   "h": 12,
+   "anchor": [
+    5,
+    6
+   ],
+   "colors": 5
+  },
+  "banana-1": {
+   "w": 10,
+   "h": 12,
+   "anchor": [
+    5,
+    6
+   ],
+   "colors": 5
+  },
+  "banana-2": {
+   "w": 10,
+   "h": 12,
+   "anchor": [
+    5,
+    6
+   ],
+   "colors": 5
+  },
+  "hud-banana": {
+   "w": 10,
+   "h": 12,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 5
+  },
+  "letter-B": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 6
+  },
+  "letter-N": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 6
+  },
+  "letter-O": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 6
+  },
+  "letter-S": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 6
+  },
+  "letter-U": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 6
+  },
+  "snake-walk-0": {
+   "w": 22,
+   "h": 12,
+   "anchor": [
+    11,
+    12
+   ],
+   "colors": 7
+  },
+  "snake-walk-1": {
+   "w": 22,
+   "h": 12,
+   "anchor": [
+    11,
+    12
+   ],
+   "colors": 7
+  },
+  "star-0": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 3
+  },
+  "star-1": {
+   "w": 12,
+   "h": 12,
+   "anchor": [
+    6,
+    6
+   ],
+   "colors": 3
+  },
+  "digit-0": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-1": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-2": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-3": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-4": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-5": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-6": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-7": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-8": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "digit-9": {
+   "w": 7,
+   "h": 9,
+   "anchor": [
+    0,
+    0
+   ],
+   "colors": 4
+  },
+  "hud-letter-B": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 6
+  },
+  "hud-letter-empty": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 1
+  },
+  "hud-letter-N": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 6
+  },
+  "hud-letter-O": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 6
+  },
+  "hud-letter-S": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 6
+  },
+  "hud-letter-U": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 6
+  },
+  "sparkle-0": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 2
+  },
+  "sparkle-1": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 2
+  },
+  "sparkle-2": {
+   "w": 9,
+   "h": 9,
+   "anchor": [
+    4.5,
+    4.5
+   ],
+   "colors": 2
+  },
+  "vine-tip": {
+   "w": 11,
+   "h": 9,
+   "anchor": [
+    5,
+    1
+   ],
+   "colors": 7
+  },
+  "dust-0": {
+   "w": 10,
+   "h": 6,
+   "anchor": [
+    5,
+    6
+   ],
+   "colors": 1
+  },
+  "dust-1": {
+   "w": 10,
+   "h": 6,
+   "anchor": [
+    5,
+    6
+   ],
+   "colors": 1
+  },
+  "dust-2": {
+   "w": 10,
+   "h": 6,
+   "anchor": [
+    5,
+    6
+   ],
+   "colors": 1
+  },
+  "vine-leaf": {
+   "w": 9,
+   "h": 6,
+   "anchor": [
+    0,
+    2
+   ],
+   "colors": 6
+  }
+ },
+ "images": {
+  "ground-top": {
+   "w": 16,
+   "h": 16
+  },
+  "ground-fill": {
+   "w": 32,
+   "h": 32
+  },
+  "ground-side-l": {
+   "w": 8,
+   "h": 16
+  },
+  "ground-side-r": {
+   "w": 8,
+   "h": 16
+  },
+  "ground-cap-l": {
+   "w": 12,
+   "h": 17
+  },
+  "ground-cap-r": {
+   "w": 12,
+   "h": 17
+  },
+  "bg-far": {
+   "w": 256,
+   "h": 144
+  },
+  "bg-near": {
+   "w": 256,
+   "h": 108
+  },
+  "canopy-night": {
+   "w": 128,
+   "h": 56
+  },
+  "cave-top": {
+   "w": 16,
+   "h": 16
+  },
+  "cave-fill": {
+   "w": 32,
+   "h": 32
+  },
+  "cave-side-l": {
+   "w": 8,
+   "h": 16
+  },
+  "cave-side-r": {
+   "w": 8,
+   "h": 16
+  },
+  "cave-cap-l": {
+   "w": 12,
+   "h": 17
+  },
+  "cave-cap-r": {
+   "w": 12,
+   "h": 17
+  },
+  "cave-far": {
+   "w": 256,
+   "h": 144
+  },
+  "cave-near": {
+   "w": 256,
+   "h": 144
+  },
+  "font": {
+   "w": 128,
+   "h": 30
+  },
+  "font-gold": {
+   "w": 128,
+   "h": 30
+  },
+  "font-ink": {
+   "w": 128,
+   "h": 30
+  }
+ },
+ "dkPalette": {
+  "K": "#1c0604",
+  "F1": "#390e16",
+  "F2": "#681e2e",
+  "F3": "#9c3e4e",
+  "S1": "#bb6569",
+  "S2": "#e79a94",
+  "S3": "#f6b7a4",
+  "M1": "#f0b7a8",
+  "M2": "#fcd8c8",
+  "W": "#fff4e6",
+  "R": "#d8383a",
+  "Y": "#f4cc52"
+ },
+ "dkPoses": [
+  "dk-climb-0",
+  "dk-climb-1",
+  "dk-climb-2",
+  "dk-climb-3",
+  "dk-hurt-head",
+  "dk-idle-0",
+  "dk-idle-1",
+  "dk-walk-0",
+  "dk-walk-1",
+  "dk-walk-2",
+  "dk-walk-3",
+  "dk-walk-4",
+  "dk-walk-5",
+  "dk-run-0",
+  "dk-run-1",
+  "dk-run-2",
+  "dk-run-3",
+  "dk-run-4",
+  "dk-run-5",
+  "dk-jump-up",
+  "dk-jump-down",
+  "dk-carry-0",
+  "dk-carry-walk-0",
+  "dk-carry-walk-1",
+  "dk-carry-walk-2",
+  "dk-carry-walk-3",
+  "dk-carry-walk-4",
+  "dk-carry-walk-5",
+  "dk-throw",
+  "dk-cheer-0",
+  "dk-cheer-1",
+  "dk-teeter-0",
+  "dk-teeter-1",
+  "dk-hurt"
+ ]
+}

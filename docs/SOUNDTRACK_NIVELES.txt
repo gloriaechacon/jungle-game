@@ -1,0 +1,105 @@
+MÚSICA DE LOS NIVELES — MUESTRA AMPLIADA, 03/10/2026
+
+REVISIÓN VIGENTE — conservar también la variación posterior
+El usuario sí quiere TODO el sample, incluido el ritmo sobre el segundo40.
+La selección del motivo de14s descrita más abajo es HISTÓRICA y queda sustituida.
+
+- Fuente original intacta, mismo SHA-256 f14dddc1…b879.
+- Pasaje completo2,468–53,802s:51,333991s. Primera nota capturada~2,474s.
+  Retirados solamente los márgenes de grabación externos. El material interno,
+  incluida la sección posterior, conserva duración, notas y orden.
+- Dos pasadas (original y EQ cálida suave):102,667982s, luego bucle automático.
+  No se prolongó rellenando con el motivo inicial ni se aceleró el ritmo.
+- Rampas anticlic2ms en límites; sin crossfade que borre notas, sin añadir
+  silencio. El empalme musical sigue siendo candidato a aprobación auditiva.
+- Ganancia-8,3dB: medir toda la muestra con la antigua ganancia-6,5dB daba
+  -21,3LUFS. La nueva copia mide-23,1LUFS / pico verdadero-9,0dBFS, comparable
+  con la anterior. Defaults y preferencias de volumen del juego intactos.
+- Copia pública public/audio/soundtrack/level.m4a (~1,66MB).
+  SHA-256 d4d6122fdd03eaab20c285243e170717eedd011371283b58109c8dadc5838b89.
+- docs/audio/level-base-loop.m4a ahora contiene el pasaje completo51,334s.
+- Respaldo anterior docs/audio/level-short-motif-backup.m4a y .json, sin
+  sobrescribirlos en regeneraciones futuras. Fuente completa también conservada.
+- tools/audio/build-level.py verifica que los segundos35–50 de la fuente se
+  preserven en la primera pasada con solo la ganancia común. Tests verifican
+  hashes, intervalo completo, duración, ausencia de clipping y17SFX intactos.
+- Intro/mapa/bonus/tutorial-final SIN cambios. Solo los tres niveles usan esto.
+- NO es separación de fuentes, no se afirma escucha ni empalme aprobado.
+  Ver docs/EXPLORACION_Y_TUTORIAL.txt para pruebas de esta entrega.
+
+HISTORIAL — edición corta anterior (conservada como respaldo)
+
+Petición
+Usar audio2185185284.m4a como fondo de los tres niveles, comenzar en la primera
+nota grabada y preparar unos dos minutos con repetición natural/variaciones
+suaves. Los efectos de acciones fueron aprobados: NO cambiarlos. La próxima
+pista del bonus todavía no se ha recibido; bonus y celebración se conservan.
+
+Fuente y análisis técnico (NO escucha humana)
+Fuente íntegra: docs/audio/level-soundtrack-original.m4a.
+SHA-256 f14dddc1e861df7e967f0f59eeef6902f98c84873145492ea1e835d3ba7cb879.
+Grabación AAC estéreo / 48 kHz de 58,965 s. La señal principal entra alrededor
+de 2,474 s y termina sobre 53,796 s; márgenes vacíos de ~2,5 y ~5,2 s.
+Comparación de forma de onda del inicio encuentra recurrencia a +13,9625 s:
+correlación 0,72079 sobre 1 s / 0,56711 sobre 4 s. Las coincidencias espectrales
+del motivo inicial decaen después del tramo inicial. Se usa un fragmento corto
+repetible, no el material posterior que el usuario advirtió que cambiaba.
+Esto es un criterio técnico para proponer el corte, NO prueba de que ese corte
+coincida con la frase musical completa ni identificación de sonidos ajenos.
+
+Edición candidata
+- Segmento 2,468–16,4305 s, conservando ~6 ms previos al primer ataque capturado.
+- Nueve repeticiones de 13,962494 s: 125,662449 s (~2 min 6 s).
+- Orden: original, original, cálida, original, suave, original, cálida,
+  original, original. No se escribieron notas ni se cambiaron tono/velocidad.
+- Cálida: graves +0,8 dB, agudos -1,5 dB, volumen -0,3 dB. Suave: agudos
+  -0,7 dB, volumen -0,8 dB. Son matices de mezcla, NO nuevas melodías/capas.
+- Empalmes de 40 ms utilizando la continuación real del fragmento saliente;
+  no acortan la duración de cada vuelta, para no adelantar el ritmo.
+- Rampas anticlic de 2 ms solo en el límite exterior del archivo.
+- Ganancia común -6,5 dB. Copia AAC medida: -23,1 LUFS / -6,7 dBTP,
+  comparable a intro y mapa (~-23,3 LUFS). Sin compresión adicional.
+- No se detectaron huecos de señal de más de 60 ms por debajo de -48 dBFS
+  en la copia. Eso NO certifica ausencia de cortes musicales perceptibles.
+
+Archivos e integración
+public/audio/soundtrack/level.m4a: copia de 2:06, AAC estéreo 44,1 kHz/128 kb/s,
+~2 MB, repetible automáticamente para quien tarde más en terminar.
+public/audio/soundtrack/level.json: cortes, variantes, hashes y medidas.
+docs/audio/level-base-loop.m4a: motivo corto sin variantes para comparar.
+src/audio-events.ts: LEVEL_TRACK compartido por los tres niveles y la práctica
+que ya compartía su fondo. Solo cambia la selección del recurso musical.
+Pausa/foco, silencio, volumen ajustable y preferencias guardadas se conservan.
+Morir no reinicia la pista; entrar desde el mapa la inicia desde el comienzo.
+No se retocó audio.ts, SoundObserver ni los 17 efectos de acciones. Intro,
+mapa, bonus/festejo, síntesis previa y recordings/level.wav siguen intactos.
+No se modificaron escenas jugables, física, sprites ni carcasa.
+
+Límites importantes
+La ampliación sigue repitiendo el mismo motivo: se varía su color, no se crea
+una composición nueva. El empalme necesita escucha/aprobación del usuario.
+NO se separó música de efectos/ruidos que ya estén mezclados en el archivo;
+esos sonidos podrían seguir presentes dentro del segmento escogido. No decir
+que está «aislada» o que se escuchó/verificó auditivamente. Si la muestra tiene
+un ruido indeseado, pedir su segundo aproximado para localizar otro corte o
+una toma limpia. La procedencia se conserva; este encargo no publica el juego.
+
+Reproducir la edición
+npm run audio:level -- --ffmpeg <ruta a ffmpeg.exe>
+Requiere FFmpeg y numpy solo para generar. El juego no depende de Zoom, de
+Python, de FFmpeg ni de la carpeta antigua Codex para reproducir los archivos.
+tools/audio/analyze-level.py permite repetir el análisis de recurrencias.
+
+Verificación
+test:audio y tipos/build PASS. Se comprueban las fuentes/copia por hash, los
+17 efectos sin cambios, bucle de ~2 minutos, duración de frases conservada,
+variantes, continuidad numérica y física B-01 intacta.
+Edge 154/Windows --audio-only PASS, cero errores de ejecución: decodificación
+real del AAC (125,662 s, señal desde el inicio, pico0,457), salida de sonido,
+gesto inicial, volumen/silencio/autoguardado, pausa/foco, intro/mapa conservados,
+salto por evento real, recorrido Jungle con efectos de daño/retorno/recogidas,
+selección de la nueva pista también en Ropey/Reptile y recuperación tras fallo
+de carga simulado. No se reejecutó la suite completa del juego en este ajuste.
+Preview LAN4173 responde HTTP200. Fuente externa y copia tienen el mismo hash.
+Escucha humana y Safari/iPhone físico pendientes.
+URL LAN: http://192.168.1.55:4173/?adventure=1&revision=level-soundtrack

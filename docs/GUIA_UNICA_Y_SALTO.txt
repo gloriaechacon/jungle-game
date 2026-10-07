@@ -1,0 +1,64 @@
+GUÍA ÚNICA, SALTO DE JUNGLA Y LAGARTOS — 04/10/2026
+
+Petición: el abismo mayor de Jungle obliga a despegar demasiado cerca de la
+esquina; más lagartos progresivos en nivel1 y un poco más de dificultad en2.
+Instrucciones claras, contrastadas y sin obligar a leer arriba y abajo.
+
+IMPLEMENTACIÓN
+- Jungle: hueco posterior al checkpoint1600–1640 pasa a1600–1620. Se amplía
+  solo el terreno de llegada, sin retocar B-01, gravedad ni colisiones del
+  motor. Banana del hueco1622/84 pasa a1610/84, mismo ID. Los demás huecos,
+  plataformas, checkpoints, letras y rutas alternativas se conservan.
+- Dos lagartos añadidos, con IDs al final de la lista:1006/118 (976–1032,
+  velocidad42,fase350) y1506/118 (1470–1528,44,fase950). Primera mitad fácil
+  intacta; cuatro lagartos en total. Una colocación inicial1150 se descartó
+  durante pruebas por juntar el salto del rival con el siguiente abismo.
+- Ropey: nuevo lagarto1080/174 (1052–1120,44,fase350), y rival final2200
+  pasa a lagarto46/fase900. Nueve rivales totales, tres lagartos. Suelo,
+  lianas, abejas, U, demás premios y checkpoints intactos. Reptile intacto.
+- Tutorial público: una sola tarjeta HTML opaca gris verdoso con texto
+  oscuro, sin título/pie duplicados. Mantiene teclas, círculos y flecha.
+  En móvil se ancla al marco entre LCD/botones, no a cada botón. Conserva
+  espacio exterior y encuadre fijos. LCD muestra progreso y BIEN!, no otra
+  copia de la acción. Barril/liana/repisa siguen instrucciones por estado.
+  Laboratorio conserva su ayuda de diagnóstico.
+- START/pausa: tarjeta clara opaca, fuente pixel oscura sin contorno,
+  opción seleccionada resaltada. Mismos controles/confirmaciones. Nueva
+  font-ink.png reproducible con npm run art; fuentes/arte previos intactos.
+- Sin cambios de música, efectos, celebración, foto, mina o físicas B-01.
+  Sin publicar. Revisión OWASP/destino siguen siendo requisitos pendientes.
+
+PRUEBAS
+- Antes: salto real caminando desde1580 cae y retorna1264. No se inyectan
+  posiciones/vidas ni se altera física en navegador.
+- Después: --jungle-gap-only PASS Edge154/Windows, despegues1584/1590/1596
+  y retornos inversos caminando. Sin salto sigue cayendo, checkpoint igual.
+  El ajuste intermedio28px seguía chocando de costado y se sustituyó por20px.
+- Tipos/build; unitarias generales, fase10, terreno/encuentros, input/pausa,
+  cierre, extra y mina PASS. Comprobaciones de patrullas apoyadas, sin
+  cruzar sólidos, alejadas de respawn, pisotón y salto existentes.
+- Edge154 navigation y touch PASS: diez lecciones, errores/reintentos,
+  dos controles a la vez, START/mapa/omitir, reinicio confirmado, audio.
+  Texto largo en320x568/360x640/390x844/430x932 sin tapar LCD ni controles.
+  Capturas revisadas. Tras añadir la fuente limpia se repitió navigation
+  completo en teclado y táctil nativo emulado: PASS, cero errores.
+
+RECORRIDO DE LA COMPILACIÓN FINAL (index-nqaRPZQA.js)
+- --demo-only completó las diez lecciones y los tres niveles reales,
+  incluidos Jungle con0 reintentos en su recorrido de27,5s del bot y las
+  cuatro lianas/torres/U/checkpoints de Ropey. Capturas de los tres finales.
+- La prueba integral NO cerró: después de llegar a la mina y comprobar
+  pausa/foco/bajada/reintento, agotó la espera en tests/minecart.mjs:59
+  (x>=1430 tras el primer hueco). No se diagnosticó aquí la causa exacta;
+  no afirmar que es solo lentitud del bot ni que todo el juego pasó. La
+  mina y sus físicas no se modificaron. Unitarias de mina/extra/cierre PASS.
+- 44 hashes protegidos iguales:37 audios, B-01/jugador/cámara/lianas,
+  layout Reptile, celebración y foto. Todos los assets preexistentes
+  conservan bytes; solo font-ink.png se añade con el generador.
+- Preview local/LAN4173 responde200 y sirve index-nqaRPZQA.js. No despliegue.
+- No procesos de prueba pendientes al entregar; se conserva el preview4173.
+
+LÍMITES
+Emulación táctil no es Safari/iPhone físico. Balance y claridad con personas
+nuevas quedan para el playtest del usuario. No equivale a auditoría OWASP.
+Ruta LAN: http://192.168.1.55:4173/?adventure=1&revision=guia-y-saltos

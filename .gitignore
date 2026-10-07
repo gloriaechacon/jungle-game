@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.local
+.env
+.env.*
+!.env.example
+artifacts/
+Claude outputs/
+docs/referencias-cuatro-videos/
+docs/sprites-para-redibujar/
+docs/audio/
+docs/audio-referencia/

@@ -1,0 +1,65 @@
+NIVEL 1 — FINAL CON DECISIONES, 04/10/2026
+
+Pedido: el camino bajo del tramo final permitía caminar hasta la cueva sin
+interactuar. Las alturas/bananas eran opcionales y todos los rivales finales
+estaban arriba. Autorizado ajustar complejidad de Jungle, no otras fases.
+
+Cambios, solo JUNGLE_PHASE6 (aventura y ruta normal):
+- Tras la montaña existente 1808–1888, barril apoyado en 1918/116.
+- Patrulla 1960–2004 en suelo, velocidad24, antes estaba en repisa1936/54.
+  Se puede rodar, pisar, lanzar el barril o usar la ruta elevada.
+- Roca sólida 2112–2160, cima96 (28px de altura). Se fusiona con suelo por
+  el renderizador existente; no se puede atravesar ni bajar con S.
+  Sustituye la repisa2144; su banana queda2144/82, con identidad conservada.
+- 56px de suelo entre fin de roca y vacío2216–2248 (32px de ancho).
+  Banana2232/88 guía el salto. Repisa final inicia2248 en vez de2240, para
+  coincidir con la orilla y no dibujar un apoyo parcial sobre el hueco.
+- Última patrulla pasa de2180/78 al suelo2310/118, rango2298–2322,
+  lagarto28px/s, fase900. Hay43px libres entre aterrizaje y hitbox del rival.
+- Se conservan las dos abejas altas, rutas opcionales y racimos. Siguen
+  siendo nueve rivales en total: se distribuyen mejor, no se llena de enemigos.
+- Largo2560, salida2420, checkpoint1264, hueco1600–1640 de40px y letras/
+  recuperación intactos. No se obliga a reunir bananas/letras para terminar.
+
+Sin cambios: B-01, controlador, simulación, combate, tutorial, Ropey/Reptile,
+interfaz aprobada, mono, carcasa, música/efectos, bonus y final.
+
+Pruebas nuevas:
+- tests/phase6-unit.mjs protege terreno sólido, altura saltable, espacio de
+  aterrizaje, hueco, apoyos, patrullas inferiores y recuperación segura.
+- tests/jungle-finale.mjs, flag --jungle-finale-only: recorrido con teclado
+  real/sintético por el InputController, sin teletransportar ni mutar juego.
+  Prueba barril contra patrulla, bloqueo al caminar, S sobre sólido, caída
+  deliberada, retorno/checkpoint, conservación de enemigo derrotado y barril
+  repuesto, saltos sin correr, lagarto y salida con letras recuperadas.
+- Bot compartido conoce nueva roca/hueco; anticipa lagarto más que patrulla
+  baja. Añade trazas acotadas para distinguir fallos de estrategia y juego.
+
+Ajustes durante comprobación:
+La primera roca tenía64px de ancho y dejaba40px antes del hueco. Al correr,
+el bot aterrizaba demasiado tarde para su siguiente salto. Se estrechó a48px
+(56px de descanso), sin reducir altura ni variar la física.
+La primera aserción de victoria de barril consultaba defeatedBy, que no se
+publica en telemetría: se comprueba el incremento real de kills.barrel.
+La comprobación de saltos sin correr toma el contador al comenzar ese tramo;
+no atribuye al hueco las muertes previas contra el lagarto antiguo1772.
+
+Verificación final:
+- npm run build (tipos incluidos), test:unit y test:phase10 PASS; este último
+  incluye encuentros, terreno y unión visual de sólidos. Advertencia conocida
+  de bundle Phaser >500kB, no introducida ni resuelta en este ajuste.
+- Edge154.0.4258.53 / Windows: --jungle-finale-only, --phase6-only,
+  --terrain-only y --demo-only PASS, cero errores de ejecución.
+- Demo: diez lecciones, los tres niveles, bonus y cierre, menú final en tres
+  tamaños de teléfono, mapa táctil simulado, repetir Jungle/cueva sin repetir
+  bonus, nueva partida y preferencias de sonido conservadas.
+- Capturas de barril, roca, hueco y lagarto en artifacts/jungle-finale-*.png
+  revisadas visualmente. La prueba nueva cruza roca/hueco SIN correr.
+- Hashes de tuning/player/gameplay/movement, Ropey/Reptile, consola y los37
+  archivos de audio idénticos a la base. Solo jungle-layout.ts cambia runtime.
+- Preview LAN4173 HTTP200, index-CSe0gXv1.js; revision=jungle-retos.
+
+No se ejecutó npm test completo ni se probó un iPhone físico. Las pruebas de
+bot verifican recorridos y reglas, no aprobación humana de la dificultad.
+Balance humano pendiente. No publicado; revisión OWASP final y autorización
+de destino siguen siendo obligatorias.

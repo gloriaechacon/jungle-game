@@ -1,0 +1,50 @@
+LECTURA VISUAL DEL TERRENO — 03/10/2026
+
+Petición
+En Reptile una repisa atravesable y la pared siguiente parecían comportarse
+igual porque ambas tenían una franja clara de piso delante. La pared bloqueaba
+correctamente, pero su dibujo sugería un error. El usuario pide diferenciarlo.
+
+Cambio
+- Sólidos: la roca continúa hasta el subsuelo. Solo se dibuja camino en la
+  superficie expuesta y bordes laterales donde realmente hay espacio libre.
+- Repisas atravesables: conservan la fachada detrás del personaje y el piso
+  claro delante; se puede caminar por delante, subir y bajar con S/abajo.
+- No se mueve nada, no cambian los saltos, colisiones ni límites del mundo.
+
+Causa y solución
+gameplay-view.ts dibujaba cada rectángulo de colisión por separado, incluido
+su camino superior aunque estuviera cubierto por una pared. terrain-visual.ts
+calcula una unión geométrica para la presentación: columnas con intervalos
+verticales conectados y laterales expuestos. No rellena huecos ni cavidades.
+Se excluyen llantas y plataformas de una sola cara. Texturas alineadas con el
+mundo para evitar cortes entre columnas; sin regenerar ni cambiar los PNG.
+
+Verificación de este cambio
+- npm.cmd run test:unit: PASS.
+- npm.cmd run test:phase10: PASS.
+- npm.cmd run test:terrain: PASS, incluye nuevas unitarias terrain-visual.
+- npm.cmd run build: PASS (incluye TypeScript).
+- node tests/smoke.mjs --phase8-only: PASS en Edge154.0.4258.53/Windows;
+  recorrido real de llantas, plataformas, pared, checkpoint y salida.
+- node tests/smoke.mjs --terrain-only: PASS en el mismo navegador;
+  paso por delante, aterrizaje sobre repisa, descenso S/abajo, bloqueo sólido,
+  salto sobre montaña y orientación tras reaparecer. Cero errores de ejecución.
+- Las unitarias verifican igualdad exacta de la unión con los sólidos de los
+  tres niveles, ausencia de superficies internas, huecos intactos y no mutación.
+- SHA256 de tuning/player/gameplay, tres layouts, música de niveles, DK y
+  carcasa idénticos a antes del cambio. B-01: 87f02c4b...f9.
+- Preview LAN4173 responde200 con index-D6jbEwpr.js, revision=suelo-integrado.
+
+Capturas revisadas
+artifacts/terrain-solid-vs-front-cave.png: transición de repisa x1188 a pared
+x1272, la misma zona que motivó el pedido. La franja termina en la pared.
+artifacts/terrain-front-mound.png: repisa de Jungle con camino inferior claro.
+artifacts/terrain-jungle-mountain.png: montaña sólida unida al suelo y repisa
+atravesable a su derecha, con lecturas distintas.
+
+Límites
+No se ejecutó npm test completo ni se probó en un iPhone físico. La aprobación
+estética final corresponde al usuario. Recargar borra el progreso en memoria.
+No se publicó ni se auditó seguridad: sigue vigente el requisito obligatorio
+de docs/ANTES_DE_PUBLICAR.txt antes de cualquier publicación.

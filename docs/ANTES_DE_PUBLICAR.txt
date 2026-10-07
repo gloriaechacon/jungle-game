@@ -1,0 +1,48 @@
+CONTROL DE SALIDA — PUBLICACIÓN BLOQUEADA HASTA REVISIÓN
+Decisión expresa del usuario, 03/10/2026.
+
+Cuando el usuario diga «listo para publicar», mostrar los pendientes de esta
+lista y revisarlos ANTES de subir el repositorio o desplegar el juego.
+La lista no es una auditoría realizada ni certificación OWASP.
+
+PENDIENTE — seguridad según la arquitectura real
+[ ] Inventariar versiones, dependencias de ejecución y desarrollo y avisos
+    conocidos; revisar audit/lockfile y resolver o justificar cada riesgo.
+    No aplicar actualizaciones destructivas a ciegas.
+[ ] Revisar datos de URL, localStorage y DOM: validación, límites, inyección,
+    uso de HTML y cualquier función de diagnóstico que no deba publicarse.
+[ ] Revisar secretos, rutas personales, grabaciones/documentos privados y el
+    contenido exacto a subir. .gitignore solo no limpia historial publicado.
+[ ] Confirmar repositorio, cuenta y visibilidad pública/privada. No inventar
+    destino ni publicar todos los archivos de trabajo sin selección previa.
+[ ] Desplegar SOLO build estático de producción con HTTPS, no Vite dev/preview
+    ni una apertura del puerto del PC hacia internet. Revisar archivos dist.
+[ ] Configurar y probar CSP y cabeceras adecuadas al hosting real, incluyendo
+    restricciones de framing, MIME sniffing, referrer y permisos del navegador.
+    Probar Phaser/WebAudio bajo esas políticas, no copiar una CSP a ciegas.
+[ ] Revisar permisos innecesarios, almacenamiento y recursos externos.
+    Hoy no hay cuentas ni backend de usuarios: si se añaden login, rankings,
+    QR/mando remoto, formularios o servicios, rehacer el modelo de amenazas.
+[ ] Probar la URL desplegada: HTTPS, consola/red, controles, audio, pausas,
+    tutorial, tres niveles, bonus, final, replay/mapa, Android/iPhone y escritorio.
+[ ] Registrar resultados, riesgos aceptados y aprobación del usuario. No
+    afirmar «100% seguro» ni «cumple OWASP» solo porque pasaron pruebas.
+
+OTROS PENDIENTES DE LANZAMIENTO (distintos de seguridad)
+[ ] Revisar nombres, créditos, procedencia/licencias de imágenes y audios que
+    irán en la demo pública. Un crédito no sustituye una licencia.
+    (Claude, 04/10/2026) Concretamente: public/audio/soundtrack/*.m4a y
+    public/audio/recordings/*.wav salen de grabaciones del juego original;
+    docs/referencias-cuatro-videos y docs/sprites-para-redibujar contienen
+    videos y fotogramas originales. Sirven para uso privado; NO deben ir a un
+    repositorio o despliegue público sin licencia. Quitar de public/ también
+    lo que no se usa (cuatro loops GB y recordings/, ~11 MB en dist).
+[ ] Aprobar estética, balance y empalmes musicales mediante playtest/escucha.
+[ ] README reproducible, instrucciones para jugar, privacidad aplicable,
+    build limpio y respaldo recuperable de la versión candidata.
+[ ] Confirmación final del usuario para el destino y contenido acordados.
+
+Referencias oficiales para la revisión (no un checklist universal para todo):
+https://top10.owasp.org/2025/
+https://cheatsheetseries.owasp.org/cheatsheets/Web_Frontend_Security_Cheat_Sheet.html
+https://vite.dev/guide/static-deploy.html

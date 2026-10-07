@@ -1,0 +1,49 @@
+AVISOS COMPACTOS Y REGRESO A LAS BANANAS — 04/10/2026
+
+Petición: un solo renglón para empezar; bajar el muro del castor en el
+primer claro alto del nivel 2 para poder regresar desde abajo; recordar
+que hay que mantener K (A en teléfono) junto a las llantas.
+
+Cambios:
+- Título: «Pulsa la tecla K para empezar», sin encabezado ni explicación
+  adicional. Teléfono: «Toca el botón A para empezar». Conserva tecla
+  dibujada / botón circular, flecha y el encuadre fijo de la consola.
+- Ropey: segundo escalón x924–964 pasa de cima132 a140, altura16 sobre
+  el escalón inferior156. Desde el suelo180 el ascenso es40, no48:
+  entra dentro del salto normal B-01 (~43). Castor948 pasa de y126 a134
+  para seguir apoyado. Desde allí quedan32px hasta la repisa964/108.
+  No se alteran los otros muros, premios, lianas ni checkpoints.
+- Recordatorio contextual en las cuatro llantas: «Mantén la tecla K
+  para saltar más alto» / «Mantén el botón A para saltar más alto».
+  Aparece al aproximarse por cualquiera de los dos lados (90px), cerca
+  del suelo; desaparece en la ruta alta, al morir o terminar. Prioridad
+  sobre el consejo de abejas. En la aventura usa el coach fuera del LCD,
+  sin duplicado inferior; el laboratorio mantiene su ayuda pixel antigua.
+  La lección del tutorial conserva sus instrucciones propias.
+
+Verificación:
+- Build/tipos, test:input, test:unit y test:phase10 (incluye encounters,
+  terrain y terrain-visual): PASS.
+- Edge154/Windows --phase7-only: PASS con salto real de regreso desde
+  x980/suelo180 a la cima140, sin muerte/reinicio; sigue completando
+  lianas, otras torres, N/U, checkpoints y salida.
+- Edge --phase11-only y --touch-only: PASS. Inicio de un renglón,
+  tecla K/botón A, cuatro tamaños táctiles, encuadre inmóvil y diez
+  lecciones. Capturas de inicio escritorio/320px y muro revisadas.
+- Edge --demo-only: PASS en la pasada final, cero errores de ejecución.
+  Diez lecciones/tres niveles, regreso al muro, rebotes bajos/altos,
+  coach K/A y prioridad sobre abejas en segunda llanta, carrito, nivel
+  extra, final, mapa/repeticiones sin otro extra y nueva partida.
+  Capturas de aviso de llanta en390px y escritorio revisadas.
+  Dos pasadas previas se detuvieron al leer el aviso aún oculto por
+  Ayuda: la prueba ahora espera que sea visible al cerrar ese panel.
+  No fue necesario modificar el juego para resolver esa sincronización.
+- 43 archivos protegidos comparados con el registro previo sin cambios:
+  incluye B-01, jugador, cámara, final/aplauso, carcasa y37 audios.
+
+Pendiente: prueba humana en el teléfono físico y comodidad del salto.
+No se afirma prueba en Safari/iPhone. No se modifica música ni final.
+No se ejecutó npm test completo; sí las suites focalizadas indicadas.
+Sin publicación: revisión OWASP final sigue pendiente.
+Preview LAN4173: /?adventure=1&revision=avisos-y-saltos
+HTTP200 local/LAN; bundle index-eInIMoWe.js.

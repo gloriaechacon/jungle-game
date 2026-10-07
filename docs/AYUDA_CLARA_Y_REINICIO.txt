@@ -1,0 +1,67 @@
+AYUDA CLARA Y REINICIO REAL — 04/10/2026
+
+Petición: igualar tipografía y colores de botones/paneles al aviso aprobado
+«Toca el Game Boy para iniciar», explicar que K/J son teclas, distinguir
+teléfono y computadora y eliminar la ambigüedad de repetir solo el encendido.
+
+IMPLEMENTADO
+- Tema compartido de la invitación: Trebuchet MS/Arial, tinta #193a3b y
+  superficie gris verdosa #edf1eee8. Paneles de ayuda/sonido, botones del pie,
+  avisos y altavoz usan esta familia visual. Carcasa PNG sin cambios.
+- Ayuda por acciones: «Presiona la tecla K» frente a «Toca el botón A».
+  Teclas representadas como teclas; botones táctiles como botones. Texto
+  neutro, X visible, panel centrado y desplazamiento interno en pantallas
+  cortas. Sonido continúa autoguardando, sin botón Guardar.
+- Tutorial: paso + acción explícita + objetivo. Liana y descenso adaptan
+  la ayuda al estado; acierto y reintento tienen su propio mensaje.
+  En teléfono, flecha y aro apuntan al plástico real; explicación en la
+  franja reservada bajo la consola. En computadora se reserva espacio
+  encima del LCD para no taparlo. Texto pixel del tutorial también revisado
+  (dos líneas de hasta 21 caracteres). No cambian condiciones de éxito.
+- Retirados «Ver consola completa/Acercar pantalla» y «Repetir encendido».
+  La consola completa queda para el encendido; el juego permanece acercado.
+- «Reiniciar partida» pide confirmación en un diálogo modal. Explica pérdida
+  de bananas, letras, niveles y bonus; «Seguir jugando» recibe foco primero.
+  Cancelar/X/Escape conserva la partida y no vuelve al mapa. Mientras está
+  abierto, no entran controles al juego. Confirmar recarga: campaña/tutorial/
+  bonus desde cero y consola apagada esperando el gesto inicial. No borra
+  ajustes de sonido. En teléfono está dentro de Controles y ayuda para
+  mantener tres botones inferiores sin reducir la pantalla jugable.
+- La opción antigua de reintentar solo una etapa dentro de Ayuda conserva
+  su alcance: no es el reinicio de toda la aventura.
+
+ARCHIVOS
+src/interface-theme.css, ui-panel.css, console.css, audio.css;
+src/tutorial-coach.ts, restart-dialog.ts, console-presentation.ts;
+src/tutorial.ts, control-labels.ts y solo textos en movement.ts.
+Pruebas actualizadas: input-unit, panels, phase11, touch, phase10 y audio.
+Sin dependencias nuevas. Sin cambios en audio.ts ni recursos sonoros.
+
+VERIFICACIÓN
+- npm run build (incluye tipos): PASS. Aviso conocido de tamaño de Phaser.
+- test:input, test:phase10 (incluye encounters/terrain), test:ending y
+  test:final-bonus: PASS.
+- Edge 154.0.4258.53 / Windows: --panels-only, --phase11-only, --touch-only,
+  --phase10-only y --audio-only PASS; cero errores de ejecución.
+- Paneles: 390x844, 375x667, 320x568, 1366x768 y 844x390. X accesible al
+  desplazar; mismo fondo/tinta/fuente que la invitación; guardado inmediato.
+- Reinicio confirmado con teclado y táctil: vuelve a portada/campaña vacía
+  y conserva sonido. Cancelar/Escape/X no abandonan el nivel. El primer
+  test nuevo esperaba letras vacías como '', pero la representación vigente
+  es '-----'; se corrigió el test, no el estado de Campaign.
+- Táctil simulado: cuatro tamaños, diez lecciones, reintentos, lianas,
+  descenso, multitáctil, giro y mapa. No es una prueba física de Safari.
+- Audio AAC de las cinco pistas decodifica; efectos, pausa/foco, cancelación
+  del reinicio, persistencia y recuperación de archivo fallido comprobados.
+  Esto confirma en Edge los bloques audio/touch pendientes de Claude.
+- Hashes: los 37 archivos de public/audio intactos. B-01, player.ts,
+  gameplay.ts, tres layouts y console-teal.png también intactos.
+- Capturas revisadas: artifacts/ui-help-*, ui-sound-*, ui-restart-*,
+  touch-320x568.png, touch-practice-coach.png y consola en navegador integrado.
+- No se ejecutó npm test completo ni --demo-only en este turno. Aprobación
+  visual y facilidad de comprensión pendientes del playtest del usuario.
+
+PRUEBA LOCAL
+http://192.168.1.55:4173/?adventure=1&revision=ayuda-clara
+Solo red local. No publicación, cambio de música, copia de Roberto ni
+alteración de firewall. Revisión final de seguridad/publicación pendiente.

@@ -1,0 +1,86 @@
+MONTICULOS, TERRAZAS Y DESCENSO — 03/10/2026
+
+Solicitud vigente
+El usuario rechazó los arcos vacíos con apariencia de mesa. Quiere cuerpos
+rocosos con volumen: algunos se recorren por delante, otros son tierra sólida
+que obliga a saltar. También pidió distintas alturas, subir por repisas, bajar
+con S si existe suelo inferior, letras BONUS doradas y revisar la orientación
+tras morir/reaparecer. Esta autorización sustituye las restricciones anteriores
+de no editar niveles. No autoriza música, rediseño de DK ni publicación.
+
+Implementación
+- Montículos: la colisión unidireccional continúa siendo una repisa delgada,
+  pero su fachada visual ahora es roca completa hasta el suelo de apoyo,
+  con hombros, costados iluminados, relleno en sombra y vegetación en selva.
+  Las terrazas inferiores se dibujan delante de las fachadas superiores.
+  DK camina por delante del cuerpo rocoso; no por un hueco entre dos patas.
+- Jungle conserva las primeras repisas y la ruta por delante. Se restauran
+  dos escalones sólidos bajos (x864 y x1376); el grupo x944–1104 ofrece tres
+  alturas, no todas y84. Hueco posterior al checkpoint: sigue en40px.
+- Ropey mantiene lianas/recorridos/ambos checkpoints. Subida OPCIONAL junto
+  a x1300–1500: y140/108/76/44/12, zigzag con pasos de32px, racimo arriba.
+  La ruta inferior permanece abierta. La subida supera la ventana de144px.
+  Cámara legible: límite habitual48 junto a lianas; una zona x1200–1620
+  habilita -96 para el mirador. El dosel sube solo en ese claro, para no
+  tapar las repisas nuevas. No se amplía el tope de trepar ninguna liana.
+- Reptile: la ascensión existente tiene ahora un escalón estrecho x1428/y36
+  y pared x1464/y4 sobre la meseta. Son roca sólida: saltos normales de32px.
+  Racimo en la cima, cámara hasta -96 y descenso a la misma galería existente.
+- Descenso: S / flecha abajo / abajo táctil. Una pulsación baja una repisa;
+  mantener no atraviesa las siguientes. Solo si DK está apoyado en repisa
+  unidireccional y hay superficie inferior para todo el ancho del cuerpo.
+  Roca sólida, suelo base y repisa sin apoyo bajo los pies no se atraviesan.
+  Se ignoran solo piezas coplanares del soporte actual hasta que el cuerpo
+  las libera, sin temporizador. Reinicio/daño/respawn limpian excepciones.
+  Lianas conservan bajar con S; no se activa descenso de repisa al trepar.
+  Descender consume coyote y salto anticipado; no permite salto fantasma.
+  Ayuda contextual fuera del LCD y panel Cómo jugar explican la acción.
+- Orientación: LevelRules.faceInput actualiza dirección continuamente en
+  simulación y al retornar. Antes, entradas durante el daño se sincronizaban
+  sin cambiar facing; mantener dirección después de reaparecer podía mover
+  el cuerpo mirando al lado anterior. No se reejecutan ataques/lanza-barril.
+  Es una causa verificable compatible con el reporte; la secuencia exacta
+  del usuario no se conoce. No confundir con un bloqueo de movimiento probado.
+- BONUS: glifos claros de7 filas sobre placa oscura, bisel dorado y sombra;
+  HUD reducido coherente. Dimensiones/anclajes intactos (12px mundo,9px HUD).
+  Fuentes en tools/art/props.mjs; npm run art regenera los recursos.
+
+Verificación
+PASS tipos/build; test:unit, test:phase10 (incluye test:encounters/terrain),
+test:input, test:audio, test:ending y test:final-bonus. Arte regenerado dos
+veces con hashes idénticos: atlas, DK y fuentes reproducibles.
+PASS --terrain-only Edge154/Windows: muerte manteniendo izquierda, cambio a
+derecha, fachada atravesable, salto/aterrizaje, S/ArrowDown, restauración del
+colisionador, pausa sin descenso pendiente y escalón sólido que no cede a S.
+PASS --phase6-only, --phase7-only y --phase8-only Edge154.0.4258.53/Windows:
+recorridos completos con teclado real, sin teletransporte ni cambios de estado
+internos. Ropey sube por las cinco terrazas hasta y12, recoge racimo y mantiene
+S al bajar sin atravesar la siguiente; lianas anteriores conservan agarre,
+balanceo seguro y aterrizaje visible. Ambos checkpoints devuelven bien.
+Reptile sube la pared hasta y4, conserva llantas/barriles y vuelve desde caídas.
+PASS --demo-only: nueve lecciones, los tres niveles, mapa/progresión, nueva
+cima y pared, bonus, resultado/celebración, opciones en LCD a tres tamaños
+de teléfono, mapa conserva campaña y nueva partida reinicia sin perder audio.
+Cero errores de ejecución en esos bloques. No se ejecutó npm test entero.
+PASS --panels-only: ayuda y sonido centrados, cierre visible, sin desborde
+en320x568/375x667/390x844 y escritorio; ajustes se guardan al moverlos.
+No se ha probado Safari/iPhone físico ni aprobado la dificultad humana.
+
+Notas de QA
+- El bot de Jungle ahora salta x864/x1376 porque vuelven a ser roca sólida.
+  El bot de Reptile incluye los dos saltos nuevos; no se debilitó la física.
+- Una aserción antigua esperaba que la cámara se moviese al trepar. Ahora
+  comprueba personaje y aterrizaje visibles: la cámara legible puede permanecer
+  quieta si ambos ya caben. La prueba de salto completo desde liana se conserva.
+- Capturas de atlas y montículo frontal revisadas. Las capturas de cimas se
+  toman vía navegador, no toDataURL (el buffer WebGL podía salir negro).
+- Cimas de Ropey y Reptile revisadas visualmente en capturas del juego.
+  Añadir una fila extra a la ayuda hacía desbordar el teléfono pequeño:
+  se integró la instrucción de repisas en la nota existente, conservando
+  tipografía, tamaño de letra y cierre visibles, sin ampliar el panel.
+
+Conservado
+B-01, DK/poses, fotografía, audio/efectos, bonus final/premio20 y menús.
+tuning.ts SHA-256 87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9
+console-teal.png SHA-256 1e2ce780c74a6f219b778d3bc357dd6a8e123221556aaa0d11811c5fa82d1fd3
+No publicación externa. Preview LAN4173; revision=terrazas.

@@ -1,0 +1,104 @@
+CIERRE DE MINA Y NIVEL EXTRA — 04/10/2026
+
+PEDIDO
+Conservar el recorrido aprobado de Reptile (muros, montañas, llantas) y añadir
+AL FINAL un cañón que lance al carrito. Tramo introductorio corto, alrededor
+de30–35s, avance automático, saltos para bananas y pequeños huecos; sin la
+dificultad avanzada posterior del video. No es un cuarto nivel en el mapa.
+La entrada final del nivel3 también requería mejora estética.
+Separar nombres: BONUS = letras; NIVEL EXTRA = minijuego de tres barriles.
+Usuario confirmó que «letras más altas» se refiere a los objetos recogibles,
+NO al título/resultados. Aplauso final y música siguen aprobados.
+
+REFERENCIA
+video1474174289.mp4 aportado, Zoom 2026-10-04 16.08.09. Duración98,92s,
+2560x1440,25fps. Se inspeccionó visualmente una lámina de0–33s cada3s, en
+artifacts/minecart-reference-0-33.png. No revisión de cada fotograma ni audio.
+Se tomó la progresión cañón/carrito/bananas/rieles/huecos, no sus píxeles ni
+coordenadas. Video permanece externo al juego, no se copia a public/dist.
+
+IMPLEMENTACIÓN
+1. Los sólidos, lianas, llantas, montañas, patrullas y checkpoints existentes
+   de los tres niveles no cambian. B/O de Jungle_PHASE6 suben de112 a84;
+   N/U de Ropey de168 a140; S de Reptile de92 a80, aún alcanzable con rebote
+   alto. Misma X y recuperación al final si se omiten. Letras opcionales.
+   Las rutas históricas de Jungle/greybox conservan sus datos anteriores.
+2. La salida habitual de Reptile muestra cañón en la aventura y pide pulsar
+   K (A táctil) para saltar dentro. No celebra ni acredita nivel3 todavía.
+   Se conservan los objetos del intento al pasar a MinecartScene.
+3. Animación de salto al cañón y vuelo1,6s hacia carrito visible; después
+   espera al jugador. Explicación: avanza solo, K/A sale, NUEVA pulsación
+   salta. No necesita mantener derecha ni B. Una pulsación breve entre
+   fotogramas se conserva; mantener entrada no produce salto involuntario.
+4. Recorrido de160 a3000 a88px/s (~32,3s), rieles en pendientes suaves;
+   tres huecos24/28/32px en860/1460/2200. Primer salto opcional seguro para
+   bananas antes del primer hueco. Sin enemigos, carros rivales ni trampas.
+   Salto210/gravedad640 propios del carrito, sin tocar el movimiento B-01.
+   Ventana de salida del borde75ms y pulsación anticipada110ms.
+5. Caída muestra reintento; K/A vuelve al carrito, sin repetir la cueva.
+   Objetos recogidos en este intento se conservan, sin duplicarse. Salir
+   voluntariamente al mapa antes de acabar descarta el intento, como antes.
+6. Al llegar a la entrada final, recién se acredita Reptile completo con
+   los objetos de cueva +26 bananas opcionales del carrito. IDs propios
+   minecart-banana-* evitan sumas duplicadas al repetir niveles.
+   K/A continúa al NIVEL EXTRA si no se jugó, o al resumen si ya se consumió.
+   Ganar/perder el extra lo consume una vez; tres iguales siguen dando20.
+7. Arte generado: carrito metálico con ruedas animadas, cañón inclinado,
+   soportes de madera y entrada rocosa con profundidad, vigas y lámpara.
+   Poses DK existentes reutilizadas; no se alteran DK ni su aplauso.
+   Atlas166 sprites256x841; docs/art/minecart.png para revisión.
+   Los dos frames del carrito usan pivote inferior [18,28] para mantener
+   las ruedas sobre el riel al animar. DK queda parcialmente dentro del
+   carro; el aviso superior se oculta durante el salto para no taparlo.
+8. Mismo audio de niveles durante el carrito, sin reiniciar el bucle cuando
+   cambia de escena; acciones reutilizan efectos existentes. Nuevos nombres
+   en encabezado/guía del extra y desglose «EXTRA: +…». Título BONUS de letras,
+   celebración, duración y menú final conservados.
+
+ARQUITECTURA
+src/minecart.ts contiene modelo puro, sin Phaser: paso fijo de1/60s.
+MinecartScene acumula delta y ejecuta esos pasos fijos (no lógica variable
+por fotograma); pausa/foco descartan acumulador y sincronizan botones.
+Telemetría de solo lectura en lab-panel.dataset.minecart. No rutas de QA
+mutadoras ni desbloqueos de campaña agregados al producto. Rutas antiguas
+independientes siguen terminando en su cueva; carrito pertenece a aventura.
+Música, carcasa y valores B-01 no se reconstruyeron ni sustituyeron.
+
+VERIFICACIÓN
+PASS arte, tipos/build, test:unit, test:phase10 (encounters/terrain),
+test:final-bonus, test:ending, test:audio, test:input y test:minecart.
+La prueba antigua de N esperaba recogerla caminando; actualizada para
+comprobar que NO se recoge abajo y SÍ al saltar. El bot de Jungle ahora
+salta explícitamente por la B elevada en vez de asumir que basta caminar.
+Minecart unitarias: tres huecos alcanzables, duración, fallos/reintento,
+botón mantenido/breve, pausa/foco, guardas, mapa descarta intento, crédito
+único y limpieza de listeners. No se debilitaron las reglas del juego.
+Edge154.0.4258.53/Windows: --demo-only y --bonus-loss-only PASS, recorrido
+real de diez lecciones, tres niveles, entrada al cañón/carrito y cierre.
+El carrito cubre espera inicial sin salto involuntario, pausa/foco, caída,
+reintento, saltos A táctiles emulados a390x844, recogidas y final de32s.
+Extra ganador y sin premio, conservación de campaña, repetición Jungle/
+Reptile sin otro extra, nueva partida y finales en tres tamaños PASS.
+Cero errores de ejecución en ambos recorridos completos.
+Tras el último ajuste visual de pivote/posición DK se repitió --demo-only
+COMPLETO en Edge con la compilación index-DJTB9oTA.js: PASS, cero errores;
+pivote inferior estable, ruedas apoyadas sobre el riel, replays y nueva
+partida incluidos. Capturas ready/phone-jump/exit revisadas. No se han
+cambiado reglas de salto en ese ajuste.
+44 de45 hashes protegidos idénticos:37 archivos de audio, física/B-01,
+cámara global, aplauso y carcasa. Única diferencia esperada: S elevada en
+reptile-layout.ts. Preview4173 responde200 y sirve index-DJTB9oTA.js.
+No se ejecutó npm test completo. No equivale a Safari/iPhone físico ni
+aprobación de estética o balance del usuario.
+
+ALCANCE PENDIENTE
+El mensaje también propone cámara algo más centrada, rivales más veloces/
+imprevisibles, coherencia de montículos y pájaros para rebotar. Se preguntó
+si aplicar cámara/rivales ahora; sin respuesta, se prioriza su instrucción
+final de conservar las partes anteriores y añadir este cierre introductorio.
+No se han retocado cámara global/enemigos ni agregado aves/agua/más niveles.
+Reevaluar esos puntos con playtest; no considerarlos implementados.
+
+PUBLICACIÓN
+Servidor local/LAN4173, revisión mina-final. No publicar ni Git.
+Control OWASP/lanzamiento obligatorio sigue pendiente.

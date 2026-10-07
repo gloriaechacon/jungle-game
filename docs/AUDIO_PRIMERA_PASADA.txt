@@ -1,0 +1,103 @@
+PRIMERA PASADA DE AUDIO — 02/10/2026
+
+Autorización: el usuario pidió implementar música de fondo y sonidos importantes,
+con criterio propio y carácter retro cercano a su referencia. No pidió más cambios
+en niveles, física, sprites, consola, final personal ni publicación.
+
+QUÉ SE PUEDE PROBAR
+- Aventura: /?adventure=1 (también rutas Jungle, Ropey y Reptile independientes).
+- Pista original de 16 compases / 35,56 segundos, 108 BPM, compartida por los tres
+  niveles y más baja en el mapa. Melodía con llamada/respuesta y segunda sección;
+  pulsos de armónicos limitados, bajo triangular, percusión corta y arpegios.
+- Efectos: salto aceptado, banana, letra, rodar, golpe, caída al vacío con retorno,
+  reaparición tras golpe, checkpoint, victoria, levantar/lanzar/romper barril,
+  pisar o derrotar enemigo, llanta, agarrar liana y logro de práctica.
+- La música acompaña quedarse quieto: no hay una alarma ni sonidos repetidos de
+  espera. No se añadieron pasos continuos para no saturar el audio.
+- La victoria atenúa la música y deja el resumen en silencio tras la fanfarria.
+
+ACTIVACIÓN Y PAUSA
+La intro visual sigue siendo automática y no espera audio. El primer clic en el
+juego o tecla de juego válida activa Web Audio; también al cerrar Sonido mediante
+la X o su botón original. No se intenta eludir autoplay. Antes de esa interacción no se
+crea un AudioContext. Si el usuario eligió silencio, se respeta.
+
+Sonido abre música / efectos por separado y Silenciar todo. Solo estas preferencias
+se guardan en localStorage, clave berto-audio-v1; el progreso sigue en memoria.
+Actualización 03/10: guardado inmediato al ajustar, sin botón «Guardar». El panel
+centrado tiene X visible, diseño compacto claro y aviso de guardado automático.
+Si el navegador bloquea localStorage, los ajustes siguen aplicándose durante la
+visita y el panel informa que no se podrán conservar al cerrar la página.
+Pausa, pérdida de foco, pestaña oculta, ajustes y repetir encendido suspenden el
+reloj de audio junto al juego. Al reanudar continúa la posición de la pista, sin
+reiniciarla tras una muerte ni duplicar el motor al cambiar de nivel.
+
+No se acumulan efectos antes de cargar/desbloquear; se descartan. Cambiar de escena
+limpia efectos pendientes. Máximo ocho efectos simultáneos, protección de volumen
+y atenuación musical durante golpes/recogidas importantes. Un error de carga deja
+jugar sin sonido y permite reintentar desde el panel.
+
+FUENTES Y REGENERACIÓN
+- tools/audio/score.mjs: composición y recetas de síntesis originales.
+- tools/audio/build-audio.mjs: genera todos los WAV con Node, sin herramientas,
+  cuentas o servicios externos, ni extracción del juego de referencia.
+- npm.cmd run audio: recrea public/audio/*.wav, docs/audio/manifest.json y
+  docs/audio/primera-escucha.wav (24 s de muestra con efectos).
+- La muestra incluye, por orden: salto, banana, letra, rodar, pisar, levantar,
+  lanzar, romper, golpe, reaparición, checkpoint y victoria.
+- 18 recursos WAV mono, PCM de 16 bits / 32 kHz; música ~2,28 MB. El video y su
+  recorte de consulta NO están en public y NO se cargan al jugar.
+
+INTEGRACIÓN
+- src/audio.ts / audio.css: Web Audio, mezcla, activación, ajustes y ciclo de vida.
+- src/audio-events.ts: observador puro de cambios reales, sin escribir en juego.
+- src/movement.ts: observa al terminar cada WORLD_STEP, incluidos sus retornos
+  tempranos de golpe/reaparición. No se trasladó lógica física a update().
+- src/player.ts: solo getter lastJumpAt, sin modificar la aceptación de saltos.
+- src/main.ts: conecta eventos y estado de escena al único motor de audio.
+- Phaser sigue con noAudio:true porque este motor usa Web Audio directamente.
+- B-01 SHA-256: 87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9.
+- PNG aprobado de consola: 1e2ce780c74a6f219b778d3bc357dd6a8e123221556aaa0d11811c5fa82d1fd3.
+
+VERIFICACIÓN
+Unitarias del audio: transiciones reales, no repetición, prioridad de llanta,
+reinicio silencioso, inventario restaurado, señal finita/no saturada, extremos de
+efectos, unión de bucle, archivos idénticos al regenerar y huella B-01.
+Prueba integrada: tests/audio.mjs, con medidor de señal real en la salida Web Audio
+(solo instrumentación de prueba), gestos auténticos, pausa/foco, volumen/silencio,
+persistencia, salto rechazado, daño/retorno, recogidas, checkpoint, victoria, tres
+rutas y fallo recuperable de un recurso. Comando: node tests/smoke.mjs --audio-only.
+Incluida en npm test junto con regresiones A/B/3–11.
+
+Pruebas iniciales: build, unitarias completas y prueba de audio integrada PASS en
+Edge 154.0.4258.48 / Windows. En la primera suite larga, la prueba histórica de
+fase 5 esperó el estado transitorio thrown después de que el barril ya derrotara
+al enemigo (kills.barrel=1). La repetición aislada pasó sin modificar el juego.
+Se robusteció SOLO esa espera: requiere objetivo vivo antes de soltar y acepta
+thrown o spent con la nueva derrota confirmada; conserva comprobaciones posteriores
+de golpe, checkpoint y progreso. No se amplió un timeout ni se alteró la física.
+
+CIERRE DE VERIFICACIÓN (WINDOWS / EDGE 154.0.4258.48)
+- Unitarias de reglas, jugador, fases 6–10 y audio: PASS.
+- Build final y comprobación de tipos: PASS. Solo aviso de tamaño del paquete de
+  Phaser y advertencia preexistente de configuración email de npm.
+- Regresiones de navegador A/B/3–11: PASS, incluidos los tres niveles dentro de
+  una sesión de aventura, tutorial, foco, consola, zoom y tamaños responsive.
+- Audio final: node tests/smoke.mjs --audio-only, exit 0, sin errores de ejecución.
+  Incluye señal real, golpe/retorno, pausa, bucle, ajustes, recarga, silencio,
+  eliminación de un efecto congelado al reiniciar, panel en 390x844 / 844x390,
+  música en los tres niveles y carga fallida recuperable.
+- La ejecución integral llegó a completar A/B/3–11 pero se interrumpió dentro de
+  la nueva prueba de fallo de audio: la respuesta 503 simulada llegó antes de la
+  primera telemetría de Phaser. Se corrigió la espera de esa prueba (arranque real
+  y cambio al mapa), luego se repitió el bloque de audio completo con éxito. No se
+  afirma una ejecución integral exitosa posterior a esos ajustes del test.
+- Captura revisada: artifacts/audio-panel-preview.jpg (navegador integrado) y
+  artifacts/audio-settings.png (prueba Edge). No hay auditoría de escucha humana.
+
+LÍMITES
+Esta es una propuesta sonora para ESCUCHAR Y AJUSTAR, no una reproducción ni una
+comparación auditiva certificada con la grabación original. El agente verificó
+estructura y señales, no oyó el resultado como un oyente humano. La aprobación de
+timbre, melodía, volumen y sensación nostálgica corresponde al playtest del usuario.
+Táctil, carátula definitiva, final genérico/personal y publicación siguen pendientes.

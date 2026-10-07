@@ -1,0 +1,40 @@
+REVISIÓN GENERAL — Claude, 04/10/2026
+Copia completa del proyecto (sin node_modules/dist/videos) probada en
+Chromium 141 / Linux. B-01 intacto (SHA-256 87f02c4b…f9).
+
+RESULTADOS
+- Tipos + build: PASS.
+- Unitarias: test:unit, test:phase10 (encuentros/terreno), test:audio,
+  test:input, test:ending, test:final-bonus: TODAS PASS.
+- Navegador PASS: movement, Jungle, fase 4, fase 5 (encuadre y ruta), fase 6,
+  readability, terrain, fase 7, fase 8, volver al mapa, fase 10, fase 9, fase 11
+  (antes fallaba por opacidad aquí; ahora pasa), paneles.
+- --audio-only: NO se puede validar en este Chromium (no decodifica AAC/.m4a).
+  Debe correrse en Edge. Ver corrección 1.
+- --demo-only: el bot se cae en la cueva en puntos distintos cada vez
+  (llanta 330 / rebote bajo). Fase 8 sola pasa, Codex lo pasa en Edge:
+  parece sincronización del bot en máquina lenta, no un fallo del juego. Si se
+  repite en Edge, revisar tests/phase8.mjs tras los cambios de terreno.
+- --touch-only: falla aquí igual que antes de estos cambios (ya conocido).
+
+CORRECCIONES APLICADAS
+1. src/audio.ts: si UN archivo de audio fallaba (red o navegador sin AAC), se
+   perdían TODOS los efectos y la música. Ahora cada archivo es independiente:
+   lo que carga suena, `error` sigue avisando en el panel y cerrar el panel
+   reintenta solo lo que falló. Comprobado: sin AAC, los efectos (salto) suenan.
+   Pendiente: tests/audio.mjs en Edge (el caso de fallo recuperable sigue válido).
+2. src/world-map.ts: «3/3 NIVELES COMPLETOS» se salía del borde derecho del
+   LCD (21 letras); ahora «3/3 COMPLETADOS».
+
+REVISADO SIN CAMBIOS
+- Bucles de soundtrack: duraciones = manifiestos, sin clic en el empalme.
+- Seguridad básica: innerHTML solo con texto fijo; localStorage validado y
+  acotado; parámetros de URL solo comparados. Sin hooks globales de prueba.
+  (No es la revisión OWASP de ANTES_DE_PUBLICAR.txt.)
+
+PARA ANTES DE PUBLICAR (añadido a ANTES_DE_PUBLICAR.txt)
+- Soundtracks y recordings salen de grabaciones del juego original; docs/ tiene
+  videos y fotogramas originales: solo uso privado.
+- public/ incluye ~11 MB sin usar (cuatro loops GB y recordings/).
+- docs/CASOS_DE_PRUEBA.md: BF5/BF7 actualizados al bonus actual y BF10 nuevo
+  (bonus una sola vez por partida).

@@ -1,0 +1,14 @@
+{
+  "source": "docs/audio/intro-soundtrack-original.m4a",
+  "sourceSha256": "512dbd4c9b1cfbbaf84d49e91a510f0a92c7bef6d2b670ee661fb5eff9ac344d",
+  "outputSha256": "97777edb54bc9bf0a019ddefdb18128cacc96719e44c3921749813901ba86aa2",
+  "sourceSeconds": 127.274667,
+  "start": 1.933,
+  "end": 125.08,
+  "firstCapturedAttackSeconds": 1.93977,
+  "fadeInSeconds": 0.002,
+  "gainDb": -7.5,
+  "sourceIntegratedLUFS": -15.84,
+  "sourceTruePeakDb": 0.25,
+  "notes": "Start at the first captured note, not the recording margin. User-supplied soundtrack; no recomposition or source separation. Human listening and loop approval pending."
+}

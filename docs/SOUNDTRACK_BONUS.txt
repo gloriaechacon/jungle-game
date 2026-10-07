@@ -1,0 +1,65 @@
+PISTA DEL BONUS — 03/10/2026
+
+Alcance autorizado
+El usuario suministró audio1469715243.m4a para el bonus final. La coherencia
+del minijuego y el mensaje posterior se decidirán más adelante: NO rediseñarlos
+ahora. Cambiar solo el fondo musical de FinalBonusScene, no los efectos ni la
+celebración. Mantener el inicio seguro y su tarjeta de explicación.
+
+Fuente
+Grabación AAC estéreo / 48 kHz, 64,128 s. Copia íntegra conservada en
+docs/audio/bonus-soundtrack-original.m4a, SHA-256:
+351e2a057114a813d105cb44108487a69a6ebf513c9bcc47430bf35fc1d58667.
+El archivo de Zoom no se modifica. La aplicación no depende de él para jugar.
+
+Edición y medidas
+- Primera señal musical capturada alrededor de 2,316625 s; corte en 2,3105 s
+  que conserva ~6 ms antes del ataque y retira el margen de grabación.
+- Recurrencia principal medida a +26,42725 s: correlación de forma de onda
+  0,81053 en ocho segundos y 0,71671 en el solapamiento de toda la grabación;
+  también confirmada por comparación espectral alrededor de 26,432 s.
+- Recurso recortado hasta 28,73775 s; dura 26,42725 s y el motor lo repite
+  automáticamente mientras siga el bonus. No hace falta duplicarlo en disco.
+- Rampas anticlic de 2 ms al entrar y 4 ms al salir. Sin cambiar notas,
+  velocidad, tono o instrumentación. No se agregan capas ni efectos.
+- Ganancia constante -7 dB. Copia AAC medida a -23,3 LUFS / -8,6 dBTP,
+  comparable a los otros fondos; volumen y silencio del usuario conservados.
+
+Archivos
+public/audio/soundtrack/bonus.m4a: AAC 128 kb/s, 44,1 kHz estéreo.
+public/audio/soundtrack/bonus.json: recortes, ganancias, duración y hashes.
+tools/audio/build-bonus.py: regeneración con FFmpeg.
+npm run audio:bonus -- --ffmpeg <ruta a ffmpeg.exe>
+El analizador existente admite --source para repetir la comparación.
+
+Integración y preservación
+src/audio-events.ts: BONUS_TRACK ahora selecciona soundtrack/bonus solo para
+FinalBonusScene. Se detiene al salir; DemoEndingScene conserva su grabación
+de celebración de una sola reproducción. No se editó audio.ts ni los controles.
+recordings/bonus.wav queda como respaldo. Intro/mapa/niveles, los 17 efectos
+aprobados, física B-01, sprite, carcasa y final permanecen intactos.
+
+Límites
+Se analizó la señal: NO se afirma escucha humana ni aislamiento de música
+y ruidos ya mezclados. El empalme musical y su volumen final necesitan la
+aprobación del usuario. No se publicó el juego ni se alteraron repositorios.
+
+Verificación
+Tipos/build, test:audio y test:final-bonus PASS. Los 17 efectos reproducidos
+por sus generadores conservan sus bytes originales. Fuente externa y respaldo
+idénticos; hashes de intro/mapa/niveles, bonus anterior, celebración, B-01 y
+carcasa sin cambios. Preview4173 sirve el nuevo recurso con HTTP200.
+Edge154/Windows --audio-only PASS: AAC del bonus decodifica26,427s, señal
+desde0,000042s, pico0,370; desbloqueo real, salida, volumen/silencio, guardado,
+pausa/foco, eventos de acciones y recuperación de carga fallida. Cero errores.
+Primera corrida falló en una carrera de la prueba del retorno al mapa: podía
+leer la telemetría antigua (se publica cada~100ms) al omitir práctica enseguida.
+La prueba ahora espera observar la pista de práctica ANTES de omitirla;
+conserva la comprobación de retorno desde cero. No se cambió el motor de audio.
+Regresión --demo-only PASS en Edge154/Windows: tutorial, tres niveles reales,
+bonus con teclado y táctil simulado, transición a celebración y opciones finales.
+Final comprobado en tres tamaños de teléfono; mapa conserva la campaña,
+nueva partida reinicia progreso/tutorial y mantiene ajustes de sonido.
+Cero errores de ejecución. No se ejecutó la suite completa npm test en este
+ajuste. Escucha e iPhone físico pendientes.
+URL LAN: http://192.168.1.55:4173/?adventure=1&revision=bonus-soundtrack

@@ -1,0 +1,83 @@
+CÁMARA, PASOS INFERIORES Y VARIEDAD — 03/10/2026
+
+Petición
+Mejorar anticipación de cámara; corregir el tope poco claro de la liana del
+tutorial; permitir pasar bajo montículos; racimos grandes y más tipos de
+enemigos; volumen visual en barriles y llantas. No modificar música ni DK.
+Omitir tutorial con Espacio fue una idea aplazada: Espacio sigue siendo pausa,
+Esc/Mapa mantienen la omisión actual. Sin nuevos niveles ni salas bonus.
+
+Referencia revisada
+Las cuatro capturas suministradas y láminas de fotogramas del video:
+docs/referencias-cuatro-videos/laminas/nivel-general.jpg y
+docs/sprites-para-redibujar/03-indice-del-video/indice-042-083.png.
+En la captura actual DK ocupa aproximadamente el 60–63% del ancho del LCD;
+en las capturas originales de 1:23/1:29 queda más hacia la izquierda. No se
+afirma que el original tenga una posición constante: cambia con el recorrido.
+Los pasos inferiores originales son referencia de composición, no mapas copiados.
+
+Implementación
+1. Cámara horizontal en src/camera.ts: anticipación de 26 px, suavizado por
+   paso fijo de simulación. En marcha/carrera derecha DK queda aproximadamente
+   en x=58–62 de 160 (36–39%), con ~98–102 px por delante. Al ir a la izquierda
+   se invierte progresivamente. Sin recentrado automático al parar. Pausa/foco
+   congelan la cámara. Límites del mundo prevalecen; allí no se puede mantener
+   siempre esa posición. Cámara vertical y laboratorio B-01 conservados.
+2. Liana del paso 9: se trepa de y=116 a y=84; manos al dosel visible en y=70.
+   Ya no queda un tramo largo aparentemente escalable encima del tope. Cabeza
+   y agarre permanecen bajo el panel. Subir y soltar siguen siendo necesarios.
+   Las lianas de Ropey y su límite seguro y=116 NO se modificaron.
+3. Jungle: montículos aislados pasan a repisas unidireccionales, con al menos
+   32 px libres debajo para el dibujo completo. Se puede caminar por el suelo
+   o saltar a la ruta alta. Ropey mantiene el banco continuo de la llegada del
+   primer cruce, pero abre el paso bajo las elevaciones aisladas siguientes.
+   Reptile conserva ascensos continuos/llantas y añade galería opcional x600–712.
+   Soportes rocosos retraídos son decorado detrás del jugador, no colisiones.
+4. Nueve racimos: tres en Jungle, dos en Ropey y cuatro en Reptile. Cada uno
+   suma diez bananas UNA vez. Persisten tras morir, no se duplican al repetir
+   niveles y salir sin completar descarta lo no guardado, como antes.
+   HUD de tres dígitos; letras BONUS y accesibilidad del final no cambian.
+5. Cinco abejas: dos Jungle, dos Ropey, una Reptile. Patrullan y oscilan usando
+   tiempo de simulación. Dañan incluso con pisotón/rodar; un barril las derrota.
+   Protegen rutas opcionales, no puntos de retorno ni cruces obligatorios.
+   Ayuda breve fuera del LCD explica el aguijón/barril y el valor del racimo.
+6. Un lagarto por nivel sustituye una patrulla existente. Salto de 24 px en
+   un ciclo de 2,4 s, con intervalo largo en tierra; se puede pisar, rodar o
+   usar barril. No hay disparos ni apariciones repentinas.
+7. Barriles: duelas curvas, tapa elíptica, aros metálicos, luces/sombras;
+   checkpoint utiliza el mismo volumen conservando la estrella. Llantas:
+   dibujo de neumático, banda de rodadura, pared interior y goma comprimida.
+   Dimensiones/anclajes y parámetros de lanzamiento/rebote conservados.
+   Generadores: tools/art/props.mjs y build-art.mjs; npm run art reproduce todo.
+   Lámina: docs/art/encounters.png. DK y fotografía de carcasa no redibujados.
+
+Verificación
+PASS tipos/build, test:unit, test:phase10, test:encounters, test:ending y
+test:final-bonus. Tests nuevos incluidos en el flujo npm test.
+PASS Edge 154/Windows: recorridos completos de Jungle, Ropey y Reptile;
+cámara en ambas direcciones, paso inferior, salto desde abajo, racimo y pausa.
+PASS tutorial: nueve lecciones, entrada a Jungle, repetición y omisión.
+PASS táctil simulado: cuatro tamaños de teléfono, cruceta cardinal, A+B con
+dirección, liberación de contactos, pausa/mapa, rotación y nueve lecciones
+con reintentos. Última regresión de legibilidad PASS tras regenerar el arte.
+Cero errores de ejecución en estos bloques. No se ejecutó npm test completo
+de una sola vez: se verificaron los bloques indicados. Safari/iPhone físico,
+aprobación estética y equilibrio de dificultad siguen pendientes de playtest.
+
+Hallazgos durante pruebas
+- El bot antiguo saltaba todas las repisas porque las trataba como paredes.
+  Se adaptó a la ruta baja y a no saltar hacia enemigos de la ruta alta.
+- La primera colocación de abeja de Reptile quedaba sobre el aterrizaje
+  obligatorio de la tercera llanta. La prueba falló: se trasladó a la nueva
+  galería opcional x600–712. No se redujo la dificultad retocando B-01.
+- El recorrido de prueba de Reptile ahora usa el barril disponible y espera
+  al aterrizaje del lagarto; el salto programado para una serpiente no sirve
+  para validar un enemigo con otro patrón. Pruebas unitarias cubren ambos.
+
+Invariantes
+src/tuning.ts SHA-256 87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9.
+Consola PNG 1e2ce780c74a6f219b778d3bc357dd6a8e123221556aaa0d11811c5fa82d1fd3.
+Audios de intro/mapa, controles, checkpoints, BONUS y hueco Jungle de 40 px
+conservados. No hay publicación externa. La estética/dificultad de esta primera
+pasada necesitan playtest humano, especialmente en Safari/iPhone físico.
+URL LAN: http://192.168.1.55:4173/?adventure=1&revision=encounters

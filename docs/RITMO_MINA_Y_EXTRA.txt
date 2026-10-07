@@ -1,0 +1,84 @@
+RITMO, MINA Y EXTRA CON RELOJ — 04/10/2026
+
+ALCANCE
+Último playtest: recordar el salto alto solo junto a la primera llanta;
+patrullas más rápidas y más encuentros; barril de lanzamiento más bonito;
+carrito con más velocidad y curvas; extra explicado brevemente y con tiempo;
+resultados sin repetir BONUS como título ni llamar NIVELES a las bananas.
+Conservar música y el aplauso aprobado. Sin publicación.
+
+CAMBIOS
+- Aviso K/A solo en la primera llanta de Reptile, x356 (la de la S).
+  Incluye reintentos en esa misma llanta, no las tres posteriores. Se conserva
+  la lección de llanta del tutorial. Esta es la interpretación de «primera»;
+  se consultó si se refería en cambio al muro alto de la segunda, x744.
+- Serpientes28–34px/s; lagartos42–48; demás patrullas terrestres24–34.
+  Tutorial y base histórica JUNGLE sin cambios. Abejas y sus patrullas amplias
+  conservadas. Lagartos mantienen salto36px y ventana800ms en suelo para
+  atacarlos. Dos encuentros añadidos a Reptile: lagarto1398/62 sobre la
+  terraza (rango1380–1414) y serpiente1650/174 debajo de la galería.
+  Ninguno ocupa un checkpoint; ambos tienen suelo real en toda su patrulla.
+  Son enemigos de los tipos existentes, no especies/sprites nuevos.
+- Barril cañón procedural: duelas curvadas, dos aros/remaches, boca abierta
+  y flecha. Mismo frame44x44 y trayectoria de entrada/disparo aprobada.
+- Carrito110→140px/s, ~16,14s desde240 hasta2500. Curvas suaves entre
+  crestas64 y valles128; inclinación de carrito/mono acompaña al riel.
+  Cámara vertical solo de la mina mantiene al mono visible arriba. Carcasa
+  inmóvil. Caída natural y dos huecos conservados, igual que controles,
+  reintento local y26 bananas con IDs estables. Colisión de aterrizaje
+  relativa al riel para no atravesar una curva ascendente al saltar.
+- Extra: tarjeta «3 IGUALES», tres bananas de ejemplo, premio20 y K/A
+  para empezar. Sin el párrafo HTML duplicado.20s de juego efectivo:
+  lectura/confirmación no consumen tiempo; pausa/foco lo congelan. Al
+  agotarse, no se eligen símbolos automáticamente ni se entrega premio.
+  Mensaje en dos líneas «TIEMPO AGOTADO / BUEN INTENTO!», gesto ups y final.
+  Tiempo agotado consume la única ronda de la partida, igual que ganar o
+  perder normalmente. Reiniciar desde cero lo restablece, repetir nivel no.
+- Celebración: GANASTE!, después RESULTADOS. BONUS solo en sus cinco letras.
+  Desglose BANANAS / EXTRA / TOTAL. Mismas poses y duración del aplauso.
+
+VERIFICACIÓN FINAL DE ESTA PASADA
+- npm run art, tipos/build, unitarias generales/input/phase10/encounters/
+  terrain/audio/minecart/final-bonus/ending: PASS.
+- Pruebas del reloj incluyen lectura, pausa/foco, instante límite, intento
+  tardío, cero premio automático, consumo por campaña y premio previo intacto.
+- Barridos de saltos en las curvas comprueban que el carrito no atraviesa
+  rieles ascendentes. Ruta de dos saltos, caída natural/reintento PASS.
+- Edge154 Windows phase8-only: PASS, ruta real por teclado, nuevo lagarto
+  derrotado de un salto, dos regresos intencionales, letras/checkpoint/salida.
+-43 hashes protegidos idénticos, incluidos37 archivos de audio, B-01,
+  PlayerController, cámara de plataformas, celebración y foto de consola.
+- Edge154 Windows --demo-only completo PASS, cero errores de ejecución:
+  diez lecciones, tres niveles, salto sobre el nuevo lagarto, guía primera
+  llanta en teclado/touch emulado y ninguna en segunda, carrito con caída/
+  reintento/saltos táctiles, extra ganador+20 dentro del tiempo, celebración
+  y resultados a tres tamaños de teléfono. Volver al mapa y repetir Jungle
+  y cueva NO repite extra ni premio; nueva partida reinicia la campaña.
+- --bonus-timeout-only verificó el recorrido hasta extra agotado, mensaje
+  completo, cero premio, final a tres tamaños y repetición de Jungle sin
+  otra ronda. Esa ejecución se detuvo luego en el bot del replay de cueva:
+  trataba de volver a saltar sin soltar la tecla anterior. Corregido el bot
+  (release/freno antes de nuevo salto); --demo-only completo pasó después.
+  No se repitió el recorrido timeout entero tras ese ajuste de prueba.
+- Capturas revisadas: barril, guía táctil, subida/bajada de mina, tarjeta
+  compacta, tiempo agotado, ganador y desglose con/sin20 bananas. Textos
+  dentro del LCD y actor visible en las curvas.
+- Preview4173 HTTP200, bundle index-nQphwlP2.js. No npm test íntegro ni
+  prueba de Safari/iPhone físico: el balance y la estética quedan para el
+  playtest del usuario. No publicación ni modificación de música.
+
+NOTAS DE QA
+Con patrullas más rápidas, el bot viejo chocaba al caminar hacia atrás
+sobre el castor y al cruzar el nuevo lagarto. Se adaptó para saltar sobre
+el castor desde el escalón y observar/atacar el descenso del lagarto, usando
+solo entradas normales y telemetría de lectura. El salto del lagarto de
+Ropey puede cruzar directamente la cara1300; esa base sigue cubierta por
+la subida real y unitarias del terreno, mientras las otras tres caras se
+prueban caminando contra ellas. No se alteró la física para que pase el bot.
+Una pasada anterior de Ropey también podía chocar al intentar el retorno
+sin derrotar antes el castor; ahora la prueba lo pisa desde el primer
+escalón, sin cambiar terreno ni enemigos para ocultar el problema del bot.
+
+PUBLICACIÓN
+Revisión OWASP y autorización de destino pendientes. No desplegar.
+Preview local previsto: /?adventure=1&revision=ritmo-y-extra.

@@ -1,0 +1,100 @@
+REFINAMIENTO DE MINA, AYUDA Y ENCUENTROS — 04/10/2026
+
+SEGUIMIENTO VIGENTE: U JUNTO A LA PRIMERA ABEJA DE ROPEY
+Petición posterior: sacar U de la torre alta y usarla como recompensa visible
+en la zona del muro del castor ya corregido, racimo y primera abeja.
+- U1454/28 pasa a1020/92, sobre el borde derecho de la repisa964/108.
+  La abeja patrulla968–1084; el racimo996/92 queda separado24px de la letra.
+  Al mirar hacia delante desde el muro se ve U antes de comprometer el salto.
+  Caminar por el suelo inferior no la recoge; subir a la repisa sí.
+- Misma ID U, sin duplicados. Recuperación opcional2280/168 antes de salida
+  intacta; letras no obligatorias. La torre posterior conserva bananas/racimo.
+  Ningún cambio en terreno, enemigos, B-01, cámara, música ni final.
+- Build/tipos, test:unit y test:encounters (incluye terreno) PASS.
+  Edge154/Windows --phase7-only PASS: recorrido real, vuelta al muro,
+  visibilidad de U, esperar hueco de patrulla y recoger sin daño con abeja
+  viva; ascenso posterior, persistencia en caída, checkpoints, salida y
+  reinicio. Dos caídas intencionales de checkpoint en la pasada final.
+  Capturas ropey-bee-u-visible/collected revisadas; cero errores de ejecución.
+  Dos ensayos previos quedaron mirando hacia atrás al probar cámara: se
+  corrigió el recorrido del bot, no la cámara. No demo entera ni iPhone físico.
+- Preview4173 HTTP200, index-ChdENaai.js, revision=u-junto-abeja.
+  Pendiente aprobación humana de la ubicación. No publicar.
+
+PEDIDO VIGENTE
+El usuario aprueba la dirección de la mina, pero pide entrada automática:
+caminar hasta el barril, ver a DK entrar y salir disparado, quedarse un
+instante con la escena vacía y después recibirlo en el carrito. No confirmar
+con K ni mostrar una tarjeta de instrucciones. Recorrido más corto/rápido,
+primeras bananas enseñan el salto; desnivel roto hacia abajo se supera solo,
+después huecos que sí exigen saltar. Mejor arte de barril/carrito/mina.
+Consola inmóvil cuando aparece/desaparece ayuda; tecla cuadrada en desktop,
+A circular y flecha en teléfono. Algunas letras en escaleras altas, primera
+accesible. Lagarto más alto/rápido, abeja con patrulla horizontal más larga.
+
+CAMBIOS
+- Reptile conserva terreno, llantas y recorrido. Al alcanzar su salida,
+  animación visual de 1,25s SOBRE la escena existente: salto al barril,
+  desaparición dentro, disparo y breve plano vacío. Sin tarjeta/K/festejo.
+  La física del jugador queda congelada; la animación respeta pausa/foco.
+  Después MinecartScene muestra la caída al carrito durante 0,8s y arranca.
+- Carrito: velocidad88→110px/s, x240→2500 (~20,55s frente a32,3s).
+  Primera banana baja y grupos elevados sobre piso seguro. Aviso breve
+  externo con K/A entre x340–630; nada tapa la acción dentro del LCD.
+  Riel roto720–738 cae28px y se aterriza sin saltar. Huecos1080–1108 y
+  1810–1844 requieren dos saltos; ascensos suaves intermedios. No enemigos
+  ni obstáculos avanzados. Reintento con K/A desde carrito, no toda cueva.
+  Las26 bananas conservan sus IDs, sin duplicar premios al repetir.
+- Carrito metálico más oscuro, costado en perspectiva, desgaste/remaches,
+  ruedas sobre el riel. Cañón ahora barril de madera inclinado, boca oscura
+  y aros. Fondo de estratos rocosos/crevices, vigas y soportes diagonales.
+  Arte procedural propio en tools/art/minecart.mjs; npm run art reproduce
+  atlas167 sprites256x934. No extracción de píxeles del video.
+- Se elimina coach.offsetHeight del encuadre. Escala/margen superior
+  dependen solo del viewport, no del aviso. Coach más compacto; conserva
+  kbd y A circular/flecha. Teléfono mantiene franja inferior fija de48px.
+- B se conserva400/84. O pasa a1104/4 sobre repisa1068/20; U a1454/28
+  sobre repisa1444/44, separadas de bananas. N y S permanecen. Se usan
+  escaleras ya existentes, sin nuevas paredes/obligación de reunir letras.
+  Las segundas oportunidades cerca de las salidas se conservan.
+- Lagarto: salto24→36px, ciclo1800→1400ms, fase aérea600ms y800ms sobre
+  suelo para contraatacar; velocidad lateral30–36 según nivel. Se puede
+  pisar en vuelo/suelo o derrotar con barril/rodar. No cambia hitbox.
+- Abejas: recorridos116–132px en lugar de40–68px, velocidad26–30.
+  Se conserva pequeño vaivén vertical y que pisarlas hiere, barril mata.
+  Verificadas fuera de sólidos/respawns. No se introduce azar imposible.
+
+CONSERVADO
+Música y archivos de audio, efectos existentes (el disparo reutiliza throw),
+física B-01, cámara dentro de niveles, terreno sólido/repisas, controles,
+carcasa, premio del Nivel extra y aplauso/resultados aprobados. BONUS sigue
+siendo la palabra recogible. Nada publicado ni subido a Git.
+
+VERIFICACIÓN
+Arte/tipos/build y unitarias generales/minecart/encounters/terrain/input/
+audio/final-bonus/ending/phase10 PASS. Incluyen bajada sin salto, dos huecos,
+duración, entrada automática sin salto por tecla retenida, pausa/foco,
+reintento/premio único; pisotón al lagarto en aire y suelo.
+Edge154/Windows, compilación index-JNQZKntK.js: --demo-only PASS completo.
+Diez lecciones/tres niveles, U recogida en la escalera, transición automática,
+carrito21s, bajada sin salto, dos huecos, caída/reintento, teclado y A táctil
+simulada, crédito correcto, Nivel extra, final a tres tamaños, mapa conserva,
+replays Jungle/cueva sin repetir extra y nueva partida. Cero errores.
+También PASS phase11, touch y terrain desde sus helpers oficiales:
+encuadre idéntico al variar coach, cuatro tamaños de teléfono, diez lecciones
+táctiles, liberación/cancelación/foco y O recogida en la escalera superior.
+Capturas de consola/coach, carrito, huecos y arte revisadas. Pantalla limpia
+durante la acción; K cuadrada y A circular/flecha fuera del LCD.
+43 hashes protegidos idénticos (incluye37 audios, B-01/player/cámara,
+celebración/generador y carcasa). Preview4173 HTTP200 sirve esta compilación.
+No se ejecutó npm test entero ni esta vez la variante completa sin premio;
+sus reglas se conservan y las unitarias del Nivel extra sí pasaron.
+La primera pasada completa detectó una suposición antigua del bot:
+intentaba seguir midiendo el nivel anterior después del cambio automático
+de escena (maxVy NaN). Se adaptó el test, sin modificar B-01 ni retener
+estado artificial del nivel en producción.
+No afirmar prueba en iPhone físico; estética/balance requieren al usuario.
+
+PUBLICACIÓN
+Solo preview local/LAN4173, revisión mina-fluida. OWASP/lanzamiento sigue
+pendiente y no es sustituido por estas pruebas jugables.

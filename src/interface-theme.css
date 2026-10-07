@@ -1,0 +1,11 @@
+/* Shared with the approved power-on invitation. No remote font dependency. */
+:root {
+  --ui-font:'Trebuchet MS',Arial,sans-serif;
+  --ui-surface:#edf1eee8;
+  --ui-ink:#193a3b;
+  --ui-muted:#466264;
+  --ui-border:#ffffffa6;
+  --ui-accent:#256b69;
+}
+.control-key {display:inline-block;vertical-align:baseline;font:700 .96em/1.15 var(--ui-font);min-width:1.65em;padding:2px 5px;margin:0 1px;border:1px solid #8da7a3;border-bottom-width:3px;border-radius:5px;background:#fbfcf9;color:var(--ui-ink);text-align:center;white-space:nowrap;}
+.control-key.console-button {border-radius:50%;}

@@ -1,0 +1,16 @@
+{
+  "source": "docs/audio/bonus-soundtrack-original.m4a",
+  "sourceSha256": "351e2a057114a813d105cb44108487a69a6ebf513c9bcc47430bf35fc1d58667",
+  "outputSha256": "c1260948d5334d693995ade64e6fb5a0ad8d1f23544abf790db8cd621b5904c6",
+  "sourceSeconds": 64.128,
+  "start": 2.3105,
+  "end": 28.737750000000002,
+  "firstCapturedAttackSeconds": 2.316625,
+  "fadeInSeconds": 0.002,
+  "fadeOutSeconds": 0.004,
+  "gainDb": -7.0,
+  "loop": true,
+  "loopSeconds": 26.42725,
+  "sourceSeparation": false,
+  "notes": "Supplied bonus recording. Opening trimmed to the first captured attack; ending chosen by waveform/spectral recurrence. Constant attenuation only, with tiny anticlick ramps. No melody, tempo, effects or celebration changes. Musical seam and any embedded noises need human listening approval."
+}

@@ -1,0 +1,71 @@
+SOUNDTRACK DEL MAPA / PRIMERA NOTA — 03/10/2026
+
+Petición vigente
+Usar la pista de mapa suministrada por el usuario, conservando su carácter y
+tono. Retirar el margen de grabación para que empiece en la primera nota.
+Aplicar y registrar el mismo criterio para la intro y futuros audios.
+
+Criterio de edición
+«Primera nota» significa primera nota presente en el archivo recibido. Se
+quita el silencio previo sin comerse su ataque; no se inventa un comienzo que
+no haya quedado grabado. No se cambia melodía, velocidad ni afinación. Se
+preserva el original completo y se crea una copia para el juego, con volumen
+moderado. No se afirma separación de fuentes ni aprobación auditiva humana.
+
+Mapa
+- Fuente: audio3467192068.m4a, AAC estéreo / 48 kHz, 156,010667 s.
+- Copia íntegra: docs/audio/map-soundtrack-original.m4a; SHA-256:
+  932d8e485aed6529835e291d54f4c7c7da96efdfb6d88a2fb7239b2314b381d4.
+- Primera entrada medida alrededor de 2,74967 s. Corte desde 2,744 s:
+  conserva unos 6 ms anteriores al ataque, no los 2,75 s de espera.
+- Cierre en 99,119 s, antes de una recurrencia de la apertura detectada por
+  comparación de forma de onda. Copia de 96,375 s que se repite en el mapa;
+  no hace falta duplicarla para alargarla. Fuente completa siempre conservada.
+- Rampas anticlic de 2 ms al entrar y 4 ms al terminar. El punto de repetición
+  es una propuesta técnica: falta escuchar y aprobar el empalme musical.
+- Ganancia constante -6,5 dB. Fuente -16,95 LUFS / -0,38 dBTP;
+  copia medida -23,29 LUFS / -6,88 dBTP, comparable a la intro.
+- Recurso: public/audio/soundtrack/map.m4a, AAC 128 kb/s, 44,1 kHz estéreo.
+  Sustituye la muestra provisional de ~1,14 s solo en la reproducción.
+  recordings/map.wav y los temas sintetizados previos permanecen intactos.
+
+Intro
+Se ajustó el corte de 1,90 a 1,933 s, justo antes del ataque medido en
+1,93977 s. Rampa de entrada reducida de 80 a 2 ms para preservar la primera
+nota. Final 125,08 s y ganancia -7,5 dB conservados. Duración 123,147 s.
+No se recompuso la pista. Ver docs/INICIO_GUIADO_Y_SOUNDTRACK.txt.
+Copia actual medida: -23,41 LUFS / -7,11 dBTP.
+
+Integración
+WorldMapScene y sus cartelas usan soundtrack/map; al volver de un nivel se
+inicia desde cero. Intro usa soundtrack/intro. Niveles, bonus y celebración
+NO se modificaron en este encargo. Pausa, pérdida de foco, silencio y ajustes
+persistentes se conservan. Defaults 35% música / 65% efectos; no se borran
+las preferencias existentes. El mapa conserva su atenuación adicional previa.
+No se cambió jugabilidad, tutorial, guía de botones, sprites ni carcasa.
+
+Regenerar
+npm run audio:map -- --ffmpeg <ruta a ffmpeg.exe>
+npm run audio:intro -- --ffmpeg <ruta a ffmpeg.exe>
+FFmpeg solo se necesita para regenerar. El juego usa archivos incluidos,
+sin depender de Zoom ni de carpetas de herramientas externas.
+Los archivos .json junto a los audios registran cortes, ganancias y hashes.
+
+Verificación
+Tipos/build PASS. Medición de nivel del mapa PASS.
+test:audio PASS: eventos, integridad de fuentes y copias, síntesis previa
+determinista, rutas de pistas y criterio de inicio registrado.
+smoke --audio-only PASS en Edge 154 / Windows, cero errores de ejecución:
+- AAC decodificado realmente por el navegador: intro 123,147 s, mapa
+  96,375 s; ambas con señal por encima de 0,0005 antes del primer milisegundo,
+  sin margen de grabación ni retraso AAC agregado. Pico <0,45 en ambas.
+- Gesto explícito, señal real de salida, volumen/silencio/autoguardado,
+  pausa/foco, repetición de encendido y recuperación de carga fallida.
+- Entrada/regreso al mapa desde cero; efectos por eventos reales y recorrido
+  de Jungle completo sin errores. No se reejecutó la suite completa del juego.
+Pendiente escucha humana del tono y del empalme, y prueba en iPhone físico.
+B-01 y PNG de carcasa conservan sus hashes aprobados.
+URL LAN: http://192.168.1.55:4173/?adventure=1&revision=map-soundtrack
+
+Nota para publicación futura: conservar la procedencia no equivale a obtener
+una licencia de redistribución. Este encargo no publica el juego.

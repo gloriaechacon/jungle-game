@@ -1,0 +1,76 @@
+INICIO EXPLICITO, AYUDAS SOBRE BOTONES Y SOUNDTRACK — 03/10/2026
+
+Actualización posterior — pista del mapa / primera nota
+La intro ahora se corta en 1,933–125,08 s (123,147 s), con rampa de entrada
+de 2 ms, conservando el ataque de la primera nota grabada. Sustituye los
+valores 1,90 s / 80 ms de la primera entrega documentada abajo.
+El mapa ya usa su nueva grabación dedicada, no el fragmento provisional.
+Ver SOUNDTRACK_MAPA.txt para el criterio común, integración y verificación.
+El resto de la primera entrega se conserva como historial.
+
+Petición vigente
+El usuario observó a una persona que nunca había usado una Game Boy y no
+reconocía la foto como una interfaz táctil. Pidió una invitación grande arriba,
+clic/toque sobre la consola para encender, música con el inicio y flechas a los
+botones. Esta petición reemplaza el encendido automático de 3 segundos.
+
+Implementación
+- Consola apagada hasta tocar/clicar la foto o el aviso superior. Espacio/K
+  también encienden. El primer gesto NO confirma además la portada.
+- Aviso translúcido claro sobre el espacio libre, no sobre el LCD. Se oculta
+  al iniciar. LED/logo inmediato, zoom desde 1,8 s, juego desde 3,4 s; con
+  movimiento reducido, cambio de encuadre sin animación desde 1,8 s.
+- Se mantienen saltar/repetir encendido y la protección por pausa/foco.
+- Teléfono: indicación «Presiona A para comenzar», flecha y aro alineados al
+  botón real. En mapa A para entrar. Durante las nueve lecciones se señala
+  cruceta/A/B según la acción; en liana cambia de arriba a A al soltar.
+- Ayudas solo visuales: pointer-events:none, sin modificar física, tutorial,
+  controles, foto ni sprites. En laptop la ayuda usa K/J/W/D correspondientes.
+- Las ayudas se ocultan al abrir paneles o girar el teléfono en horizontal.
+
+Audio
+Archivo recibido: audio6525407017.m4a, 127,274667 s, AAC estéreo a 48 kHz.
+Original preservado en docs/audio/intro-soundtrack-original.m4a.
+Nuevo recurso: public/audio/soundtrack/intro.m4a, 123,18 s, AAC 128 kb/s.
+Se retiraron únicamente los silencios de grabación al principio/final (rango
+1,90–125,08 s), con fades breves y ganancia constante de -7,5 dB. No se cambió
+melodía, tempo ni tono; NO es una nueva composición ni separación de fuentes.
+Medición original: -15,84 LUFS / +0,25 dBTP. Copia: -23,42 LUFS / -6,84 dBTP.
+Medidas técnicas, no afirmación de escucha o aprobación humana. No se promete
+empalme musical perfecto al repetir el archivo completo.
+
+Reproducción únicamente en portada y durante su encendido tras el gesto real.
+Mapa/niveles/bonus/final conservan las pistas anteriores, aún pendientes de
+mejora. Música inicial 35%, efectos 65%; se preservan preferencias existentes
+en berto-audio-v1, incluidos silencio y autoguardado. El icono de silencio está
+disponible antes de encender. Fallos de carga no impiden jugar.
+
+Regenerar: npm run audio:intro -- --ffmpeg <ruta a ffmpeg.exe>
+Script: tools/audio/build-intro.py. Registro y hashes: intro.json junto al audio.
+FFmpeg solo se necesita para regenerar; el juego usa el archivo incluido.
+El viejo recorte recordings/intro.wav y los sintetizados siguen conservados.
+La procedencia de esta pista suministrada no se convierte en licencia de
+redistribución: revisar los recursos antes de publicar el proyecto.
+
+Verificación
+PASS tipos/build y test:audio (unitarias, recursos previos deterministas,
+integridad de la nueva pista y su fuente).
+PASS phase11-only en Edge 154/Windows: espera sin interacción, un clic inicia,
+entrada bloqueada durante cine, salto/repetición, tecla mantenida no confirma
+portada al terminar, encuadres y movimiento reducido.
+PASS touch-only en Edge con emulación táctil: cuatro tamaños de teléfono,
+primer toque sobre A enciende sin confirmar, flecha alineada a A, nueve lecciones
+y ayudas correctas, errores de ataque y reintentos, contactos simultáneos,
+liberación, pausa, mapa y rotación. La primera ejecución falló al intentar el
+pisotón desde el bot; la repetición completa pasó sin retocar física ni el
+recorrido del bot. Posible sensibilidad temporal, no diagnóstico de Safari.
+Capturas de invitación/portada/tutorial revisadas visualmente.
+PASS audio-only en Edge: gesto real, señal de salida no nula, carga de la nueva
+pista, volumen inicial, ajustes persistentes, silencio, pausa/foco/repetición,
+efectos en el recorrido de Jungle y recuperación de carga fallida.
+PASS panels-only: teclado y táctil, centrado, X/Escape, exclusión de paneles,
+autoguardado y aviso cuando el almacenamiento está bloqueado.
+iPhone físico y escucha final pendientes del usuario. No se ejecutó toda la
+suite en una única pasada.
+El PNG de consola y B-01 mantienen los hashes aprobados.
+URL LAN: http://192.168.1.55:4173/?adventure=1&revision=guided-start

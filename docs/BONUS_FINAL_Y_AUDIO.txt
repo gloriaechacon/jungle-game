@@ -1,0 +1,184 @@
+BONUS FINAL, CELEBRACIÓN Y AUDIO DE REFERENCIA — 03/10/2026
+
+AJUSTE VIGENTE — UN SOLO BONUS COMPLETADO POR PARTIDA
+El usuario reportó que, después de terminar el bonus y elegir conservar la
+partida, repetir cualquier nivel lo abría de nuevo. La transición miraba solo
+si estaban completos los tres niveles; el contador de bananas prevenía premios
+duplicados, pero no guardaba que ya se había jugado (ni una ronda sin premio).
+
+Campaign guarda ahora finalBonusPlayed, separado de bonusBananas. Se fija al
+resolver el tercer barril, ganes o pierdas, antes de la animación del resultado.
+canPlayFinalBonus es la condición compartida por la transición del nivel y la
+protección de entrada de FinalBonusScene. Una repetición lleva directamente al
+resumen/festejo y sus opciones, sin otro minijuego; el rótulo del nivel dice
+«K: VER RESUMEN» (A en teléfono), no «JUGAR BONUS».
+
+Volver al mapa conserva el resultado, las bananas y la marca de bonus jugado.
+«Volver a jugar / Empezar de cero» crea una Campaign nueva y lo habilita otra
+vez al completar los tres niveles. Salir de un bonus INACABADO sigue permitido:
+no hay resultado que guardar y puede volver a intentarse al terminar un nivel.
+Una entrada incompleta/inválida no consume el bonus. Letras siguen opcionales.
+
+Pendientes que el usuario quiere evaluar después, NO implementados aquí:
+- Revisar el tramo poco desafiante de Jungle; no agregar obstáculos a ciegas.
+- Explorar árboles/plataformas más altas, sin poner allí las letras BONUS.
+- Decidir si el bonus debe requerir todas las letras (por ahora solo una idea).
+No se modificaron niveles, física, arte, sonido ni seguridad/publicación.
+
+Pruebas: test:final-bonus, test:ending, test:unit, test:input, test:audio y
+tipos/build PASS. Unitarias
+cubren ganar/perder, repetir cualquiera de los tres niveles, salida al mapa
+durante el resultado, guardia de escena, cero duplicación y nueva campaña.
+Regresión --demo-only PASS en Edge154.0.4258.53/Windows: diez lecciones, tres
+niveles reales, bonus ganador, final a tres tamaños de teléfono, volver al mapa
+con toque simulado, repetir Jungle Y Reptile sin reabrir el bonus, conservar20
+bananas, nueva partida que reinicia niveles/letras/tutorial y conserva sonido.
+Cero errores de ejecución. Captura revisada: artifacts/demo-replay-jungle-summary.png.
+La primera pasada se detuvo en el bot de Ropey al pulsar descenso justo después
+de recuperar foco para una captura; se añadió espera por fotogramas físicos
+actualizados y apoyados en la prueba, sin modificar mecánicas. Segunda pasada
+completa aprobada. No npm test completo ni Safari/iPhone físico en este ajuste.
+Servidor4173 HTTP200, index-qTUxOMSi.js, revision=bonus-unico. Recargar borra la
+partida en memoria; no se migra una sesión que ya esté abierta con código viejo.
+Seguridad OWASP y autorización de publicación siguen pendientes.
+
+AJUSTE VIGENTE — ENTRADA AL BONUS SIN SELECCIÓN ACCIDENTAL
+Tras el playtest, el usuario indicó que saltó al entrar y fijó un barril sin
+entender aún la actividad. Causa verificada: inicio x24 y primer barril x36,
+distancia 12 px, dentro del contacto horizontal de 17 px.
+
+Ahora el inicio está en x18 y los barriles en x56/96/136. Saltar en el sitio
+al entrar no alcanza ninguno. Una tarjeta «COMO JUGAR» explica elegir barril,
+saltar debajo y buscar tres símbolos iguales. No comienza automáticamente ni
+tiene cuenta atrás: A en táctil / K en teclado confirma cuando la persona esté
+lista. Hay un segundo mínimo de lectura; pulsaciones tempranas no se guardan.
+Durante la explicación, el jugador y los símbolos esperan. Se consume la
+confirmación y se exige soltar TODOS los botones antes de admitir movimiento
+y un salto nuevo. Entrada mantenida desde otra escena no confirma ni salta.
+Pausa, pérdida de foco y salida al mapa conservadas. B-01 no se modifica.
+
+El usuario no aprobó la estética de los barriles: queda pendiente de revisión
+visual; en este ajuste NO se regeneraron sprites ni se retocó música. Se espera
+el audio del nivel anunciado por el usuario; no se cambia ninguna pista aún.
+
+Verificación de este ajuste: test:final-bonus, test:ending, test:input y
+tipos/build PASS; incluye
+entrada sostenida, pulsación temprana, confirmación sin salto, soltar todos
+los controles, salto posterior y separación geométrica segura.
+Regresión --demo-only PASS en Edge 154/Windows, cero errores de ejecución:
+nueve lecciones y tres niveles reales, ronda de bonus con teclado y otra con
+contactos táctiles simulados, explicación que espera, confirmación sin salto,
+salto seguro en el inicio, selección de los tres barriles, pausa/foco/audio,
+festejo, mapa que conserva y nueva partida que reinicia. Se actualizó el bot
+del segundo recorrido de cueva para usar el barril contra el lagarto nuevo,
+igual que la prueba principal, sin modificar el juego ni inyectar progreso.
+Capturas de instrucciones en teclado/táctil y separación inicial revisadas:
+artifacts/final-bonus-instructions.png, final-bonus-instructions-touch.png,
+final-bonus-safe-start.png. Pendiente playtest físico en Safari/iPhone.
+B-01, fotografía, audio de intro y mapa conservan sus hashes anteriores.
+Servidor LAN 4173 responde 200; revision=bonus-safe-start. No se publicó.
+La descripción histórica de audio y pruebas a continuación conserva su fecha.
+
+AUTORIZACIÓN Y ALCANCE
+El usuario pidió implementar música, bonus final y nueva celebración después de
+revisar sus cuatro videos. Esta decisión sustituye «sin minijuegos» SOLO para el
+cierre después de los tres niveles. No añade salas bonus a los niveles.
+
+FLUJO
+En la aventura pública, después del resumen del tercer nivel se pulsa A/K como
+antes. Ahora se entra en FinalBonusScene. No es necesario completar BONUS.
+Tres barriles suspendidos alternan cuatro imágenes: banana, coco, estrella y
+barril. Se camina con la cruceta/A/D y se salta con A/K debajo de cada uno para
+fijar su símbolo. Mantener el botón no vuelve a elegir. Cada barril se fija una
+sola vez; no hay enemigos, pozos, límite de tiempo ni una derrota que bloquee.
+START/Espacio pausa jugador, símbolos y audio; pérdida de foco hace lo mismo.
+Mapa/Esc sale conservando la campaña. Las entradas y eventos se limpian al salir.
+
+Resultado: tres iguales dan tres estrellas de celebración; una pareja, dos;
+tres diferentes, una. Son una valoración de esta ronda, no dinero, vidas,
+letras ni poderes. No se agregan bananas o letras que el jugador no recogió.
+Tras aterrizar y mostrar el resultado, se pasa automáticamente al festejo.
+Volver al mapa conserva el progreso; Volver a jugar lo reinicia junto al
+tutorial y el resultado del bonus, sin borrar las preferencias de sonido.
+Volver a completar un nivel con la campaña terminada permite otra ronda.
+Las rutas de laboratorio/workbench conservan su flujo anterior.
+
+CELEBRACIÓN
+Ocho poses frontales independientes de los sprites de juego: posición inicial,
+brazos alternos ante el pecho, puños a los lados de la cabeza, manos elevadas,
+acercamiento y palmas juntas sobre la cabeza. Secuencia de 5,8 segundos activos,
+congelada al perder foco. El menú no interrumpe el gesto a los antiguos 2,1 s.
+No se redibujó la caminata, el rodamiento ni el agarre de liana.
+Fuente: tools/art/celebration.mjs; tiempos: src/celebration.ts.
+Láminas: docs/art/demo-celebration.png y final-bonus.png.
+
+AUDIO REALMENTE INTEGRADO
+public/audio/recordings contiene cinco WAV mono/22050 Hz derivados de los WAV
+preservados de los videos del usuario:
+  intro: Intro, 0,60–8,80 s → portada.
+  map: Mapa, 1,84–3,04 s → mapa y cartelas, PROVISIONAL por ser tan breve.
+  level: Todo el nivel, 6,16–44,88 s → tutorial y los tres niveles.
+  bonus: Bonus, 0,92–9,10 s → barriles del bonus final.
+  celebration: Bonus, 11,68–17,12 s → festejo, UNA reproducción, después silencio.
+Los bucles llevan empalme cruzado de 60 ms para suavizar el corte; esto NO
+certifica que el recorte coincida con un compás o una frase musical completa.
+Se ajustó volumen y se filtró antes de reducir la frecuencia de muestreo.
+No se cambiaron notas, tonalidad ni velocidad. El manifiesto incluye hashes,
+recortes, duración, ganancia y hashes de las fuentes.
+
+LIMITACIÓN IMPORTANTE
+Son extractos de las MEZCLAS grabadas, no pistas de música aisladas. Aún pueden
+sonar efectos que pertenecen al video y no a lo que se está haciendo en el juego.
+Los efectos reactivos del juego siguen siendo los 17 efectos sintetizados y
+se disparan según las acciones reales. El deslizador «Efectos» controla esos
+efectos propios; no puede quitar los que vienen mezclados dentro de la música.
+Falta una grabación quieta del mapa de al menos una frase completa y tomas
+musicales sin acciones para sustituir estas mezclas por bucles más limpios.
+No hay escucha directa del agente: no se afirma separación, empalme musical
+perfecto ni aprobación estética/auditiva. La usuaria debe escuchar esta versión.
+
+RESPALDOS Y REPRODUCCIÓN
+Los cuatro loops y los 17 efectos de Claude siguen intactos en public/audio.
+Su generador tools/audio/{score,gb,build-audio}.mjs tampoco se modificó.
+La muestra original de Codex sigue en docs/audio/primera-escucha.wav y tiene
+otra copia en docs/referencias-cuatro-videos/respaldo-anterior.
+npm run audio regenera la síntesis anterior, no reemplaza recordings.
+npm run audio:recordings regenera los cinco recortes con Python + numpy y los
+WAV de docs/referencias-cuatro-videos/audio; jugar y compilar no requieren
+Python, FFmpeg, videos externos ni la carpeta Codex.
+npm run art regenera los sprites de bonus y festejo dentro del atlas habitual.
+
+VERIFICACIÓN
+Tipos y build: PASS. Unitarias de final, audio y nuevo bonus: PASS.
+Edge 154 / Windows: regresiones completas verificadas POR TRAMOS, sin errores
+de ejecución en los bloques terminados:
+- La corrida npm test pasó unitarias, build y navegador A/B/3–11 + audio.
+  Se detuvo en una expectativa antigua del test del final: buscaba el efecto
+  sintetizado victory que ahora sustituye la grabación de celebración.
+- Se actualizó esa expectativa y se repitió --demo-only sobre el build final:
+  PASS. Recorre los nueve pasos de tutorial y los tres niveles, una ronda de
+  bonus con teclado y otra con contactos táctiles, pausa/foco/símbolos, festejo
+  completo, sonido de una sola reproducción, mapa conserva y nueva partida
+  reinicia. También comprueba los botones finales en tres tamaños de teléfono.
+- --touch-only: PASS, cuatro tamaños verticales, combinaciones, liberación de
+  dedos, rotación, pausa/mapa y los nueve pasos del tutorial con reintentos.
+- --panels-only: PASS, teclado y táctil, X/Escape, centrado y autoguardado.
+- Unitarias adicionales: ocho poses distintas, contacto ascendente, barril ya
+  seleccionado sigue sólido, tres resultados, entrada sin letras, congelación
+  por foco dentro del paso fijo y limpieza de eventos al salir.
+La última versión NO tiene una corrida única de npm test de principio a fin;
+la cobertura anterior se completó mediante esos bloques. Safari/iPhone físico
+y la valoración auditiva/estética humana siguen pendientes.
+Capturas: artifacts/final-bonus-{start,result}.png, final-celebration.png,
+final-bonus-touch-ending.png. Carátula revisada en el navegador integrado.
+B-01 SHA-256: 87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9.
+Carcasa SHA-256: 1e2ce780c74a6f219b778d3bc357dd6a8e123221556aaa0d11811c5fa82d1fd3.
+Ambos sin cambios. No se publicaron archivos ni se modificó GitHub.
+
+PRUEBA LOCAL
+Servidor preview en 0.0.0.0:4173, servido desde dist (HTTP 200 comprobado).
+PC: http://127.0.0.1:4173/?adventure=1&revision=bonus-final
+Teléfono en la misma Wi-Fi:
+http://192.168.1.55:4173/?adventure=1&revision=bonus-final
+El cierre se alcanza jugando la aventura; no hay una puerta de prueba pública
+que marque niveles completados artificialmente.

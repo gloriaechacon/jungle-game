@@ -1,0 +1,152 @@
+PRESENTACION DE LA DEMO — 02/10/2026
+
+ACTUALIZACION — DOS OPCIONES AL TERMINAR, 03/10/2026
+
+Tras 2,1 s activos de festejo, aparecen dos botones accesibles fuera del LCD:
+- Volver al mapa: conserva bananas, BONUS, etapas completadas y selección.
+- Volver a jugar: nueva Campaign; cero bananas/letras/etapas, selección 0,
+  niveles 2/3 bloqueados, practiceDone/practiceStep eliminados y flags de cueva/
+  lianas limpios. Vuelve a la portada; al iniciar se ofrece el tutorial otra vez.
+No se recarga la página ni se borran preferencias de sonido. El progreso sigue
+siendo de sesión; esto no incorpora almacenamiento de partidas.
+
+El menú funciona por toque/clic y por cruceta o WASD para elegir, A/K o START/
+Espacio para confirmar. Mapa es la opción inicial para evitar reinicios
+involuntarios; no se acepta reiniciar durante la celebración ni desde escenas
+que ya terminaron. Los listeners se retiran al salir. Esc conserva su regreso
+al mapa. En el final se reduce un poco el encuadre para mostrar los botones;
+el zoom del juego normal se conserva al regresar.
+
+Suena la fanfarria ya existente y se silencia el loop al llegar a la celebración;
+al volver al mapa/portada se restituye el fondo según las preferencias. No se
+cambió la composición ni se añadieron archivos de audio. La animación y las
+letras opcionales se conservan, sin regalar letras que no se recogieron.
+
+Interfaz: paneles oscuros a pedido del usuario, botones inferiores con relieve,
+iconos y pulsación, etiqueta breve Sonido para no desbordar en móvil.
+Ruta actual: /?adventure=1&revision=dark-ending.
+
+VERIFICACION — EDGE 154.0.4258.53 / WINDOWS
+Build/tipos y unitarias de reglas/B-01, fases 6–10, BONUS, entrada, audio y la
+nueva test:ending: PASS. La nueva unitaria usa la escena real con render inerte:
+guardia de campaña incompleta, espera/foco, ambas elecciones, limpieza de datos
+de tutorial/entrada/listeners y elección por botones/K/START.
+smoke --touch-only: PASS, nueve pasos reales del tutorial y regresiones de dedos.
+smoke --demo-only: PASS, nueve lecciones + TRES niveles completos por controles,
+menú final 390x844 / 375x667 / 320x568, toque NATIVO en Volver al mapa conservando
+totales; repetición real de Reptile y clic en Volver a jugar: portada, cero
+progreso, niveles posteriores bloqueados y tutorial paso 0; volúmenes intactos.
+Audio cargado/desbloqueado antes de comprobar fanfarria; loop desactivado en
+final y voces terminadas al esperar. Sin errores de ejecución.
+Capturas inspeccionadas: artifacts/ending-menu-390x844.png y
+artifacts/ending-menu-320x568.png. Paneles oscuros inspeccionados también en el
+navegador de la app. PNG aprobado y tuning.ts: mismos hashes anteriores.
+No se ejecutó npm test completo. Safari/iPhone físico pendiente del usuario.
+
+Se corrigieron dos esperas de QA, no la jugabilidad: observar la subida del
+salto ANTES de capturas lentas en touch.mjs, y esperar la carga inicial de audio
+al desmutear tras una recarga antes de exigir que suene la fanfarria.
+
+ACTUALIZACION VIGENTE — BONUS
+El usuario eligió BONUS para la versión genérica. Sustituye BERTO en los objetos,
+HUD, progreso y final: Jungle B/O, Ropey N/U, Reptile S. Fuente única
+src/collectibles.ts, también usada por tools/art/build-art.mjs. Se mantienen
+coordenadas, recuperación, acumulación y carácter opcional de las letras.
+No se agregan bonus rooms, comodines, poderes ni puntuación nueva.
+Al reunirlas: BONUS! en grande; mono frontal con sonrisa, ojos de alegría,
+manos abiertas, brazos elevados y saltitos visuales. No cambian sus poses de
+caminar/rodar/trepar, física, música o carcasa. Títulos públicos genéricos;
+IDs de eventos y almacenamiento internos berto:* conservados por compatibilidad.
+Roberto y cualquier selector entre ediciones quedan pendientes.
+Verificado: regeneración de arte, tipos/build, test:unit (incluye bonus-unit),
+test:phase10 y test:audio PASS. node tests/smoke.mjs --demo-only PASS (salida 0)
+en Edge 154 / Windows: nueve lecciones, tres niveles por teclado, BONUS completo,
+festejo y retorno al mapa, cero errores en ejecución. Atlas byte-idéntico tras
+regenerar, hashes de B-01/carcasa intactos. No se volvió a ejecutar npm test
+completo en este cambio; su PASS inferior pertenece a la entrega previa.
+Vista final: artifacts/bonus-ending.png; poses: docs/art/demo-celebration.png.
+Las notas inferiores describen la entrega previa y sus pruebas; la decisión de
+palabra pendiente queda sustituida por esta actualización.
+
+Ubicación principal: C:\Users\Abraham\Documents\Donkey Kong
+Abrir: http://127.0.0.1:5173/?adventure=1&revision=bonus
+
+PETICION Y DECISIONES
+El usuario autorizó un icono de silencio sobre el fondo claro, carátula START
+GAME, distinguir tutorial/niveles, mapa más volumétrico y legible, salida desde
+la casa y festejo genérico. Se interpreta «Stargate» como START GAME, no como
+otra franquicia. «AVENTURA EN LA JUNGLA» es un encabezado provisional, no un
+nombre definitivo. La palabra de cinco letras todavía NO fue elegida; BERTO
+se conserva en recogidas/HUD/final para no inventar una decisión.
+
+La música existente NO fue sustituida ni declarada aprobada. No se incorporó
+audio original de Nintendo. Personalización de Roberto, publicación/repositorio
+remoto y controles táctiles siguen pendientes, sin cambios en este encargo.
+
+IMPLEMENTADO
+1. Altavoz fijo arriba a la derecha, visible incluso antes del encendido.
+   Un clic silencia/reactiva música y efectos. Estado accesible aria-pressed,
+   foco de teclado, área 46x46 y preferencia persistida con los volúmenes.
+   No crea audio al silenciar; activar respeta el gesto requerido del navegador.
+   El panel «Sonido» conserva los dos volúmenes independientes.
+2. Tras el encendido y zoom aprobados aparece la carátula de jungla. Espacio
+   o K lleva al mapa. Mantener esa tecla no entra solo a un nivel.
+3. Rótulo TUTORIAL antes de las nueve prácticas, y TUTORIAL n/9 durante ellas.
+   Al terminarlas, rótulo NIVEL 1 y entrada de la casa. NIVEL 2/3 al entrar en
+   las otras etapas. Cartelas automáticas de 2,6 s; K/Espacio omite; Esc mapa.
+   El reloj de estas escenas se congela si se pierde foco o se repite encendido.
+4. Casa con frente/lateral, dos planos de techo, alero, sombra y tronco con
+   raíces. Placa de banana. Salto de salida exclusivamente visual: no mueve el
+   cuerpo físico ni adelanta enemigos/reglas. La etapa comienza en su spawn
+   aprobado. Las rutas de laboratorio siguen arrancando sin esta presentación.
+5. Mapa con terrazas de caras laterales, luces, senderos curvos compartidos con
+   la marcha, cascada, casa inicial, puente y boca de cueva profunda. Números
+   1/2/3, candados, anillo de selección, follaje despejado en los destinos.
+   No cabaña del anciano. Perspectiva dibujada: no es un motor de geometría 3D.
+6. Al completar el tercer nivel, K: VER FINAL abre el festejo. Mono frontal
+   con cuatro poses exclusivas de presentación, brazos que se elevan; jungla,
+   partículas y letras que aparecen. K/Espacio devuelve al mapa con progreso.
+   Si se obtuvieron todas las letras, PALABRA COMPLETA. Si faltan, se muestran
+   atenuadas y el conteo real; no se regalan letras ni se bloquea la victoria.
+   Se conserva el resumen previo y Espacio no lo reemplaza ni reactiva la etapa.
+7. Corregidos los bordes de entrada de las nuevas escenas: mantener Espacio
+   para omitir cartela no pausa el nivel nuevo; Esc en la cartela del tutorial
+   limpia su estado para no convertir luego Ropey/Reptile en una práctica.
+
+ARCHIVOS
+src/demo-scenes.ts — carátula, cartelas y final, sin física ni reglas.
+src/world-map.ts — dibujo nativo y ruta de entrada.
+src/audio.ts, src/audio.css — silencio rápido.
+src/main.ts, src/scenes.ts — registro/enrutado; presentación solo en aventura
+normal (sin workbench). src/movement.ts y gameplay-view.ts — rótulos, bordes
+de entrada y salida al final; paso fijo y parámetros conservados.
+tools/art/env.mjs — casa; tools/art/celebration.mjs — cuatro poses frontales;
+tools/art/build-art.mjs — atlas/hoja de contacto reproducibles con npm run art.
+tests/demo.mjs — recorrido real completo, sin teletransporte ni mutadores del
+juego. tests/phase10.mjs reutiliza las nueve lecciones también en ruta pública.
+tests/phase11.mjs y audio.mjs incorporan la nueva pantalla START GAME.
+
+EVIDENCIA Y PRUEBAS
+Primera pasada: build, unitarias, fase 10 y audio-unit PASS; --demo-only PASS
+en Microsoft Edge 154 / Windows. Recorrió los tres niveles y mostró el final.
+Verificación FINAL: npm.cmd test completo PASS (salida 0) en Microsoft Edge
+154.0.4258.48 / Windows. Incluye unitarias, tipos/build, A/B/3/4/5/6/7/8/9,
+las nueve lecciones, consola/foco/responsive, audio real y el recorrido público
+de demo por los tres niveles. Cero errores en ejecución. La prueba final cubre
+también Espacio sostenido al omitir cartela y Esc desde la cartela de tutorial
+seguido de entrar en Ropey sin estado de práctica residual.
+Regeneración npm run art: todos los archivos de public/assets byte-idénticos;
+cuatro poses frontales distintas, misma paleta de corbata y pies en y=48.
+Capturas artifacts/demo-title.png, demo-map-start.png, demo-tutorial-card.png,
+demo-house-jump.png, demo-level-2-card.png, demo-level-3-card.png,
+demo-ending.png, demo-map-complete.png. Hoja docs/art/demo-celebration.png.
+
+INVARIANTES
+B-01 src/tuning.ts SHA-256:
+87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9
+Carcasa public/assets/console-teal.png SHA-256:
+1e2ce780c74a6f219b778d3bc357dd6a8e123221556aaa0d11811c5fa82d1fd3
+Ambos verificados intactos. No se modificaron layouts, lianas, llantas, reglas,
+marchas/rodamiento/agarre del mono, fuentes de la música ni dependencias.
+El progreso sigue en memoria; solo preferencias de sonido van a localStorage.
+La aprobación estética y del sonido corresponde al playtest del usuario.

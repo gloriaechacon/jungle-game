@@ -1,0 +1,43 @@
+{
+  "source": "docs/audio/level-soundtrack-original.m4a",
+  "sourceSha256": "f14dddc1e861df7e967f0f59eeef6902f98c84873145492ea1e835d3ba7cb879",
+  "outputSha256": "d4d6122fdd03eaab20c285243e170717eedd011371283b58109c8dadc5838b89",
+  "sourceSeconds": 58.965333,
+  "start": 2.468,
+  "end": 53.80200000000001,
+  "firstCapturedAttackSeconds": 2.474,
+  "periodSeconds": 51.333990929705216,
+  "loopSeconds": 102.66798185941043,
+  "repetitions": 2,
+  "variantOrder": [
+    "original",
+    "warm"
+  ],
+  "filters": {
+    "original": "anull",
+    "warm": "bass=g=0.8:f=180:w=0.6,treble=g=-1.5:f=2500:w=0.7,volume=-0.3dB",
+    "soft": "treble=g=-0.7:f=3000:w=0.7,volume=-0.8dB"
+  },
+  "gainDb": -8.3,
+  "fadeInSeconds": 0.002,
+  "crossfadeSeconds": 0,
+  "boundaryRampSeconds": 0.002,
+  "loop": true,
+  "generatedNotes": false,
+  "sourceSeparation": false,
+  "preservedSourceRange": [
+    2.468,
+    53.802
+  ],
+  "laterSectionIncluded": [
+    35,
+    50
+  ],
+  "basePreview": "docs/audio/level-base-loop.m4a",
+  "baseSha256": "d090013a3644b7a78271b44235cef0aaedc131108aea937d2349d15c066220a5",
+  "pcmPeak": 0.3658851385116577,
+  "joinMaxSteps": [
+    0.0
+  ],
+  "notes": "Full captured passage, including the later changing rhythm, twice with a subtle warm EQ on pass two. Only recording silence outside 2.468\u201353.802 s is removed. No rearranged notes, changed tempo or source separation. 2ms anticlick boundaries are not a guarantee of musical seam alignment; human listening pending. No gameplay effects changed."
+}

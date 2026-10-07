@@ -1,0 +1,56 @@
+{
+  "source": "User-supplied gameplay recordings",
+  "limitation": "Music + captured effects. No source separation or auditory approval. Map is a short provisional excerpt.",
+  "files": {
+    "intro": {
+      "source": "intro-mezcla-original.wav",
+      "start": 0.6,
+      "end": 8.8,
+      "loop": true,
+      "seconds": 8.14,
+      "gain": 1.3460731627669935,
+      "sha256": "5b85ccf97ae6036fba604e35c5354e3324f15d2d9441258ae2f2eedec890ad6e",
+      "sourceSha256": "4d7fa4dabf7ab016d66b79f544af237466cbd593736c8edfdc4ad3a43846d9d2"
+    },
+    "map": {
+      "source": "mapa-mezcla-original.wav",
+      "start": 1.84,
+      "end": 3.04,
+      "loop": true,
+      "seconds": 1.14,
+      "gain": 1.4296592979052778,
+      "sha256": "88b8b8f4458f3b6419643d867f6bd383a66165cff2528ce3f4a4871259ed6caf",
+      "sourceSha256": "7d18c837d6009cc1ccaf43bafa9a73627ce9e267b4bffb0769de6b4050f19150"
+    },
+    "level": {
+      "source": "nivel-mezcla-original.wav",
+      "start": 6.16,
+      "end": 44.88,
+      "loop": true,
+      "seconds": 38.66,
+      "gain": 1.3885120596417606,
+      "sha256": "f61ab0a25b2d60d826c95b2d78a3019648abb2a9d72e763f1ece4d15b1657447",
+      "sourceSha256": "9a6dafa36eef0d7e615712506c33da72e83b3c42e7e4e1225eef16c2449db508"
+    },
+    "bonus": {
+      "source": "bonus-mezcla-original.wav",
+      "start": 0.92,
+      "end": 9.1,
+      "loop": true,
+      "seconds": 8.12,
+      "gain": 1.388801382023702,
+      "sha256": "9c28a7280a458f6b988972c4d017460f8b28ce42d24e63804a67bd9558709868",
+      "sourceSha256": "27565d518aa4f839e368a7adeb7d07fa3b0b74f2f493857267a5f890d24e2fe5"
+    },
+    "celebration": {
+      "source": "bonus-mezcla-original.wav",
+      "start": 11.68,
+      "end": 17.12,
+      "loop": false,
+      "seconds": 5.44,
+      "gain": 1.3996601172862766,
+      "sha256": "9235e4d86cf5427b4554945f2ba725361076a1f87269618413575c7c82106a70",
+      "sourceSha256": "27565d518aa4f839e368a7adeb7d07fa3b0b74f2f493857267a5f890d24e2fe5"
+    }
+  }
+}

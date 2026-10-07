@@ -1,0 +1,108 @@
+GUÍA EN EL VISOR Y CURVAS DE MINA — 04/10/2026
+
+SEGUIMIENTO VIGENTE — REINICIO E INDICACIÓN DE LLANTA
+El usuario precisa que inicio/mapa/tutorial solo señalen botones fuera del
+visor: el texto externo queda vacío, no solo oculto. LCD inicio/mapa dice
+PRESIONA A: COMENZAR / PRESIONA A: ENTRAR (K en computadora). La tarjeta
+TUTORIAL / APRENDE JUGANDO conserva START/pausa/mapa/omitir y A/K comenzar,
+sin círculo A extra. Durante lecciones, fondo claro y letras oscuras dentro,
+solo círculos fuera; se filtra también el prefijo TUTORIAL del pie externo
+por si llega antes del estado de práctica. Progreso/BIEN! siguen en LCD.
+
+Excepción actual: aviso de mantener A/K en la PRIMERA llanta de Reptile
+vuelve fuera del LCD, arriba de la consola, señalando A en móvil; frase
+compacta «Mantén A para saltar más alto». En teclado mantiene «la tecla K».
+No se repite dentro ni abajo. Ubicación independiente de encuadre/zoom;
+se reserva al lado el botón de sonido. Otras llantas sin aviso. La guía
+del laboratorio independiente conserva su colocación anterior bajo S.
+Se conserva la excepción A/K de salto en la mina. No se modifican mina,
+físicas, música, arte, enemigos ni niveles. Cambiar al rival gris queda
+pendiente de elegir diseño; el usuario dijo «veremos».
+
+Validación de este seguimiento: tipos/build, test:input/phase10 (incluye
+encuentros/terreno) y test:minecart PASS. Edge154 navigation PASS en teclado
+y táctil: reinicio real y recorrido posterior por inicio/mapa/Aprende jugando/
+primera lección con círculos correctos y cero texto externo. Touch PASS:
+diez lecciones, cuatro tamaños, reintentos, combinaciones y rotación; cero
+errores. Capturas revisadas. En la ruta pública real, primer aviso de llanta
+PASS a320x568 y390x844: texto completo sobre el LCD, botón Sonido despejado,
+círculo A y sin copia dentro/abajo. Capturas revisadas; rebotes/recogida S,
+mina/extra y --demo-only completo PASS: tres niveles, cierre a tres tamaños,
+mapa conserva partida, replays Jungle/cueva sin repetir extra y nueva partida
+reinicia progreso/candados/tutorial sin borrar ajustes de sonido. Cero errores.
+70 hashes de conservación iguales:60 recursos (37 audios) y10 módulos
+protegidos, incluidas física, niveles y mina. Preview local/LAN4173 HTTP200,
+index-CbfXu5Tb.js. No iPhone físico ni publicación.
+No quedan pruebas en ejecución; preview4173 conservado para el usuario.
+Ruta LAN vigente: /?adventure=1&revision=circulos-y-llanta
+
+HISTORIAL DEL CAMBIO ANTERIOR
+
+Petición: leer la instrucción dentro del Game Boy, con otro fondo. Fuera,
+solo señalar los botones con círculos, sin repetir el texto. Excepción:
+mantener el aviso A/K para saltar al principio de la mina. Más ondulación
+en sus rieles, no más dificultad. Conservar el cañón aprobado y la música.
+
+IMPLEMENTACIÓN
+- Tutorial: panel LCD opaco gris verdoso #e5ede7, fuente oscura font-ink
+  #193a3b. Una instrucción por estado; progreso y BIEN! también dentro.
+  Círculos independientes del texto HTML, incluidos derecha+B/derecha+A.
+  Mantiene las diez lecciones y los estados de barril, liana y repisa.
+- Inicio/mapa: empezar/entrar en una línea dentro del visor, panel claro;
+  círculo A sin tarjeta externa. Tras ganar Jungle no vuelve la explicación
+  del mapa. La invitación para encender la consola sigue fuera antes del
+  primer toque. No se modifica el zoom ni el encuadre fijo de los controles.
+- Primera llanta de Reptile: recordatorio dentro del LCD, debajo de S,
+  visible al acercarse por el suelo y oculto durante el salto para no tapar
+  ni letra ni personaje. El círculo A sigue disponible junto a esa llanta.
+- Mina: crestas y valles34–138px (antes64–128), inclinación siguiendo
+  la tangente del riel; cámara solo acompaña al acercarse al borde del LCD.
+  Velocidad140px/s, salida2500, duración aproximada16s, mismos dos huecos
+  1080–1108/1810–1844 y bajada natural720–738. Primera recta intacta para
+  aprender a saltar. No se agregan enemigos ni saltos obligatorios.
+- Al probar pendientes nuevas, un salto opcional desde2070 atravesaba el
+  riel ascendente: la colisión exigía velocidad vertical positiva. Ahora
+  compara el cruce relativo rueda/riel, también mientras el carrito sube.
+  Cambio limitado a MinecartRun, no al jugador ni B-01 de plataformas.
+- Conservados todos los60 archivos de audio/arte (37 audios), fotografía,
+  animación/arte del cañón, celebración, diseños de los tres niveles,
+  lianas, jugador y cámara de plataformas. Sin publicación ni cambio musical.
+
+VERIFICACIÓN
+- Tipos/build, unitarias generales, input/pausa, fase10/encuentros/terreno,
+  mina, extra y cierre PASS. Mina verifica despegues cada5px en secciones
+  continuas y ventanas de10–35px antes de ambos huecos: contacto seguro,
+  dos saltos bastan, reintento conserva recogidas y final confirma una vez.
+- Edge154/Windows: touch y navigation PASS. Diez lecciones con entradas
+  reales, dos botones a la vez, reintentos, pausa/mapa, sonido, reinicio;
+  tamaños320/360/375/390/430 según caso. Capturas de correr/liana revisadas:
+  guía dentro del visor y círculos sin texto fuera. Sin errores de ejecución.
+- Edge154 --demo-only PASS, cero errores de ejecución: diez lecciones,
+  tres niveles reales, primera llanta con guía sin solapamientos, mina
+  táctil con caída/reintento/curvas/saltos y extra ganador. Cierre a tres
+  tamaños, conservar partida, repetir Jungle y cueva/mina sin segundo extra,
+  nueva partida con progreso/tutorial/candados reiniciados. La espera de
+  mina que falló en el turno anterior no se repitió; no se atribuye aquí
+  su causa a la corrección nueva, que tiene su propio repro con pendientes.
+- Capturas de subida/bajada revisadas; la auditoría del recorrido observa
+  más100px entre cresta/valle, inclinación mayor43grados y cámara que sigue
+  ambos extremos. Dos saltos siguen bastando para llegar, sin más peligros.
+- Integral con index-DPgl8KhD.js; retoque posterior limitado al tamaño de
+  la frase inicial (para que no se corte) y evitar medir una tarjeta HTML
+  oculta cuando solo hay círculos. Build final index-CPVqrWrv.js, tipos y
+  unitarias mina/input PASS. Repetición --touch-only final PASS: cuatro
+  tamaños, diez lecciones, dos controles, barril/liana/reintentos/rotación,
+  cero errores. Captura320x568 revisada: frase inicial completa y círculo A.
+- Preview local/LAN4173 HTTP200 sirve index-CPVqrWrv.js. Todos los60 assets
+  tienen el hash inicial; código protegido sin cambios salvo los dos
+  módulos de mina deliberadamente modificados. Nada publicado.
+- Todas las pruebas iniciadas terminaron; solo se conserva el preview4173.
+
+LÍMITES
+Emulación táctil no es Safari/iPhone físico. La sensación de montaña rusa
+y claridad con alguien nuevo se evalúan en el playtest del usuario.
+No es revisión OWASP. No publicar sin revisión final y permiso explícito.
+Ruta LAN: http://192.168.1.55:4173/?adventure=1&revision=lcd-y-mina
+
+Esta decisión sustituye la tarjeta externa del tutorial descrita en
+GUIA_UNICA_Y_SALTO.txt. Sus cambios de abismo y lagartos se conservan.

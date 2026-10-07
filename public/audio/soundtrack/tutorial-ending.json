@@ -1,0 +1,16 @@
+{
+  "source": "docs/audio/tutorial-ending-soundtrack-original.m4a",
+  "sourceSha256": "dc40458c363761f34347aa66b2c407c3ba873fca4e315f6cfc00997570778db1",
+  "outputSha256": "e2a7fb66761dc182fde62a7eff7cfbb33f40e1636e4abe9681788ea86d56ccfa",
+  "sourceSeconds": 79.27475,
+  "start": 3.4105,
+  "end": 65.985625,
+  "firstCapturedAttackSeconds": 3.416625,
+  "fadeInSeconds": 0.002,
+  "fadeOutSeconds": 0.004,
+  "gainDb": -8.0,
+  "loop": true,
+  "loopSeconds": 62.575125,
+  "sourceSeparation": false,
+  "notes": "Supplied shared tutorial and ending recording. Preserves captured notes/tempo; trims delay and selects a recurring opening for a loop candidate. No source separation or new layers. Human listening must approve the musical seam and any embedded noises."
+}

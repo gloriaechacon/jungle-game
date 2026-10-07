@@ -1,0 +1,190 @@
+PANELES DE AYUDA Y SONIDO — 03/10/2026
+
+ACTUALIZACION: el usuario pidió invertir el tema por exceso de brillo. Ahora
+son tarjetas carbón/verde oscuro con texto claro suave, no marfil. X y altavoz
+oscuros; botones inferiores rectangulares con relieve, iconos y pulsación.
+«Sonido» conserva etiqueta breve; el icono y el altavoz muestran silencio.
+Centrado, ayuda compacta, cierre y guardado automático no cambiaron.
+Nueva ruta: /?adventure=1&revision=dark-ending. Final con dos opciones explicado
+en docs/DEMO_PRESENTACION.txt. La descripción de colores inferior es histórica.
+Reverificado: build, panels-only (tema oscuro, centro, cierres, persistencia,
+sin overflow de iconos), touch-only y demo-only PASS en Edge/Windows. Capturas
+ui-help-*.png / ui-sound-*.png actualizadas. Safari físico sigue pendiente.
+
+Petición: dos paneles centrados en ambos ejes, ayuda compacta y cierre evidente,
+colores/tipografía nuevos, español neutro y sonido con guardado automático.
+
+- Tarjetas marfil, texto oscuro y acentos teal, fuente Trebuchet/Arial de UI.
+  El pixel art y la tipografía dentro del juego permanecen iguales.
+- Ayuda resumida por acción, con botones A/B/START en móvil y teclas en laptop;
+  se ocultan diagnóstico y párrafos repetidos. Botón claro «Volver al mapa».
+- X superior derecha de 44px en ambos paneles, cabecera fija si falta altura.
+  También cierran al pulsar su botón original o Escape. Cerrar con Escape no
+  ejecuta el regreso al mapa en ese mismo evento. Solo un panel abierto a la vez.
+- Sonido se aplica/guarda al mover cada deslizador o cambiar silencio. Esto YA
+  ocurría antes; el antiguo botón «Guardar» no era el que guardaba. Se eliminó.
+  Aviso explícito de guardado automático y aviso alternativo si localStorage falla.
+  Cerrar no descarta ajustes. Se conserva la misma clave berto-audio-v1.
+- src/ui-panel.ts/css encapsula paneles; audio y presentación reutilizan el cierre.
+  Sin cambios de mecánicas, entrada cardinal, tutorial, zoom ni carcasa aprobada.
+
+Ruta LAN: /?adventure=1&revision=panels-1. Prueba visual de iPhone/Safari físico
+pendiente del usuario; las capturas automatizadas no equivalen a Safari real.
+
+VERIFICACION DE PANELES — EDGE 154.0.4258.53 / WINDOWS
+Build/tipos, unitarias de audio, smoke --panels-only, --touch-only y --audio-only:
+PASS. Paneles: centro X/Y, X >=44px, contenido completo sin scroll en vertical
+320x568 / 375x667 / 390x844, y contención en laptop 1366x768 / 844x390; cierre
+con X/botón/Escape sin abandonar el nivel; exclusión mutua; preferencias
+aplicadas y conservadas tras recargar; aviso al bloquear almacenamiento.
+Regresión táctil incluye nueve lecciones y liberación de contactos. Regresión
+de audio incluye recorrido de Jungle y audio de los tres niveles. Cero errores.
+Después se ajustó SOLO CSS de separación/tamaño en <=360px; build y panels-only
+se repitieron y pasaron, incluyendo la comprobación de contenido sin scroll.
+Capturas inspeccionadas: artifacts/ui-help-390x844.png, ui-help-320x568.png,
+ui-sound-320x568.png. También se verificó visualmente el navegador de la app.
+Servidor LAN responde 200; hashes B-01 y PNG iguales a los documentados abajo.
+No se ejecutó npm test completo en este ajuste.
+
+HISTORIAL — CRUCETA DE CUATRO DIRECCIONES, 03/10/2026
+
+El usuario reportó derecha+abajo encendidos y juego bloqueado en su iPhone.
+No se ha reproducido el cuelgue exacto de Safari. Sí se confirmó que la cruceta
+anterior emitía diagonales y que podía sumar flechas de contactos distintos.
+
+- Un solo eje/dirección a la vez: cada punto de la cruceta elige el eje dominante.
+  Con dos flechas tocadas, manda la última dirección; si la soltás, vuelve la
+  anterior SOLO si sigue realmente presionada. Nunca se envían dos direcciones.
+- La regla se aplica en InputController, también entre teclas/alias y contactos.
+  A, B y START siguen independientes; dirección+A+B simultáneos se conservan.
+- Liberación global de pointerup/cancel, limpieza de capturas al vaciar entrada,
+  y respaldo touchend cuando ya NO queda ningún dedo. Touchcancel descarta los
+  contactos táctiles. No se confunden identificadores Touch con Pointer.
+  Levantar A mientras quedan B/dirección no los cancela. No se usa un timeout
+  que pudiera cortar una pulsación larga legítima.
+- Ayuda actualizada. Zoom, carcasa, física B-01 y corrección del tutorial intactos.
+
+Verificado: build/tipos, test:input, test:unit y test:phase10 PASS. touch-only PASS
+en Edge 154/Windows: esquinas sin diagonales, derecha+abajo con ambos órdenes de
+soltado, A+B+dirección con cuatro dedos, levantado final incluso suprimiendo
+pointerup/lostpointercapture en la prueba, personaje detenido y simulación viva,
+pausa/mapa desde nivel 1, nueve lecciones y reintentos. Cero errores de ejecución.
+Captura inspeccionada: artifacts/touch-one-direction.png. Falta validar Safari
+en el iPhone del usuario; no atribuir el cuelgue a una causa ya demostrada.
+Ruta LAN: /?adventure=1&revision=pad-4way.
+Regresión adicional phase7-only PASS: recorrido completo de Ropey con entrada
+cardinal, tres lianas móviles, N/U, dos retornos deliberados a checkpoint y salida.
+El bot usa agarre automático en el aire, sin W+D; no se alteraron mecánicas para
+pasar la prueba. B-01 y PNG verificados por hash. No se ejecutó npm test completo.
+
+Referencia técnica consultada para captura/cancelación (no evidencia del cuelgue):
+https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events
+
+HISTORIAL — ENCUADRE AMPLIADO
+
+ACTUALIZACION: el usuario probó la versión touch-1 en su teléfono y aprobó los
+controles; pidió acercar la consola para ver mejor el juego, como su recorte.
+Ahora la intro empieza completa y acerca automáticamente pantalla y controles.
+Se recorta carcasa sobrante, sin cortar LCD, cruceta, A/B ni START. En teléfonos
+cortos se limita el zoom para conservar las zonas táctiles mínimas completas.
+No se agranda el mundo lógico ni se cambia la física, arte, PNG o entrada.
+La ayuda tiene espacio fijo para que los botones no se muevan durante una acción;
+se retiró el pie móvil redundante de controles para ganar 30px de altura.
+Movimiento reducido mantiene el encuadre ampliado sin animación de cámara.
+Nueva ruta: /?adventure=1&revision=touch-zoom.
+
+Verificación del ajuste: build/tipos PASS; touch-only PASS en Edge 154/Windows,
+cuatro tamaños, encendido completo seguido de LCD >=10% mayor, zonas táctiles
+sin recorte dentro del panel, movimiento reducido, nueve lecciones con toques,
+multitouch y cero errores. Capturas actualizadas e inspeccionadas en artifacts.
+phase11-only también PASS: vista/zoom de computadora, teclado, foco, replay,
+movimiento reducido y agarre a ambos lados de la liana; cero errores de ejecución.
+B-01 y PNG comprobados por SHA256: intactos. Zoom nuevo pendiente de playtest
+en el iPhone real; no se repitió la suite completa npm test para este encuadre.
+
+HISTORIAL — PRIMERA VERSION TACTIL
+
+Petición: jugar con las flechas y A/B de la propia consola fotográfica, con
+efecto de pulsación. No botones superpuestos sobre el nivel ni zoom que corte
+los controles. Aventura pública: /?adventure=1&revision=touch-1.
+
+IMPLEMENTADO
+
+- Teléfono en vertical: consola entera, ayuda fuera del LCD, START rotulado.
+  Targets A/B de al menos 44x44 CSS px y START al menos 48x44. Cruceta ampliada
+  invisible sobre la fotografía; sigue visible la cruceta real, sin redibujarla.
+- Cruceta deslizable: izquierda/derecha, arriba/abajo, diagonales y centro neutro.
+  Salir del área suelta la dirección; volver durante el contacto permite seguir.
+- A salta/confirma. B pulsa para rodar; mantener corre; cerca de barril agarra,
+  soltar lanza. START comienza y pausa. Mapa vuelve sin terminar la etapa.
+- Fuentes de entrada separadas por dedo y teclado. Dirección+B+A simultáneos;
+  soltar un dedo no cancela otro ni una tecla física. No se simulan keydowns.
+- Pointer capture, pointercancel/lost capture, blur, pestaña oculta, salida de
+  página y giro del teléfono liberan estados. Un dedo antiguo no reaparece al
+  volver a foco. Audio conserva su desbloqueo mediante gesto real del usuario.
+- Foto oscurecida en la misma tecla pulsada. Los siete botones tienen nombre
+  accesible y estado aria-pressed. Solo el área de juego/controles bloquea gestos
+  de scroll/zoom; no se desactiva el zoom global mediante meta viewport.
+- Nueve lecciones con A/B y direcciones. Pausa, mapa, cartelas y final también
+  muestran botones de consola en móvil. Ayuda HTML adicional legible.
+- START de la carátula responde al primer toque después del encendido, sin
+  exigir esperar otros 300 ms. El bloqueo durante el encendido sigue activo.
+- Laptop conserva teclado y zoom aprobado. Las áreas de la foto también aceptan
+  ratón cuando están visibles. Laboratorios/workbench conservan su encuadre.
+
+LIMITES EXPLICITOS
+
+- Esta primera versión juega en VERTICAL. En horizontal se pausa y se muestra
+  una petición de girar; no hay aún distribución apaisada jugable.
+- Pantalla lógica 160x144. Encajar carcasa entera en teléfono requiere escala
+  fraccional; pixelated se conserva. El LCD puede verse pequeño en 320x568.
+- Pruebas automatizadas de contactos nativos en Edge con emulación móvil no
+  equivalen a Safari ni a un iPhone físico. Sensación de los pulgares, Safari,
+  barras dinámicas del navegador y balance requieren playtest del usuario.
+- No cambios de niveles, sprite, movimiento B-01, PNG aprobado ni música.
+- No publicación ni subida a GitHub. Servidor local sirve dist en la misma red.
+
+ARCHIVOS
+
+src/input.ts: unión de teclas y acciones por contacto.
+src/touch-controls.ts: zonas táctiles y captura/liberación.
+src/control-labels.ts: etiquetas y lecciones de consola.
+src/console-presentation.ts, console.css: encuadre, zonas, rotación y ayuda.
+src/main.ts: mapa móvil y estado de foco.
+src/movement.ts, gameplay-view.ts, demo-scenes.ts, world-map.ts: texto de ayuda.
+index.html: viewport-fit para áreas seguras.
+tests/input-unit.mjs, tests/touch.mjs: reglas de entrada y pruebas de toques.
+package.json, tests/smoke.mjs: nuevas regresiones incluidas en npm test.
+
+VERIFICACION — EDGE 154.0.4258.53 / WINDOWS
+
+Build/tipos y todas las unitarias (reglas, fase 10, audio, entrada): PASS.
+Todos los bloques previos de navegador A/B/3–11, audio y demo completa con
+nueve lecciones, tres niveles, BONUS y regreso al mapa: PASS durante npm test.
+La ejecución conjunta terminó en el nuevo test táctil: el simulador enviaba
+touchCancel sin contactos activos tras recargar. Se corrigió SOLO el helper de
+prueba (no el juego) para no cancelar una lista vacía. No se repitió después el
+comando npm test completo; no declararlo como PASS de una única ejecución.
+
+Regresión táctil ampliada, ejecutada después de esa corrección mediante
+node tests/smoke.mjs --touch-only: PASS, cero errores de ejecución.
+- Viewports 390x844, 375x667, 320x568 y 430x932; LCD y controles dentro de pantalla,
+  targets A/B/START >=44px, sin desbordamiento horizontal.
+- Contactos táctiles NATIVOS de Chromium por protocolo CDP; no teclas fingidas.
+- START/A hasta mapa/tutorial, primer toque al encender, arrastre y diagonales,
+  tres dedos dirección+B+A, soltar A sin soltar B/dirección, cancelación, foco,
+  pausa/reanudar, ayuda, Mapa, giro/retorno a vertical, desbloqueo de audio.
+- NUEVE lecciones reales solo por toques: caminar, saltar, rodar, correr,
+  pisotón, rodar al rival, agarrar/lanzar barril, llanta y trepar/soltar liana.
+- Entrada al nivel 1; tutorial no contamina progreso de campaña.
+
+Capturas actuales: artifacts/touch-390x844.png, touch-375x667.png,
+touch-320x568.png, touch-430x932.png, touch-start-pressed.png,
+touch-run-jump.png y touch-vine.png. touch-failure.png es diagnóstico histórico,
+no evidencia del resultado final.
+Verificación visual de las capturas de consola completa, presión y liana;
+servidor LAN actualizado a revision=touch-1. iPhone/Safari físico pendiente.
+
+B-01 SHA256: 87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9
+Consola PNG: 1e2ce780c74a6f219b778d3bc357dd6a8e123221556aaa0d11811c5fa82d1fd3
+Ambos comprobados intactos.

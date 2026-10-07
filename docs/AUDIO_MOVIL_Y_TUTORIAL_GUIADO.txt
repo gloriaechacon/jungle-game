@@ -1,0 +1,85 @@
+AUDIO MULTIMEDIA Y TUTORIAL TÁCTIL — 04/10/2026
+
+Seguimiento: mapa sin instrucciones repetidas
+- Al completar nivel1 desaparecen «Toca el botón A para entrar» (K en
+  teclado), sus marcadores y la línea de controles del LCD. Nombre del
+  destino, mapa y estado «CAMINANDO...» se conservan; mismos controles.
+- La condición usa progreso de campaña, no nivel seleccionado. Omitir el
+  tutorial no retira ayuda; volver a Jungle después de ganarlo no la repone;
+  empezar de cero sí la restaura. Vale para teclado y teléfono.
+- Build/tipos, test:input y Edge154 --map-coach-only PASS con recorrido real
+  de Jungle, selección/entrada/salida de Ropey, regreso a Jungle y reinicio
+  de partida. Capturas desktop/touch emulado revisadas; cero errores.
+  No suite completa ni iPhone físico. HTTP200/index-D3XsHXxo.js en4173;
+  revision=mapa-sin-repetir.
+- Usuario enviará imágenes del salto difícil del nivel2 y de la «lupita».
+  Sin ubicación/reproducción confirmada: terreno/zoom no modificados.
+
+Seguimiento: correr explícito en el aviso principal
+- «Para correr, mantén → y el botón B»; teclado: «Para correr, mantén las
+  teclas D y J». Sin explicación pequeña redundante; ambos controles siguen
+  señalados. S sigue siendo bajar, no correr. Misma lección 4/10 y mecánica.
+- Build/tipos, test:input y Edge154 --touch-only PASS. Diez lecciones,
+  contactos múltiples y tamaños móviles emulados; cero errores. Captura
+  del aviso y sus dos círculos revisada. No prueba física de iPhone.
+- Preview4173 HTTP200; index-CblUtHg0.js, revision=correr-claro.
+- La «lupita» reportada al mantener un botón queda pendiente de captura o
+  descripción más precisa. No se cambió zoom, accesibilidad ni audio.
+
+Diagnóstico confirmado por la persona que juega: Safari y Chrome del iPhone
+sí sonaron al desactivar el modo Silencio. No era volumen bajo ni una pista
+vacía. Pide cómo conservar el sonido en ese caso y mejorar instrucciones.
+
+Audio:
+- Tras una acción para activar audio, se solicita audioSession.type=playback
+  si existe y acepta el ajuste. Puede usar el canal multimedia, en lugar del
+  ambiental de Web Audio. Es una API opcional: no prometer compatibilidad
+  universal ni afirmar que aquí se verificó el interruptor físico del iPhone.
+- Si falta o rechaza el ajuste, Web Audio sigue como antes. El panel explica
+  que se debe revisar modo Silencio/volumen multimedia y cerrarlo para oír.
+- No cambia preferencias ni sube el volumen automáticamente. Silenciar en
+  el juego prevalece. No solicita sesión/contexto si está silenciado.
+- Conserva gesto explícito: además de pointerdown, reintenta en pointerup /
+  touchend reales. Reanuda estado interrupted y deja de reintentar si el
+  navegador requiere otro gesto. No añade audios silenciosos en bucle.
+- Al destruir, restaura el tipo de sesión previo si sigue siendo el nuestro.
+  Playback puede pausar música de otras apps; no usa micrófono ni grabación.
+
+Tutorial:
+- Mapa: solo «Toca el botón A para entrar» (K en teclado), sin letra pequeña.
+- Correr: quita «Usa dos dedos» tanto del LCD como de la explicación HTML.
+  Círculos simultáneos en derecha + B; derecha + A al saltar sobre el rival.
+  Misma flecha/círculo aprobado de A, mismo encuadre fijo.
+- «Salta sobre el rival» y «Acércate al rival y toca el botón B para rodar».
+- Barril: acercarse con derecha → mantener B para agarrar → soltar B para
+  lanzar → barril en camino. En teclado, D/J. Cambia por distancia REAL
+  (22 horizontal /20 vertical, estrictos) y estado carried/thrown, no timers.
+  Mantener es importante: una pulsación soltada enseguida también lanzaría.
+- Siguen siendo diez lecciones; completar depende de las mecánicas reales.
+  Llanta y liana conservadas. Sin cambios a niveles, saltos ni combate.
+
+Pruebas:
+- Build/tipos, test:unit, test:input y test:audio PASS.
+- Edge154 --touch-only PASS: diez lecciones por contactos táctiles reales
+  emulados, dos marcadores, mapa compacto, tres instrucciones del barril,
+  reintentos y liana. Capturas correr/agarrar revisadas.
+- --audio-mobile-only PASS: fixture exige soltar el dedo para desbloquear,
+  simula AudioSession/interrupted, mide PCM real, valida silencio/volúmenes/
+  persistencia y ausencia de bucle de reintentos. NO simula el altavoz ni el
+  interruptor físico de iOS; esa comprobación corresponde al teléfono.
+- --audio-only y --phase11-only PASS en Edge154/Windows: salida PCM,
+  decodificación AAC, efectos en recorrido real de Jungle, pausa/foco,
+  volumen/silencio/persistencia, fallo de archivo recuperable, encendido,
+  mapa, encuadre fijo y controles. Cero errores de ejecución en las cuatro
+  suites de navegador. No npm test completo ni demo completa este turno.
+- 43 archivos protegidos siguen idénticos, incluidos37 audios, B-01,
+  jugador, cámara, carcasa y final/aplauso. No se cambió ninguna canción.
+
+Fuentes consultadas (API/opciones, no prueba del dispositivo):
+https://w3c.github.io/audio-session/
+https://developer.mozilla.org/en-US/docs/Web/API/AudioSession/type
+https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/User_activation
+https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/state
+
+LAN4173: /?adventure=1&revision=audio-y-tutorial
+Bundle index-Bx0D7eQw.js; HTTP200. No publicación. Revisión OWASP pendiente.

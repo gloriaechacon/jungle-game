@@ -1,0 +1,80 @@
+SEGUNDA PASADA DE AUDIO — 03/10/2026 (Claude)
+
+Pedido del usuario: que el sonido se parezca más al original.
+
+LÍMITE IMPORTANTE
+La música y los efectos del juego original son obras protegidas. No se
+transcribió ninguna melodía, bajo ni efecto de la grabación de referencia.
+Lo que se acercó al original es el INSTRUMENTO: el chip de sonido de la
+Game Boy Color y la manera de escribir para él. Las melodías son nuevas.
+
+DIAGNÓSTICO DE LA PRIMERA PASADA
+Se comparó el espectro de docs/audio-referencia (15 s del video) con la pista
+anterior. La referencia es mucho más brillante: centroide espectral ~670 Hz
+contra ~310 Hz y ~7 veces más energía por encima de 4 kHz. La síntesis anterior
+usaba pulsos suavizados (9 armónicos), tonos senoidales "madera" y bombo senoidal:
+sonaba a sintetizador suave, no a Game Boy. Además había una sola pista para todo.
+(La referencia viene de una grabación de Zoom con cortes por supresión de ruido,
+así que solo sirve para comparar carácter general, no detalles finos.)
+
+QUÉ CAMBIÓ
+- tools/audio/gb.mjs: renderizador propio que imita el hardware: 2 canales de
+  pulso (12,5/25/50/75 %), canal de onda de 4 bits (32 muestras), ruido LFSR de
+  15/7 bits, volumen de 4 bits con envolventes a 64 Hz, frecuencias cuantizadas
+  a los registros de 11 bits, una nota por canal (la siguiente corta la anterior),
+  filtro de continua de la consola. 4x sobremuestreo para no generar ruido digital.
+- tools/audio/score.mjs: cuatro pistas originales, una por lugar:
+    jungle-loop  — día, sol mayor, 112 BPM, percusión de selva, eco en el pulso 2
+    ropey-loop   — noche, la menor, 92 BPM, pulso fino 12,5 %, eco largo, sonajero
+    reptile-loop — cueva, re menor, 100 BPM, bajo ostinato, eco corto, tambores graves
+    map-loop     — marcha corta entre niveles, do mayor, 120 BPM
+  Todas niveladas al mismo volumen (RMS) y con bucle sin costura (render circular,
+  verificado contra dos copias seguidas).
+- 17 efectos rehechos con recursos del chip: barridos de pulso (salto, llanta,
+  caída), dos notas brillantes para la banana, arpegios (letra, checkpoint),
+  ruido LFSR (rodar, romper, golpe). Mismos nombres y mismos momentos de juego.
+- src/audio.ts: carga las cuatro pistas al primer gesto (~8 MB, una vez) y cambia
+  de pista al cambiar de lugar; morir o reiniciar NO reinicia la música. Mapa,
+  portada e intro usan map-loop. src/audio-events.ts: MUSIC_TRACKS y trackFor().
+  src/main.ts: pasa la pista según la escena y el nivel elegido.
+- Muestra para escuchar: docs/audio/muestra-sonido-gb.wav (54 s: 9 s de cada
+  pista, el mapa y luego cada efecto sobre la música).
+
+PRUEBAS (Chromium 141 / Linux)
+- tests/audio-unit.mjs: 21 archivos deterministas, solo los 4 canales, volumen de
+  4 bits, frecuencias de registro, igual sonoridad entre pistas, bucle sin costura,
+  pista correcta por escena. PASS.
+- tests/audio.mjs (navegador): ahora comprueba que el mapa usa map-loop, Jungle
+  jungle-loop y Ropey/Reptile la suya. PASS 3 de 3 seguidas.
+  Se volvieron robustas dos esperas que fallaban también con el código anterior
+  en esta máquina (2 de 3 veces): «pausa congela la cola de rodar» ahora pausa
+  cuando el sonido de rodar realmente empezó, y «reanudar continúa» espera a que
+  el medidor se actualice. No cambió lo que se verifica.
+- tests/phase6.mjs: la comprobación «perder el foco congela el golpe» esperaba un
+  estado que podía ser el viejo (carrera de la prueba); ahora espera primero la
+  reanudación. No cambió el juego.
+- Fallos previos que NO dependen de este cambio y se repiten con el código anterior
+  en esta máquina: tests/touch.mjs (TimeoutError) y phase11 (opacidad de botón en
+  transición, 0,9667 en vez de 1). Codex los validó en Edge/Windows; revisar ahí.
+
+PENDIENTE
+Escucha humana: el agente verificó señal y estructura, no puede oír. Ajustar
+volumen relativo de percusión, brillo o tempo según el oído del usuario.
+B-01 SHA-256 sin cambios: 87f02c4b43fdde42e00c80839ab5d9cfc1b91ed92b39dfc7f1912315f0f6c9f9.
+
+TERCERA PASADA — MÚSICA MÁS SERIA (03/10/2026, Claude)
+La usuaria escuchó la segunda pasada: el sonido mejoró, pero la música resultaba
+demasiado alegre; la del original le parecía «más acción, más seriedad, acción neutra».
+No se transcribió ni imitó nota por nota la melodía original (derechos de autor);
+se reescribieron las cuatro melodías, igual de originales, con otro carácter:
+- Tonalidades menores/dóricas: Jungle re dórico 112 BPM, Ropey mi menor 96,
+  Reptile do menor 104, Mapa la menor 112 (antes sol/do mayor y saltos alegres).
+- Bajo ostinato en corcheas parejas en el canal de onda (diente de sierra en
+  Jungle y Reptile), sin síncopas juguetonas.
+- Percusión recta, sin swing: bombo/caja firmes, redobles de tom cada 4 compases.
+- Melodía con notas largas, movimiento por grados y registro medio; vibrato más
+  leve; pulso 25 % en vez de 50 %.
+- Segunda voz sostenida y suave en la sección B de Jungle (en vez del arpegio).
+Motor, efectos, volumen (MUSIC_RMS) y código del juego sin cambios.
+Pruebas: tests/audio-unit.mjs PASS, build PASS, smoke --audio-only PASS
+(Chromium 141 / Linux). Pendiente: escucha de la usuaria y Edge/Windows (Codex).

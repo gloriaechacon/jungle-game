@@ -1,0 +1,86 @@
+REFINAMIENTO DE JUNGLE Y ENTRADAS — 04/10/2026
+
+INTENCIÓN
+El usuario matiza la dificultad: el nivel 1 debe enseñar, sorprender y crecer,
+no parecer un nivel avanzado desde el comienzo. Pide refinarlo con el nuevo
+video. Aclaración explícita: mejorar las entradas al FINAL DE LOS NIVELES 1 Y 2;
+no cambiar el escenario de Reptile. Agua, trenes y nuevos niveles son ideas
+para después, no trabajo autorizado ahora. Música aprobada: no tocar.
+
+REFERENCIA Y LÍMITES DEL ANÁLISIS
+video1918389503.mp4, carpeta Zoom 2026-10-04 15.31.30, suministrado por usuario.
+Metadatos: 123,76 s, 2560x1440, 25 fps. Se inspeccionó un fotograma completo a
+10 s y dos láminas de muestreo cada 4 s, recortando el área jugable (1600x1440,
+x480/y0), con ffmpeg local. Es una revisión visual muestreada, NO análisis de
+cada fotograma ni escucha del audio. Original intacto; capturas de diagnóstico
+en artifacts/reference-new-*.png, fuera de public/dist.
+
+Observaciones de las láminas: alternancia de suelo/roca/palmeras, premios que
+invitan a subir y retorno a la ruta baja. También aparece el rinoceronte y un
+bonus; NO se importaron sus mecánicas, gráficos ni audio. Inspiración de ritmo
+y composición, no copia de las coordenadas del mapa ni píxeles del video.
+
+IMPLEMENTACIÓN
+JUNGLE_PHASE6 conserva todos los sólidos, huecos, patrullas, barriles, letras,
+checkpoint y pruebas de desafío final de RETOS_FINAL_JUNGLE.txt.
+
+- Dos copas opcionales cerca de la casa: [120,56,48,8] y [64,28,48,8]. Se llega
+  desde el montículo [176,84,48,8], volviendo hacia la izquierda con ascensos
+  de 28 px. Cada apoyo tiene 48 px de ancho; no requiere correr. Una banana
+  orienta en x144/y42 y un racimo de diez recompensa en x88/y12. No hay letras
+  BONUS en los árboles. La ruta baja y la introducción al primer rival siguen.
+  Los premios nuevos se añaden al final de sus listas: se conservan los IDs de
+  todos los premios anteriores. Total nuevo opcional del nivel: +12 bananas.
+- La idea reaparece tras la montaña final: copa [1964,28,48,8], accesible desde
+  la repisa [1904,60,64,8], con una banana x1988/y14. Un ascenso de 32 px; ruta
+  opcional por encima de la patrulla, no un enemigo nuevo ni otra regla.
+- Todas las palmeras usan plataformas unidireccionales existentes y S/↓ para
+  bajar. El tronco no bloquea. Suelo seguro debajo de las tres copas. El dato
+  compartido palms/platforms impide separar la geometría visual y física.
+- Cámara local inicial permite scrollY -64; la cámara normal fuera de esa
+  zona y las otras zonas de exploración permanecen. Helechos puntuales en las
+  terrazas/mirador/checkpoint, sin colliders ni ocultar al personaje.
+- Jungle y Ropey usan nuevas entradas 80x80: roca irregular facetada, musgo,
+  raíces/helechos, pared interior y umbral en perspectiva. Paleta de día y
+  paleta nocturna. Boca centrada exactamente en exit.x (2420 y 2300), cartel
+  a la izquierda; no se adelanta ni se añade una colisión al finalizar.
+- El sprite exit-cave anterior se conserva para nivel3/práctica/rutas antiguas.
+  Se mantienen casa, DK, enemigos, texturas generales y carcasa aprobada.
+
+ARTE REPRODUCIBLE
+Fuentes nuevas: tools/art/jungle-landmarks.mjs; registradas por build-art.mjs.
+npm run art genera atlas y docs/art/jungle-landmarks.png. No se pintaron PNG a
+mano. El atlas se reordena al añadir piezas, pero las funciones de DK, props,
+fondos y terreno anteriores no se modificaron. 125 sprites en atlas256x531.
+
+PRUEBAS
+- PASS tipos/build, test:unit, test:phase10 (incluye encounters/terrain).
+- PASS Edge154/Windows --jungle-discovery-only: entradas de teclado reales,
+  sin teleport; dos saltos a velocidad normal, racimo, cámara, ArrowDown al
+  suelo, subida desde montaña a la última palma, dos descensos y entrada/salida.
+- PASS --phase7-only: lianas, saltos obligatorios, checkpoints, torre/barril,
+  entrada nocturna alineada con salida2300, final y reinicio; cero errores.
+- PASS --demo-only Edge154/Windows: tutorial completo, tres niveles, bonus,
+  cierre a tres tamaños de teléfono, mapa táctil simulado conserva campaña,
+  repetición Jungle/cueva sin otro bonus y nueva partida; cero errores.
+- Tras conservar el orden/ID del racimo antiguo del mirador se repitieron las
+  unitarias pertinentes (PASS). Build final + discovery/terrain también PASS:
+  recompensas nuevas y antiguas, ambas rutas altas, descensos, cámara, dirección
+  tras daño y sólidos conservados. Cero errores de ejecución.
+- Capturas de inicio, copa, palma final y ambas entradas revisadas.
+- 45 hashes protegidos idénticos: física/simulación/lianas, layouts de niveles
+  2/3, carcasa y 37 archivos de audio. No iPhone físico ni npm test entero.
+- El ensayo inicial de la nueva prueba detenía al bot después de bajar de la
+  montaña, aunque esperaba seguir arriba. Corregido el recorrido de prueba
+  por los dos escalones, sin retocar física para hacerla pasar.
+- Aserción antigua de recompensa a >100px horizontales del spawn actualizada
+  a distancia 2D: la recompensa nueva está 96px arriba; requiere el recorrido
+  de tres apoyos verificado, no se obtiene al aparecer.
+
+ENTREGA / PENDIENTES
+URL local: /?adventure=1&revision=jungle-descubrimientos (preview4173, HTTP200
+en localhost y192.168.1.55; build final index-EudrKW0b.js).
+Balance/estética siguen sujetos al playtest humano. Sin música nueva, sin
+publicación, sin copiar proyecto Roberto. Revisión OWASP/publicación PENDIENTE.
+Quedan como inspiración, no como tareas implementadas: reptil con salto más
+alto y futuras ambientaciones/mecánicas. El usuario está reuniendo referencias.

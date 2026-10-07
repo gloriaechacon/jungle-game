@@ -1,0 +1,74 @@
+BONUS: BARRILES Y GESTO SIN PREMIO — 04/10/2026
+
+INTENCIÓN Y ALCANCE
+El usuario pide barriles del bonus más bonitos, reconocibles, un poco mayores
+y con giro. La captura muestra el mensaje «SIN PREMIO / BUEN INTENTO» cortado.
+Pide un gesto de «ups» al perder y APRUEBA expresamente el aplauso y los
+resultados finales. Esas dos partes no se rediseñan. Sin cambios de música,
+niveles, dificultad, controles, barriles de los niveles ni publicación.
+La comparación con barriles de fuego se usa como referencia de forma, no
+como autorización para añadir fuego, daño o una nueva mecánica.
+
+CAMBIOS
+- Barriles de 34x36, antes 30x28: silueta abombada pero alargada, tablas,
+  tapa con veta, aros metálicos curvos, remaches, luces y sombras. Se retira
+  el marco rectangular dorado. Mismos cuatro símbolos.
+- Ocho fotogramas de giro por símbolo, cada 55 ms: vetas/tapa cambian y la
+  cara se estrecha/desplaza ligeramente. El símbolo permanece legible.
+  La pausa congela el giro; al golpear, el barril se detiene de frente.
+- Misma base y altura de contacto (y80), centros x56/96/136 y reglas de
+  selección. El tamaño extra crece hacia arriba, no hacia la cabeza.
+  Cuerdas y marcas OK ajustadas al nuevo borde superior.
+- Resultado sin premio: cuatro poses nuevas, frontales, con sorpresa,
+  palmas hacia arriba, hombros elevados y pequeño movimiento de cabeza.
+  Solo se usan en este resultado, una vez aterriza el personaje. Las manos
+  se mantienen dentro del LCD mediante ajuste VISUAL, sin mover el collider.
+- Mensaje en dos líneas: «SIN PREMIO» y «BUEN INTENTO!». Panel y altura
+  ajustados al LCD160x144. El retrofont tiene línea10 aunque fontSize sea8:
+  y124 y lineSpacing-1 dejan la caja completa dentro de la pantalla.
+
+CONSERVADO
+Instrucciones sin prisa, confirmación separada del salto, espacio seguro de
+entrada, golpes, cuatro símbolos, probabilidades y premio de20 bananas.
+Tres iguales ganan; una ronda sin premio también consume el bonus. Repetir
+niveles no lo vuelve a abrir; nueva partida lo restablece.
+Duración del resultado3s, celebración final5,8s, ocho poses de aplauso,
+resultados/opciones y todas las pistas/efectos intactos.
+
+FUENTES
+src/final-bonus-presentation.ts: constantes/timing visual sin reglas de juego.
+src/final-bonus-scene.ts: dibujo y telemetría de límites de solo lectura.
+tools/art/final-bonus.mjs y bonus-oops.mjs: arte nativo reproducible.
+tools/art/build-art.mjs: atlas y hojas de contacto, mediante npm run art.
+161 sprites en atlas256x740; PNG no editados a mano.
+docs/art/final-bonus.png, final-bonus-turn.png, final-bonus-oops.png.
+
+VERIFICACIÓN
+PASS generación de arte, tipos/build, test:final-bonus y test:ending.
+Hojas de contacto revisadas. 53 archivos protegidos idénticos por SHA256:
+física, reglas de bonus/campaña, layouts, cierre/aplauso, DK, objetos normales,
+carcasa y37 archivos de audio.
+La primera prueba Edge sin premio detectó caja de texto y125+20=145, fuera
+del LCD. Corregido a y124, lineSpacing-1; no se relajó la aserción del test.
+Repetición PASS en Edge154.0.4258.53/Windows --bonus-loss-only: tutorial de10
+pasos, tres niveles reales, ronda táctil simulada con símbolos distintos,
+giro/detención, pausa/foco/audio y gesto/mensaje completos. Capturas de LCD,
+390x844 y320x568 revisadas; manos y ambas líneas dentro del visor.
+Celebración de5,8s y opciones conservadas, menú a tres tamaños; volver al mapa,
+repetir Jungle/cueva NO reabre bonus, empezar de cero reinicia progreso y
+conserva sonido. Cero errores de ejecución. Capturas de cierre también vistas.
+No se ejecutó npm test entero ni --demo-only ganador en este turno. Premio
+ganador y64 combinaciones cubiertos por unitarias; no iPhone físico.
+
+PRUEBAS REPRODUCIBLES
+node tests/smoke.mjs --bonus-loss-only recorre tutorial/tres niveles con
+entradas reales, usa touch emulado para conseguir símbolos distintos y
+comprueba giro, detención, pausa/foco, manos/texto dentro del LCD, cierre y
+conservación de partida sin repetir el bonus. Capturas a390x844 y320x568.
+--demo-only conserva el recorrido ganador equivalente; no usa teleports.
+No equivale a Safari/iPhone físico ni aprobación estética humana.
+
+SERVIDOR Y PUBLICACIÓN
+Preview LAN existente4173; revision=bonus-barriles. No despliegue ni Git.
+HTTP200 confirmado; bundle actual index-Bw1BgT0K.js. Servidor sigue abierto.
+Revisión OWASP/lanzamiento y aprobación visual del usuario pendientes.

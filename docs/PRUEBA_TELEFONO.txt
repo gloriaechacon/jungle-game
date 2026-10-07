@@ -1,0 +1,68 @@
+PRUEBA LOCAL EN TELEFONO — 03/10/2026
+
+Actualizado: controles táctiles implementados por petición posterior del usuario.
+Jugar EN VERTICAL: cruceta, A (salto/confirma), B (rueda/corre/barriles), START
+(comienza/pausa). Los botones de la foto se oscurecen al pulsar. Se admiten varios
+dedos a la vez. «Mapa» sale del nivel. En horizontal se pausa y se pide girar.
+Alcance y verificación actual: docs/CONTROLES_TACTILES.txt.
+Acercamiento automático después del encendido: pantalla y controles visibles,
+menos carcasa sobrante. El usuario ya probó touch-1; este zoom requiere recargar.
+
+1. Conectar el teléfono al Wi-Fi del mismo router que la PC (la PC puede estar
+   por cable). No usar datos móviles ni la red de invitados.
+2. Con la PC encendida y el servidor en marcha, abrir:
+   http://192.168.1.55:4173/?adventure=1&revision=pad-4way
+3. Este enlace NO es público: solo funciona en la misma red. La IP puede cambiar.
+   Se sirve la compilación dist, no la carpeta completa con fuentes/documentos.
+
+Para volver a iniciar la prueba, en PowerShell:
+
+  Set-Location 'C:\Users\Abraham\Documents\Donkey Kong'
+  npm.cmd run build
+  node node_modules/vite/bin/vite.js preview --host 192.168.1.55 --port 4173 --strictPort
+
+Mantener la terminal abierta; Ctrl+C detiene la prueba. Si el puerto ya está
+ocupado, usar el servidor que sigue abierto. Si cambió la IP, consultarla con
+ipconfig y reemplazarla tanto en el comando como en el enlace.
+
+Si el teléfono no conecta: comprobar misma red, VPN/aislamiento de invitados y
+firewall. No desactivar el firewall. Si Windows pide acceso para Node, habilitar
+solo redes privadas de confianza. No se han modificado reglas de firewall.
+
+GITHUB / PUBLICACION
+
+Al revisar esta carpeta no existían .git ni un remoto configurado. No se ha
+subido ni publicado nada. Falta el enlace del repositorio de GitHub y elegir
+su visibilidad. Si aún no existe: crear un repositorio vacío en GitHub, elegir
+público o privado y pasar su URL para conectar esta carpeta.
+
+No usar git add . ni subir la carpeta entera sin revisar: hay documentos
+personales, referencias y capturas que no hacen falta para jugar. node_modules,
+artifacts y copias de Claude tampoco deben formar parte del despliegue.
+
+Guardar código en GitHub no crea por sí solo el sitio. Para GitHub Pages con
+Vite hace falta configurar el build/despliegue y la ruta base del repositorio
+(incluida la imagen de consola y enlaces del juego). Eso sigue pendiente.
+GitHub Pages con GitHub Free requiere repositorio público; desde un repositorio
+privado exige un plan compatible o elegir otro hosting para la web pública.
+
+Fuentes oficiales consultadas:
+https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+https://vite.dev/guide/static-deploy.html#github-pages
+
+HISTORIAL — CORRECCION S (ANTES DE LOS CONTROLES TACTILES)
+
+Aviso de primera llanta bajo la S; se oculta al saltar para no tapar personaje,
+trayectoria ni letra. La ayuda fuera del LCD sigue disponible. Posiciones,
+salto, rebotes, cámara, B-01 y PNG aprobado de consola intactos.
+
+03/10: build/tipos, npm run test:unit y recorrido completo de Reptile
+(node tests/smoke.mjs --phase8-only) PASS en Edge 154.0.4258.53 / Windows.
+Regresión nueva: S y jugador no se solapan con el aviso; se observa también
+su ocultación durante los rebotes. Captura: artifacts/bonus-s-guide.png.
+Prueba phase11-only PASS: encendido/zoom, consola, foco, movimiento reducido,
+agarre y encuadres 390x844, 320x568, 844x390 y 1366x768. Son pruebas de viewport
+en Edge, no validación en un teléfono físico. Enlace LAN abierto en navegador:
+carcasa cargada, encendido ready y TitleScene visibles. Acceso desde el teléfono
+real pendiente de prueba del usuario (incluye red/firewall).
+No se volvió a ejecutar la suite completa npm test para este ajuste.

@@ -1,0 +1,1069 @@
+LATEST UPDATE — OCTOBER 4, 2026 — LCD INSTRUCTIONS / STEEPER MINE RAILS
+
+Follow-up: public external coach is empty on title/map/tutorial, not merely
+hidden; initial/map LCD says PRESIONA A: COMENZAR/ENTRAR (K keyboard).
+Restart follows the same flow; Aprende jugando intro has no extra A ring.
+First tire reminder is now the explicit exception above the console with
+an A ring, no LCD/footer duplicate. Minecart jump reminder unchanged.
+Gray enemy replacement deferred pending design choice; no enemy/art/music/
+physics/rail changes. See latest verification in GUIA_LCD_Y_CURVAS_MINA.txt.
+Current LAN revision=circulos-y-llanta. No publication.
+
+Supersedes the external tutorial card below: read instructions inside a light
+LCD panel with dark font-ink; outside only button rings. Keep external A/K
+jump cue in the mine and initial power invitation. Same tutorial mechanics.
+Mine rail heights34–138, tangent tilt, camera edge following; unchanged
+140px/s,16s route, two gaps and natural drop. Relative wheel/rail collision
+fix prevents clipping during optional jumps on steep inclines. Cannon,
+music/all assets, three platform levels, B-01 and ending preserved.
+See docs/GUIA_LCD_Y_CURVAS_MINA.txt for actual verification and limitations.
+LAN revision=lcd-y-mina. Not published; final OWASP/release gate still pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — ONE CLEAR GUIDE / FORGIVING GAP / LIZARDS
+
+Jungle post-checkpoint gap is now1600–1620, not40px: tested early walking
+takeoffs without retuning B-01. Two additional lizards1006/1506; Ropey adds
+1080 and upgrades2200. Rope geometry/terrain/rewards remain untouched.
+Public tutorial uses one opaque light gray-green HTML action card with keycaps
+and button rings; LCD keeps progress/success, no duplicate action or footer.
+Pause/START tips have light backgrounds and new clean dark bitmap font; same
+navigation behavior. Photo, all earlier art, audio, camera and ending intact.
+See docs/GUIA_UNICA_Y_SALTO.txt for actual checks/limits. LAN revision=
+guia-y-saltos. No publication; OWASP/release gate still pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — CONSOLE NAVIGATION
+
+A/K always starts/confirms. START/Space pauses: continue, explicit tutorial
+skip, map (confirmation before discarding attempt). Up/down choose; B/J
+cancels. Tutorial intro waits for A. Returning to map no longer marks
+practiceDone; public Esc shortcut removed. Help only offers Reiniciar Game
+Boy with confirmation, footer Help/Sound; diagnostic tools remain workbench
+only. Success feedback inside LCD only. Explicit hold-A/K high jump;
+larger shaded locks and required-level message. Live music preview in Sound
+while gameplay stays frozen; no autoplay before power-on. Files/physics,
+tracks, levels, console photo and applause preserved. Tests/limits in
+docs/START_Y_AYUDA.txt. LAN revision=start-y-ayuda. No publication.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — ENEMY PACE / CURVED MINE / TIMED EXTRA
+
+Hold-K/A reminder now only at first Reptile tire x356 (S), including retries.
+Ground patrols faster; two additional existing enemy types on safe Reptile
+floors. Launch barrel art rewritten; minecart140px/s (~16s), pronounced
+curved hills, rider tilt and local vertical camera. Natural drop/two gaps,
+retry and banana IDs preserved. Extra card concise:3 matching icons,20 bananas;
+20 seconds of active play, not reading/paused time. Timeout awards nothing
+and consumes the one campaign round. GANASTE then RESULTADOS; BANANAS /
+EXTRA / TOTAL. Approved music, B-01, console photo and applause unchanged.
+Earlier U move remains1020/92 beside Ropey's first bee. Map coach remains
+hidden after first completed level. See docs/RITMO_MINA_Y_EXTRA.txt for
+actual verification and limitations. LAN revision=ritmo-y-extra. No publish.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — MOBILE AUDIO / GUIDED TOUCH TUTORIAL
+
+User confirmed iPhone audio works with hardware Silent Mode off. Request
+optional AudioSession playback after sound gesture, preserve game mute and
+volume; unsupported/rejected API falls back with a settings note. No claim
+of physical iOS verification. Touch-release unlock and interrupted recovery
+covered. Map coach is one line; no two-finger footnote; two rings on right
+and B/A; barrel approach/grab/release uses real grab range/carried state.
+Ten lessons and completion rules intact. Music, levels, physics, final safe.
+See docs/AUDIO_MOVIL_Y_TUTORIAL_GUIADO.txt for actual tests/limitations.
+LAN revision=audio-y-tutorial. No publication; OWASP gate pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — COMPACT START / RETURN JUMP / TIRE REMINDERS
+
+Title coach is one line only, K keycap / mobile A circle and arrow retained.
+First Ropey beaver wall x924 top132 ->140 (height16), enemy y126 ->134:
+40px return jump from the right-hand floor, then32px to banana shelf108.
+All four tires get a hold-K/A reminder from either approach, ahead of bee
+advice. Outside LCD on public adventure, no duplicate footer. Fixed framing,
+B-01, all audio and ending preserved. No publication. Verification/limits:
+docs/AVISOS_Y_SALTO_DE_REGRESO.txt. LAN revision=avisos-y-saltos.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — AUTOMATIC BARREL / SHORTER MINE / BALANCE
+
+Barrel entry/shot now animate on the EXISTING cave screen automatically at
+Reptile exit (1.25s including an empty beat). Then DK drops into the cart
+and it starts itself, no K confirmation/instruction card. Ride ~20.55s at
+110px/s; first low/high bananas, broken downward rail catches without
+jumping, then two small real gaps. Retry keeps pickups, music/final intact.
+More detailed barrel/cart/rock strata. Coach no longer affects LCD framing;
+keycaps and circular touch A/arrow remain. B stays easy; O1104/4 and U1454/28
+now reward existing upper staircases. Recovery spots retained. Lizard hops
+36px per1400ms,800ms grounded opportunity, speeds30–36; bees longer116–132px
+patrols. No new player physics, global camera changes or publishing.
+See docs/REFINAMIENTO_MINA_Y_ENCUENTROS.txt for current verification/limits.
+LAN revision=mina-fluida. This supersedes the manual-start/32s ride below.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — MINECART ENDING / EXTRA STAGE
+
+User authorizes cannon -> short automatic minecart ride at END of stage3,
+preserving cave route/walls/tires. ~32s gentle hills,26 optional bananas and
+three small gaps; fresh K/A starts then jumps, retry from cart after falling.
+Reptile campaign completion deferred to actual mine exit. Stable item IDs,
+map exit discards unfinished attempt. Replays cannot farm or repeat extra.
+BONUS remains collectible word; barrel minigame now NIVEL EXTRA, result row
+EXTRA. Explicit clarification: raise collectible letters, not final title.
+BO up28, NU up28, S up12 with existing safe recoveries, optional as before.
+Original B-01, music, final applause and menu preserved. Further general
+camera/enemy/terrain/avian changes deferred to keep prior route intact.
+See docs/CIERRE_MINA_Y_NIVEL_EXTRA.txt for verification. LAN revision=mina-final.
+No publication; human playtest and OWASP gate pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — BONUS BARRELS / NO-PRIZE GESTURE
+
+User wants recognisable larger spinning bonus barrels, an "oops" gesture on
+loss and unclipped result text. Explicitly LOVES final applause/results: keep
+those intact. Bonus reels now34x36 with staves/metal hoops and8 turn frames;
+selection stops front-facing, same contact base80/positions/gameplay. Four
+separate front-facing shrug poses, visually clamped palms inside LCD. Loss
+text split in two lines with correct retrofont spacing. No fire mechanic,
+changes to normal barrels, music, physics, levels, payout or campaign rules.
+See docs/BONUS_BARRILES_Y_GESTO.txt for current verification. LAN revision=
+bonus-barriles. No publication; OWASP gate and human visual approval pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — JUNGLE DISCOVERY / TWO EXIT ENTRANCES
+
+User wants introductory progressive variety, not blanket difficulty inflation.
+New 123.76s video sampled visually every4s. Three optional walkable palm crowns
+in Jungle (early backwards discovery near house, late reuse), safe Down drops,
+one bunch/two bananas, local initial camera clearance and fern details. Existing
+mandatory challenges, enemies/checkpoints/letters/gaps preserved. User clarifies
+cave request means ENTRANCES at ends of levels1/2, not third-stage environment.
+New code-generated day/night rock entrances align aperture with exit.x; old
+exit-cave remains elsewhere. No music, physics, water, train or extra levels.
+See docs/REFINAMIENTO_JUNGLE_Y_ENTRADAS.txt for current verification. Overrides
+historical deferral of climbable palms. LAN revision=jungle-descubrimientos.
+No publication; security gate and human aesthetic/balance approval pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — ROPEY MANDATORY MOUNDS
+
+User authorizes nontrivial lower routes in level2 too. Only ropey-layout.ts:
+three two-step solid climbs at888/1300/1940 and a single rise1660. Each24px;
+upper tower remains optional. Two patrols/four bananas realigned. Same width,
+ropes, gaps, checkpoints, pickups, barrel positions and physics. Other levels,
+tutorial, UI/art/audio untouched. See docs/RETOS_ROPEY.txt for current tests.
+Supersedes historical fully-open lower path, not optional high exploration.
+Human difficulty/physical phone pending; no publication, OWASP gate pending.
+LAN revision=ropey-retos.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — JUNGLE FINAL STRETCH
+
+User authorizes resolving the walk-only lower route before the exit. Only
+JUNGLE_PHASE6: two relocated ground patrols (last one a lizard), barrel1918,
+solid ridge2112–2160/top96, short gap2216–2248, adjusted shelf/banana and gap
+banana. Same width, nine enemies, optional upper route and rewards; checkpoint,
+original40px gap and letter recovery intact. Physics/other levels/UI/art/audio
+unchanged. See docs/RETOS_FINAL_JUNGLE.txt for current test results and limits.
+LAN revision=jungle-retos. Human balance approval pending. Supersedes deferred
+Jungle-complexity note below; not permission for trees or bonus-gate changes.
+No publishing; OWASP release gate remains pending.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — EXPLICIT INPUT HELP / FULL RESTART
+
+Approved welcome style is now shared by help, sound, footer and tutorial cues:
+soft gray-green, dark teal, Trebuchet/Arial. Explicit keyboard-key vs physical
+touch-button wording; keycaps, step goals, retry/success and contextual vine/
+drop cues. Pixel instructions updated too, no lesson logic changes. Removed
+whole-console toggle and cosmetic power replay. Full restart requires a modal
+confirmation, safe cancel default; cancel/X/Escape preserves play, confirm
+reloads the in-memory campaign/tutorial/bonus but retains sound preferences.
+On phones restart is in Help, keeping the three-button footer and playfield.
+Build/types and input/phase10/ending/bonus units PASS. Edge154 Windows panels,
+phase11, touch, phase10 and audio blocks PASS; zero runtime errors. This also
+verifies Claude's pending AAC audio and simulated touch checks. Not full suite,
+demo-only or a physical iPhone. Audio (37 files), physics/layouts and console
+PNG unchanged by hashes. No publishing; LAN revision=ayuda-clara. Human visual/
+comprehension approval pending. See docs/AYUDA_CLARA_Y_REINICIO.txt.
+
+PREVIOUS UPDATE — OCTOBER 3, 2026 — ONE COMPLETED BONUS PER CAMPAIGN
+
+User reported replaying a level after keeping the finished campaign reopened
+the bonus. Campaign now stores finalBonusPlayed independently of the prize,
+settled at the third barrel whether win or loss. canPlayFinalBonus gates level
+transition and bonus scene entry. Replayed levels go directly to the ending
+summary/options; label now VER RESUMEN instead of JUGAR BONUS. A deliberate
+new game resets it; exiting an unfinished round does not consume it. No new
+letter requirement. Gameplay/layouts/art/music unchanged. General/bonus/ending/
+input/audio units and build PASS. Edge154/Windows --demo-only PASS: tutorial,
+three real levels, bonus, keeping campaign, Jungle/cave replay without bonus,
+three phone-sized endings, touch map and new-game reset. Zero runtime errors.
+First pass stopped on the Ropey bot's drop immediately after screenshot/focus;
+test now waits for fresh grounded frames, no mechanics changed. No full npm
+test or physical iPhone. Preview4173 HTTP200, index-qTUxOMSi.js,
+revision=bonus-unico. See top of docs/BONUS_FINAL_Y_AUDIO.txt.
+Deferred: evaluate empty Jungle stretch, climbable trees (no BONUS letters
+there), and possible all-letters bonus gate. Do not implement these yet.
+Mandatory OWASP/release gate remains PENDING. No publishing.
+
+PREVIOUS UPDATE — OCTOBER 3, 2026 — SOLID TERRAIN VISUAL CONTINUITY
+
+User requested solid mountains merge visually into the floor, while one-way
+facades retain a bright foreground path. terrain-visual.ts unions authored
+solid rectangles only for drawing, including exposed tops/sides; tires and
+one-way platforms excluded. No physics, level data, music, DK or console edits.
+Tests cover exact union, gaps, exposed boundaries, preserved foreground paths
+and immutable layout data for all three levels. Build/general/phase10/terrain
+units and Edge154/Windows terrain + phase8 browser blocks PASS, zero runtime
+errors. Jungle and cave screenshots reviewed; no full suite or physical iPhone.
+LAN4173 HTTP200, build index-D6jbEwpr.js, revision=suelo-integrado. Human visual
+approval pending. OWASP/release review still mandatory and PENDING; no publish.
+See docs/LECTURA_VISUAL_DEL_TERRENO.txt. Earlier entries remain history.
+
+PREVIOUS UPDATE — OCTOBER 3, 2026 — EXPLORATION / TEN LESSONS / FULL MUSIC
+
+User requests no publication until final OWASP-based security review and release
+checks. Mandatory gate in AGENTS.md and docs/ANTES_DE_PUBLICAR.txt; PENDING, not
+a security certification. When they say ready to publish, raise this gate first.
+
+Tutorial now has a tenth real drop-through lesson (S/Down), recoverable after
+walking off instead. Jungle has an optional high lookout plus a two-step solid
+mountain. Ropey shelves vary in height; their bananas and final barrel have been
+realigned. Bee art revised; lizard more defined and jumps for560ms every1800ms,
+retaining1240ms on ground to counter it. Approved DK/B-01/console unchanged.
+
+Level soundtrack now keeps the FULL source2.468–53.802s, including the later
+variation around40s. Two passes102.668s, -8.3dB (-23.1LUFS measured), no tempo or
+note changes; other backgrounds and17SFX unchanged. Previous short motif backed
+up. Not music/source separation; seam/listening approval remains human work.
+See docs/EXPLORACION_Y_TUTORIAL.txt for current verification, and
+docs/SOUNDTRACK_NIVELES.txt for audio method. Older sections below are history.
+
+Verified: types/build, general/tutorial/terrain/encounters/input/audio/ending/
+bonus units PASS. Edge154/Windows terrain/demo/touch/phase7/audio blocks PASS;
+demo covers all ten lessons, three levels, bonus and endings, with later camera/
+barrel polish rechecked in targeted blocks. No full npm test or physical iPhone.
+LAN4173 HTTP200, build index-NnggNkWO.js, revision=exploracion. Listening and
+human visual/balance approval still pending. Security gate remains PENDING.
+
+PREVIOUS UPDATE — OCTOBER 3, 2026 — TERRAIN / LEDGE DROP / FACING
+
+User authorized terrain edits after rejecting table-like open arches. Full rock
+facades now sit behind the walking plane; selected steps remain solid obstacles.
+Ropey has an optional zigzag climb above the starting view (camera exception only
+in its clearing), Reptile a solid stepped wall. S/Down drops one safe one-way
+ledge per press, never solid ground. Continuous facing input fixes held direction
+across damage/respawn without replaying actions. BONUS has gold bevelled lettering
+on a dark plaque. See docs/MONTICULOS_Y_DESCENSO.txt for current QA and coordinates.
+B-01, monkey poses, audio, console photo and final bonus flow unchanged.
+No publishing. Human visual/difficulty and physical-phone approval pending.
+
+HISTORY — OCTOBER 3, 2026 — TUTORIAL / ENDING SOUNDTRACK AND BONUS REWARD
+
+Current implementation is documented in AGENTS.md, README.md and
+docs/TUTORIAL_Y_CIERRE.txt. The supplied audio2469715243.m4a now plays in all
+tutorial lessons and the final celebration/summary/menu, with moderate volume
+and a trimmed recording delay. Intro/map/levels/bonus tracks and action sounds
+stay unchanged. Three matching final-bonus symbols award20 bananas once per
+campaign. The final shows level bananas + bonus = total, only earned letters,
+and map/new-game choices INSIDE the LCD. Map preserves the session; new game
+resets progress and tutorial, not sound settings. Keyboard and direct touch.
+No publication or physics changes. Auditory and physical-phone approval pending.
+Older sections below are history, not the current scope or implementation.
+
+HISTORY — OCTOBER 3, 2026 — FOUR-WAY PAD
+
+User requested no simultaneous arrows after right+down appeared stuck on iPhone.
+Input now resolves one direction (latest pressed) across keyboard and contacts,
+while preserving A+B+direction. Pad corners select the dominant axis, never a
+diagonal. Global pointer release and a native touch-end/cancel safety fallback
+discard stale contacts. Tutorial, zoom, photo and B-01 unchanged. Types/build,
+input/general/phase10 units and mobile-touch regression PASS in Edge/Windows.
+The exact Safari freeze is NOT reproduced/diagnosed; physical retest is needed.
+See docs/CONTROLES_TACTILES.txt; LAN revision=pad-4way.
+
+HISTORY — OCTOBER 3, 2026 — TUTORIAL RETRIES
+
+Fixed tutorial dead ends when defeating the sole enemy with the wrong attack.
+Stomp, roll and barrel lessons now explain the retry and reset only that step
+after 1200ms of active simulation. Spent/missed barrels replenish too; flying
+barrels do not reset prematurely. Correct attacks still advance. Pause/focus
+freeze retries. Regular levels, B-01, photo and mobile zoom remain unchanged.
+Build/types, unit suites, phase10-only and touch-only PASS in Edge/Windows,
+including wrong attacks followed by correct completion through level 1.
+See docs/FASE_10.md. LAN revision=tutorial-retry; physical phone retest pending.
+
+HISTORY — OCTOBER 3, 2026 — MOBILE CLOSE-UP
+
+The user tried and loved touch-1 on their phone, but requested a tighter crop
+to enlarge the LCD. Intro still starts with the full console, then automatically
+frames LCD, D-pad, A/B and START together, cropping spare case/speaker. Touch
+target minimums and full visibility limit zoom on small phones. Reduced motion
+uses the enlarged frame without animation. Desktop view, photo, physics and
+input unchanged. Build and touch-only PASS; see docs/CONTROLES_TACTILES.txt for
+verification and screenshots. New zoom still needs the user's iPhone playtest.
+LAN route: /?adventure=1&revision=touch-zoom. No deployment/GitHub changes.
+
+HISTORY — OCTOBER 3, 2026 — TOUCH CONTROLS AUTHORIZED
+
+The user explicitly asked for a phone that plays like the photographed Game Boy.
+Public adventure now keeps the whole console on portrait touch devices, with
+photo-aligned D-pad, A/B and START targets, pressed shading and independent
+simultaneous pointer contacts shared with keyboard input. Drag direction changes,
+diagonals, cancellation/blur safety, native touch audio gesture and Map toolbar
+are included. Mobile labels/tutorial use actual console buttons, not WASD/JK.
+First edition is portrait; landscape pauses and asks to rotate back, preserving
+the session. Desktop power/zoom and keyboard are retained. Photo PNG, sprites,
+levels and B-01 untouched. Tests/status: docs/CONTROLES_TACTILES.txt. Physical
+iPhone/Safari playtest remains for the user. Earlier no-touch notes are historical.
+No GitHub upload/public deployment yet; repository destination still unknown.
+
+HISTORY — OCTOBER 2, 2026 — BONUS CHOSEN FOR GENERIC EDITION
+
+The user explicitly chose BONUS, replacing BERTO in pickups, HUD, progress and
+ending. Jungle B/O, Ropey N/U, Reptile S, at the same coordinates and recovery
+points. Shared source src/collectibles.ts also drives the generated letter art.
+Final BONUS! caption and happier frontal celebration with raised open hands,
+smiling/joyful eyes and small visual hops. Gameplay sprites and physics unchanged.
+This does not add bonus rooms, minigames or powers. Roberto customization remains
+for later. Public labels are generic; internal berto:* event/storage IDs retained.
+See docs/DEMO_PRESENTACION.txt for verification. Earlier pending-word notes are
+historical and superseded by this explicit choice.
+
+HISTORY — OCTOBER 2, 2026 — GENERIC DEMO PRESENTATION AUTHORIZED
+
+See docs/DEMO_PRESENTACION.txt for delivery and verification status. Public adventure
+now has a persistent one-click mute icon on the pale surround, START GAME title,
+TUTORIAL / LEVEL 1-3 cards, visual treehouse exit, clearer numbered/locked map
+destinations with cliff relief and a frontal arms-raised generic ending. No new
+word chosen: BERTO remains pending the user's five-letter, no-C choice. No change
+to the audio composition; it is not approved by the user. Automatic photo-console
+power/zoom is preserved, as are B-01, level layouts and all gameplay sprites.
+Ending displays earned letters, never grants missing ones. Personal Roberto
+ending, publishing and touch remain pending. Workbench retains diagnostic flow.
+
+HISTORY — OCTOBER 2, 2026 — FIRST AUDIO PASS AUTHORIZED
+
+User explicitly requested background music shared across three levels and intuitive
+effects for important actions. Implemented original deterministic chiptune-style
+loop (16 bars, 108 BPM, 35.56 seconds) and 17 effects. No samples copied from the
+reference recording. Source tools/audio/score.mjs; regenerate with npm run audio.
+Runtime src/audio.ts uses one independent Web Audio context, so Phaser noAudio:true
+is intentional. Automatic visual startup unchanged; first trusted gameplay key or
+click unlocks audio. Sound panel: mute, separate music/effects volumes, preferences
+only in localStorage. Pause/focus/hidden/intro replay suspend audio clock; music
+continues across respawns and scenes. Victory cue then quiet summary. Read-only
+event observation per WORLD_STEP; player only gains lastJumpAt getter. B-01,
+levels, sprites and approved console PNG unchanged. Tests include deterministic
+PCM, event edges and real browser output, not a human listening assessment.
+Full handoff: docs/AUDIO_PRIMERA_PASADA.txt. User listening approval is pending.
+No authorization to publish or implement touch controls, title art or endings.
+Historical no-audio statements below are superseded by this request only.
+
+HISTORICAL UPDATE — OCTOBER 2, 2026 — TEAL CONSOLE AND POWER-ON AUTHORIZED
+
+SUBSEQUENT USER APPROVAL: teal console appearance accepted. User then requested no-click automatic power-on after about 3 s and boot typography identical to the bezel. Implemented: 3 s off, same photographed GAME BOY COLOR label at 3 s, automatic zoom at 4.8 s, game at 6.4 s; animation clock no longer depends on document.hasFocus(), only visibility. Hidden-tab time excluded. Gameplay focus/physics protection unchanged. Reduced motion keeps wait/logo and switches framing without motion at 4.8 s. Boot logo reuses CSS-cropped region of the existing shell image; no new font, no modification/regeneration of approved PNG. Build and phase11 suite PASS on Edge/Windows, including visible-but-unfocused startup without pointer/key interaction. Earlier startup timing/HTML font description below is historical.
+
+User requests photographic teal GBC based on their FIRST attached photo, not a flat box mockup. Implemented in /?adventure=1: transparent photo-derived shell asset (public/assets/console-teal.png), Nintendo text removed, GAME BOY COLOR kept; blank/off LCD, red LED and colored GAME BOY boot logo, then animated close-up to the live 160x144 canvas. Whole-console and close-up view toggle, skip/replay startup, readable help; gameplay input locked during startup, reduced-motion support. WASD, J/B, K/A and Space/Start darken matching physical button regions. Shell uses a raster image and CSS camera, NOT a rotatable 3D mesh or guaranteed pixel-identical copy. New image prepared with built-in imagegen; prompt specification/provenance in docs/FASE_11_CONSOLA_TEAL.md. No dependency on Codex directories at runtime.
+
+Left-facing rope grip bug fixed in rendering: keep the atlas grip pivot at 24/32 for both orientations, since Phaser already mirrors around the custom pivot. Hands/body no longer offset from the rope when facing left. Practice rope background subdued; dynamic messages distinguish W grab/up, S down, K release/jump. Existing gait/roll artwork, rope physics, levels and B-01 preserved.
+
+The prior no-mobile/no-phase11 restrictions are superseded by the user's new scope: responsive screen presentation now, touch-control design later after user instructions. Not yet a playable touch version. Game title/carátula, sound, personal ending and repository/site publication are NOT completed or authorized by this request. Phase 11 and requested power/zoom portion of 12 are implemented pending visual approval. Legacy full workbench available at /?adventure=1&workbench=1; independent test routes preserved. tests/phase11.mjs exercises actual presentation route, keyboard feedback, power locks, responsive sizes, reduced motion and both rope-facing directions. Full QA results recorded in delivery document.
+
+HISTORICAL UPDATE — OCTOBER 2, 2026 — PHASE 10 REVISED AFTER USER PLAYTEST
+
+User removed comodines: no active special cards, counters or powers; bananas and BERTO stay. Phase 10 now adds nine short interactive practice steps before first Jungle entry (walk, jump, roll, run, stomp, roll enemy, barrel throw, tire bounce, rope climb/release). Real mechanics determine success. Escape skips to map; map button replays practice. No campaign rewards from practice. Ropey adds checkpoint x1560 after existing x650, with forward-only selection. Selected raised sections in all three levels become thin one-way platforms with safe lower ground and upper banana routes. Continuous earth, mandatory gaps, B-01, existing sprites and rope/tire mechanics preserved. Instructions use larger pixel lettering on dark panels and an HTML readable mirror. Existing animated map and Escape remain. No Phase 11. See current section in docs/FASE_10.md; previous Phase 10 card notes below are historical, superseded.
+
+HISTORICAL UPDATE — OCTOBER 2, 2026 — PHASE 10 FIRST PROTOTYPE
+
+Escape returns directly to the map during any adventure stage; an obvious styled button provides the same action. Completed-stage progress survives, unfinished attempt collection is discarded. New close jungle map with raised rock terraces, layered vegetation and shared curved paths for drawing and walking. DK walks between nodes and automatically advances after finishing a stage; input focus loss freezes traversal, K during traversal queues entry on arrival.
+
+One optional provisional turquoise keepsake per level, without powers or invented personal meanings. Existing elevated platforms provide short optional jumps; levels were not extended again. Keepsakes have separate counters from bananas and BERTO, survive deaths during the attempt, commit at completion and cannot be farmed by replay. Restart/abandon discards uncommitted items; reload resets session. Never required for exit. Final identities, quantity and effects remain for the user to decide. See docs/FASE_10.md. B-01 unchanged. Phase 11 not started.
+
+HISTORICAL UPDATE — SEPTEMBER 29, 2026 — PHASE 9 AUTHORIZED AND IMPLEMENTED
+
+SUBSEQUENT USER-REQUESTED REFINEMENT: preserve Jungle and gait, extend Ropey to 2400px (four ropes total, third swinging crossing and new platform/patrol sequence) and Reptile to 2304px (descending gallery, fourth tire and second ascent). Letter recovery moved to the new exits; original checkpoints retained. Own sprite revised with broad clean shading (no diagonal texture), ape-like face and eight-frame articulated somersault instead of a ball. Curved island map with palms, waterfall and cave; no old ape's cabin. No changes to B-01, player controller, combat rules or Jungle layout. See docs/REFINAMIENTO_NIVELES_Y_ARTE.md for current details; older lengths and sprite inventories below are historical. This does not authorize Phase 10.
+
+User explicitly authorized reviewing Claude's Phase 8, implementing Phase 9 and improving the monkey gait, relief of terrain in all three levels, and readability of cave rocks. Original Claude delivery passed the entire A/B/3/4/5/6/7/8 suite in Microsoft Edge 154.0.4258.37 on Windows before edits. Rope grab/swing/canopy fixes, tires, camera and B-01 preserved.
+
+Integrated adventure at /?adventure=1: three-node map, A/D selection, K enters unlocked stage, fresh K after completion returns to map. Jungle -> Ropey -> Reptile unlock in sequence. Bananas and BERTO accumulate by unique level/item identity; replay cannot duplicate them. Collection is committed on completion; restart of an unfinished attempt discards that attempt but retains prior completed-level collection. Session memory only, reload resets all. Optional letters never gate exit. Final map says route complete, NOT a birthday ending. Independent routes remain available.
+
+Own generated art revised: six-frame distinct walk/run/carry cycles, long articulated arms, knuckle support and lifted feet instead of locked seated posture; same 32x32 frame and feet anchor, red tie and maroon palette. Ground now has larger angular rock faces and contact shadows; cave has faceted stalactites, boulders and less noisy columns. Claude's jungle backgrounds preserved. Art is still awaiting user approval; roll and rope poses remain provisional. See docs/FASE_9.md. No Phase 10+, audio, final shell or birthday reveal.
+
+HISTORICAL UPDATE — SEPTEMBER 29, 2026 — ROPEY FIXES + PHASE 8 (REPTILE RUMBLE) BY CLAUDE
+
+Claude executed docs/ENCARGO_CLAUDE_FASE_8.md after the user asked to fix Ropey first. Report: docs/ENTREGA_CLAUDE_FASE_8.md; work log: docs/NOTAS_CLAUDE_FASE_8.md. Status: implemented and verified in Chromium 141/Linux; pending Codex review, Edge/Windows suite and user playtest. Phase 9 (map/progression) NOT started.
+
+Ropey: confirmed bug — the swinging ropes reached y=172, so hanging at the bottom swung DK into the 400/152 step and the safety release dropped him into the pit. Swinging ropes now end at y=140 with scaled amplitude (identical swing above 140); a unit test sweeps the whole period for terrain overlap. Grab rules: in the air, touching a rope grabs it without W; on the ground W grabs; S held in the air passes; the rope just released is not auto-grabbed again until DK lands. The climb limit is shown by a generated night canopy that hides the rope above y≈96 (camera top 48 and climbTop 116 unchanged). Practice bananas at 150/134/118 (no jump needed).
+
+Phase 8: /?level=reptile, own GBC-style cave art (purple curtains, dark stone, warm floor), snake enemies (Phase 4 rules), three bouncy tires with own parameters (250 px/s without K, 320 with K held; the symmetric Arcade speed cap is raised only while rising and restored at the apex, falling stays capped at 280), optional O above the first tire (high bounce only) re-offered on the exit plateau, checkpoint, one 32 px pit, final ascent, readable vertical camera (src/camera.ts, Reptile only). No crouch (no low ceilings). tuning.ts hash 87f02c4b..., player.ts and gameplay.ts unchanged; Jungle gap stays 40 px; DK not redesigned.
+
+LATEST UPDATE — SEPTEMBER 28, 2026 — PHASE 7 AUTHORIZED
+
+User deferred DK sprite replacement and explicitly authorized Phase 7, then asked for a prompt for Claude to review it and proceed with Phase 8. Ropey is an independent test route /?level=ropey: night jungle, three ropes (safe training + two moving crossings), vertical camera, R/T, bananas, barrels, four patrols, checkpoint and ungated exit. W grabs a nearby rope (not while carrying/rolling), W/S climb, fresh K jumps off; pause/focus freeze active time. Existing DK carry pose is reused provisionally on ropes, not approved final art. No edits to B-01 or Claude's corrected 40px Jungle gap. / remains Jungle; no map/session integration, audio, bonus, new character or birthday implementation. See docs/FASE_7.md for current verification and docs/ENCARGO_CLAUDE_FASE_8.md for the user's next handoff. Historical statements below that Phase 7 is paused are superseded by this explicit authorization.
+
+PREVIOUS UPDATE — POST-CHECKPOINT GAP REDUCED TO 40 PX
+
+After playtesting, the user found the 44 px post-checkpoint gap (x=1600) too demanding and asked to reduce it to 40 px. JUNGLE_PHASE6 now uses ground [1640,124,920,68] (gap 1600–1640). Nothing else changed: B-01, tuning.ts, enemies, camera and art are untouched. Phase 7 remains paused; the user wants to keep refining Level 1 (DK sprite first) before a new level.
+
+LATEST UPDATE — PHASE 6 AUTHORIZED BY THE USER
+
+Codex reviewed Phase 5: complete A/B/3/4/5 tests passed in Microsoft Edge 154 on Windows, types/unit/build passed, tuning.ts hash intact. User playtest: the art is pleasant but too unlike GBC, the course too easy; requests closer visual identity, meaningful challenge and a visible hit pose before respawn. Technical verification does NOT equal visual/gameplay approval.
+
+User authorized ONLY Phase 6. Current implementation: own code-generated revised maroon DK palette/ground posture, denser foliage and drooping palms; 7 supported enemy patrols (18–26 px/s); post-checkpoint gap widened from 32 to 44 px; 600ms simulation-time impact sequence with hands-to-head pose, visual recoil, disabled actions and return to checkpoint/start. Pause/focus freeze impact; explicit restart clears it. Falls into void still return immediately. No changes to B-01, jump, collision body, roll parameters, controls, collection persistence or ungated BERTO recovery.
+
+Default / is Phase 6; /?phase5=1 preserves old layout/rules with shared updated art, and diagnostic/lab/greybox remain. Tests cover old-layout regression AND default Phase 6 traversal/damage/pause/restart, not only the old course. See docs/FASE_6.md for evidence and limits. Art direction and human difficulty are still awaiting user approval. No Phase 7, other levels, audio, final console/zoom or comodines implemented. Source backup before changes: artifacts/phase-6-before.zip.
+
+PREVIOUS UPDATE — SEPTEMBER 27, 2026 (EVENING) — CORRECTIONS + PHASE 5 BY CLAUDE
+
+The user explicitly authorized Claude to implement the justified review corrections and Phase 5 (Jungle art and animation); Codex will review the delivery afterwards (docs/ENCARGO_CLAUDE_FASE_5.md). Status: IMPLEMENTED AND VERIFIED BY CLAUDE, NOT YET reviewed by Codex and NOT YET visually approved by the user. Phase 6 not started. Full report: docs/ENTREGA_CLAUDE_FASE_5.md.
+
+Corrections: player movement, level rules and Arcade physics now advance together once per fixed Arcade step (WORLD_STEP, 60 Hz); below 30 fps nothing drops time any more (measured at 24 fps: rules clock 768 -> 1002 ms per real second, enemy 13.8 -> 18 px/s, roll distance 33.2 -> 27 px). Completion has priority: Start is ignored and the summary stays under pause/focus. Level content lives in src/jungle-layout.ts; hitboxes/action values are centralised in src/gameplay.ts (same Phase 4 numbers); barrel gravity is injected from MOVEMENT.gravity; the stomp rebound goes through PlayerController.bounce() (a jump accepted in the same step wins; the rebound consumes ground tolerance). Pause now keeps coyote tolerance (sim time is frozen) and drops a pending buffered press. The unused step(..., paused) API was removed.
+
+Phase 5: original procedurally generated pixel art (tools/art, `npm run art`, byte-identical rebuilds; no ripped assets, no new dependencies): DK in 27 frames (idle, walk, run, jump up/down, roll, carry overhead + carry walk, throw, teeter at ledges, cheer, hurt ghost), grey Gnawty-like enemy, bananas, BERTO tiles, barrels with debris, star barrel checkpoint, EXIT sign + rock cave, DK treehouse, path/rock tiles, two parallax layers, 5x7 font, HUD and completion summary. All animation depends only on simulation time or distance, so pause/focus/completion freeze it. Collision body 12x16, B-01 values, controls, geometry and Phase 4 rules are unchanged (tuning.ts SHA-256 still 87f02c4b...). The Phase 3 greybox (/?greybox=1), B-01 lab (/?lab=1) and diagnostic (/?diagnostic=1) routes remain.
+
+Verification by Claude: unit tests (rules, B-01 controller with coyote/buffer windows), typecheck, build, and the full browser suite A/B/3/4/5 passed 3 consecutive times in Chromium 141.0.7390.37 (NOT in Edge; Windows/Edge run pending). Clean bot runs: 24.8 s running, 41.4 s walking (below the 1:15-1:30 proposal; not padded, user decides). Screenshots and a 29 s video are in artifacts/.
+
+LATEST UPDATE — SEPTEMBER 27, 2026 — PHASE 4
+
+The editor works again. Phase 3 was approved and Phase 4 authorized on September 26; Phase 4 is now implemented for user testing, NOT yet user-approved. No Phase 5 work is authorized. Space is Start/pause; Enter is unbound. The B-01 tuning file is unchanged.
+
+Default / now includes 24 bananas, B/E, three simple one-hit patrolling enemies, short roll, pickup/carry/throw barrels, a checkpoint and a completion gate. J press rolls on the ground; hold continues running. Nearby barrels take priority: press/hold J to carry, release to throw. A release caused by pause/focus loss does not throw. Stomp, grounded roll or thrown barrel defeats an enemy. Side contact or falling returns to the checkpoint or start; collected items and defeated enemies persist within the attempt. Barrels replenish and respawn grants 1.5 seconds of protection. Explicit restart/reload clears all progress; no persistent save exists.
+
+Missing B/E are offered again before the exit, but collecting them is never required to finish. HUD is transient and visible on pause; external diagnostics remain. Completion freezes the level and shows a test summary, not the next level or birthday ending. Shapes remain provisional. Pure rules live in src/gameplay.ts; draw code in src/gameplay-view.ts. See docs/FASE_4.md for action priorities, provisional extension values and tests.
+
+Historical versions remain available: /?greybox=1 is the Phase 3 course without systems; /?lab=1 is B-01; /?diagnostic=1 is A. Pause now freezes physics, scene timers, tweens and active gameplay clocks; sprite animation/audio integration is still future work. All subsequent historical statements about absent Phase 4 systems or the editor being blocked are superseded by this update.
+
+PREVIOUS UPDATE — SEPTEMBER 25, 2026 — PHASE 3
+
+The user authorized visual validation followed by Jungle greyboxing. Target confirmed: laptop browser + keyboard, no mobile/touch work. Preserve 160x144 logical resolution; enlarge presentation with crisp integer scaling rather than retuning movement.
+
+Implemented for user review: a compact provisional console composition with visible keyboard-linked D-pad/A/B/Start; a 24x28 placeholder silhouette aligned at the feet above the unchanged 12x16 collider, independently toggleable; a 2560px data-defined Jungle greybox with treehouse cue, platforms, small gaps, raised stretch and a non-transitioning finish marker. This is NOT final character art or final console geometry. B/E, encounter and checkpoint labels reserve space only; no pickups, enemies or checkpoint behavior yet. Falling still resets to the start. The route does not establish final playtime without gameplay systems.
+
+Default route is now JungleGreyboxScene. Approved movement lab remains at /?lab=1 and Phase A diagnostic at /?diagnostic=1. Player spawn is configurable, Jungle has its own fall boundary/world/camera bounds, and physics pause/resume calls are guarded against repeated state events. Full gameplay pause for future animations/timers remains pending before Phase 4. src/tuning.ts B-01 is unchanged. On September 26, the user approved Phase 3 and authorized Phase 4. Phase 4 is still NOT implemented because the patch editor is blocked by the environment. Start/pause now uses Space instead of Enter.
+
+Use numbered phases going forward: Phase 1 = approved A, Phase 2 = approved B, Phase 3 = current visual validation/greybox. The remaining text preserves earlier context; statements below saying Jungle has not started or the default scene is the lab are historical and superseded by this update.
+
+We started this project from scratch. Research/planning and the first two implementation stages are now complete: Phase A (technical skeleton) and Phase B (placeholder movement prototype). Both have been approved by the user.
+
+IMPORTANT: Do not build the entire game or restart the approved work. This updated brief is being shared for review by another model. Do not begin the next implementation stage unless explicitly requested.
+
+For the initial task, I wanted you to understand, research, document, and plan the project. We are implementing it incrementally in very small stages. Do not attempt to generate the entire game in one pass. Preserve the approved foundation and movement described in CURRENT IMPLEMENTATION STATUS below.
+
+PROJECT
+
+I want to create a short personalized retro birthday game inspired very closely by Donkey Kong Country for Game Boy Color.
+
+The person receiving it played Donkey Kong Country as a child, so nostalgia and recognition are extremely important.
+
+The experience should initially feel like playing a tiny version of the original Game Boy Color game, but gradually introduce personalized elements.
+
+Target total playtime:
+approximately 6–8 minutes for a normal player, with an upper bound around 10 minutes.
+
+The user subsequently requested a somewhat shorter, simpler route without optional bonus detours. Keep 6–8 minutes as the overall experience target, with room for learning and retries; around 10 minutes is a playtest target, not a hard guarantee for every player. Do not pad the experience to reach a duration.
+
+This is NOT intended to reproduce the entire game.
+
+We only want a compact recreation/adaptation of the FIRST THREE LEVELS:
+
+1. Jungle Hijinxs
+2. Ropey Rampage
+3. Reptile Rumble
+
+These should preserve the recognizable identity, progression and core mechanics of the original levels while being significantly shortened.
+
+REFERENCE VERSION
+
+Our PRIMARY visual reference is:
+
+Donkey Kong Country — Game Boy Color version.
+
+Do not accidentally use the SNES version as the primary visual reference.
+
+Research the Game Boy Color release specifically:
+- title screen
+- Adventure menu
+- world / regional map
+- Jungle Hijinxs
+- Ropey Rampage
+- Reptile Rumble
+- Donkey Kong animations
+- enemies
+- barrels
+- bananas
+- K-O-N-G letters as the visual reference for the replacement B-E-R-T-O system
+- bonus rooms as historical reference only; optional bonus rooms/minigames are excluded from our adaptation
+- level exits
+- UI
+- palette
+- screen proportions
+- movement
+- level structure
+
+Use online gameplay footage, screenshots, manuals, walkthroughs and documentation as research references.
+
+A gameplay video has now been provided, covering the beginning and the first three levels. Standalone user screenshots have not been supplied; reference sheets were extracted from the video.
+
+Video:
+C:\Users\Abraham\Documents\Zoom\2026-09-23 20.58.54 Reunión de Zoom de Gloria Chacón\video1712159502.mp4
+
+The supplied recording is approximately 7 minutes long (420.9 seconds), 1366 × 768 at 25 fps, with an AAC audio track. Sampled frames throughout the recording and additional opening frames were visually inspected. This was not a complete frame-by-frame motion analysis. The audio track was detected, but individual sound effects have not been verified by listening.
+
+Observed visual anchors include the aquatic title composition in this recording, the Adventure menu with DK holding a barrel and blue circular icons against an orange sky, the regional jungle map, daylight jungle, dark-blue nighttime jungle with ropes, and the purple cave with warm-colored ground and tires.
+
+Use these references for composition and recognition. Do not claim exact original palette values, animation timing or physics have been measured from this compressed/scaled recording. The physical Game Boy shell is not shown in the recording and still needs its own design.
+
+CORE EXPERIENCE
+
+The website should initially display a complete Game Boy Color console.
+
+The Game Boy should be large and centered.
+
+The Game Boy powers on.
+
+The original-style retro introduction/title experience happens INSIDE its screen.
+
+Then the camera/UI smoothly zooms toward the Game Boy.
+
+IMPORTANT:
+After zooming, do NOT crop everything except the screen.
+
+The final gameplay composition should still show:
+- the Game Boy screen
+- D-pad
+- A button
+- B button
+- relevant parts of the Game Boy body
+
+The player should continue feeling like they are physically playing a Game Boy.
+
+The actual Phaser game runs inside the Game Boy screen.
+
+Keyboard input should also visually animate the corresponding physical Game Boy controls.
+
+Example:
+RIGHT key -> character moves right AND the right side of the visible D-pad appears pressed.
+
+The implemented keyboard mapping also supports D -> character moves right AND the right D-pad indicator appears pressed. The final physical Game Boy shell has not yet been implemented; current HTML and canvas indicators demonstrate the shared input system.
+
+CONTROLS
+
+Current controls, implemented and accepted through Phase A / Phase B:
+- A / D: move left / right.
+- Left / Right arrows: alternative horizontal movement controls.
+- W / S and Up / Down arrows: activate the corresponding D-pad indicators; there is no vertical gameplay action yet.
+- J -> Game Boy B button: hold to run.
+- K -> Game Boy A button: jump. Release K early for a shorter jump; hold for a higher jump.
+- Space -> Start: pause / continue in the movement prototype.
+- "Activar teclado": focus the gameplay area.
+- "Volver al inicio": reset the movement test.
+
+WASD is the primary directional layout, with J/K handled by the other hand. J is to the left of K, matching B relative to A on the console. W is not the jump button.
+
+Planned contextual extensions, NOT implemented yet:
+- W / S: menu navigation, climb up/down ropes, and crouch where appropriate.
+- J / B: roll, pick up/carry barrels, and release to throw, depending on context.
+- K / A: confirm menus and jump off ropes.
+- Select: no action assigned because there is only one playable character.
+- Escape was suggested for menu back/pause; it is not currently implemented or required.
+
+The exact priority between running, rolling, and handling barrels must be designed and tested when those actions are added. Avoid double actions and unintended key-repeat behavior.
+
+Input has a single shared source for Phaser and the HTML indicators. Simultaneous buttons work; alternative keys for the same direction remain held until all contributing keys are released. Losing focus releases input and automatically pauses the movement prototype. Current visible indicators are keyboard feedback, not touch controls.
+
+GAME FLOW
+
+Game Boy
+↓
+Power-on / intro
+↓
+Title
+↓
+Adventure
+↓
+World map
+↓
+Jungle Hijinxs
+↓
+World map progression
+↓
+Ropey Rampage
+↓
+World map progression
+↓
+Reptile Rumble
+↓
+Personalized final / birthday reveal
+↓
+Ending
+↓
+Camera zooms back out to the complete Game Boy
+
+The player should understand from the beginning that this is a short journey with a destination and ending.
+
+LEVEL PHILOSOPHY
+
+We are NOT reproducing the three complete original levels at full length.
+
+We will create shortened adaptations containing their most recognizable elements.
+
+Use only ONE playable character: Donkey Kong. No Diddy switching or reserve-character system.
+
+Enemies should be easier to defeat, with fewer repeated encounters, so the recipient does not spend too long on combat. A suggested approach is one-hit basic ground enemies using a stomp, roll or barrel; enemy behavior has not been implemented or approved in detail yet.
+
+LEVEL 1 — JUNGLE HIJINXS
+
+Purpose:
+Immediate childhood nostalgia + teach controls naturally.
+
+Preserve recognizable elements such as:
+- jungle environment
+- iconic starting area / treehouse feeling
+- bananas
+- simple enemies
+- barrels
+- basic platforming
+- recognizable terrain and visual composition
+
+Target duration:
+~1.5–2 minutes.
+
+Updated shortening proposal: approximately 1:15–1:30, subject to playtesting. Preserve the starting treehouse feeling, banana-guided teaching, a simple enemy/barrel encounter, a checkpoint and a short elevated section leading to the exit. No bonus detours.
+
+LEVEL 2 — ROPEY RAMPAGE
+
+Purpose:
+Introduce a meaningful variation from Level 1.
+
+Preserve recognizable elements such as:
+- jungle identity
+- ropes / vines
+- gaps
+- more vertical movement
+- enemies
+- bananas
+- barrels
+
+Target duration:
+~1.5–2 minutes.
+
+Updated shortening proposal: approximately 1:15–1:30, subject to playtesting. Preserve the GBC nighttime jungle, a safe first rope, a few short rope/gap crossings, a checkpoint and the exit. No optional bonus rooms or minigames.
+
+LEVEL 3 — REPTILE RUMBLE
+
+Purpose:
+Final gameplay challenge before the personalized ending.
+
+Preserve recognizable elements such as:
+- cave environment
+- rock platforms
+- reptiles / enemies
+- barrels
+- jumping
+- cave passage / discovery feeling within the main route, without optional bonus areas or minigames
+
+Target duration:
+~2–2.5 minutes.
+
+Updated shortening proposal: approximately 1:30–1:45, subject to playtesting. Preserve the purple cave, rock platforms, reptiles, barrels, tires/bouncing and a final ascent. Finish with the birthday reveal instead of an extra gameplay challenge.
+
+The original per-level targets above are retained as historical context; the shorter timings are proposals made after the user's request, not measured final durations. The proposed shorter route plus intro, maps and ending totals about 5:05–6:25 without mistakes, leaving margin within the overall target for learning and retries.
+
+Difficulty should remain forgiving.
+
+This is a birthday experience, not a difficult challenge.
+
+The recipient MUST realistically reach the ending.
+
+PERSONALIZATION
+
+The personalization should be integrated into the original Donkey Kong game language instead of feeling like unrelated elements pasted onto it.
+
+Most important customization:
+
+Replace the traditional K-O-N-G collectible system with:
+
+B - E - R - T - O
+
+These letters should appear across the experience.
+
+Current distribution proposal, not implemented yet:
+
+Level 1 -> B, E
+Level 2 -> R, T
+Level 3 -> O
+
+The HUD/progression can gradually display:
+
+B _ _ _ _
+B E _ _ _
+B E R _ _
+B E R T _
+B E R T O
+
+We may adjust the exact implementation later.
+
+The word BERTO was explicitly chosen by the user. The five-letter distribution is a proposal, not a requirement to add five levels. Letters should be on the main route and must not require bonus rooms. Proposed recovery: preserve collected letters through retries and offer a missed letter again on safe ground before the level exit. The birthday ending must not be blocked by a missing letter. None of these collectible systems exists in the current prototype yet.
+
+BONUS ROOMS
+
+UPDATED DECISION: Do not include optional bonus rooms, separate collection challenges, extra minigames, or detours to stop/match barrels. The user explicitly removed this part of the original scope.
+
+PERSONALIZED SPECIAL COLLECTIBLES / "COMODINES"
+
+Personalized pixel-art objects related to Roberto may instead be integrated into the main levels later. For now, leave them as unspecified "comodines" / special collectible placeholders in the plan. Their exact design, number, meaning and any effect remain undecided; do not invent power-ups.
+
+Potential examples:
+- drone
+- helmet
+- gym weight / dumbbell
+- other personal references to be defined later
+
+These are the original brainstorming examples, retained for context, not approved designs or a confirmed item list.
+
+These objects should look like authentic collectible items belonging to the game's visual universe.
+
+Do NOT design all of these yet.
+
+The architecture simply needs to support data-driven personalized collectibles later, without requiring bonus rooms. That support is planned, not implemented in the current prototype.
+
+ENDING
+
+After completing Reptile Rumble, the player should reach the personalized ending on the main route.
+
+A secret-looking entrance can remain as a presentation option, but it must lead directly into the reveal, not into another bonus challenge or minigame. The exact transition is still to be designed.
+
+The reveal should eventually communicate:
+
+HAPPY BIRTHDAY ROBERTO
+
+Exact content, animation, text and personalized material will be designed later.
+
+Do NOT invent the final message yet.
+
+VISUAL DIRECTION
+
+Game Boy Color pixel-art aesthetic.
+
+The GBC version is the main reference.
+
+Important:
+- crisp pixels
+- no smoothing
+- limited retro palette
+- authentic sprite scale
+- layered backgrounds where appropriate
+- original-style UI
+- original-style transitions
+- no modern glossy game UI inside the Game Boy screen
+
+The implemented logical canvas is 160 × 144 (10:9), with crisp integer scaling and no smoothing. The temporary green diagnostic palette and the movement lab's rectangles/grid are testing visuals, not approved final art or a final game palette.
+
+The surrounding Game Boy console itself can be rendered with more detail and lighting than the internal game.
+
+TECH STACK
+
+Use:
+
+- TypeScript
+- Vite
+- Phaser
+- Phaser Arcade Physics
+- HTML/CSS for the physical Game Boy interface
+
+Phaser should handle:
+- scenes
+- player
+- physics
+- collisions
+- camera
+- animations
+- collectibles
+- enemies
+- tilemaps
+- audio
+- level progression
+
+HTML/CSS should eventually handle:
+- Game Boy shell
+- D-pad
+- A/B buttons
+- Start/Select
+- power LED
+- responsive layout
+- zoom transition
+- pressed-button visual states
+
+Keep gameplay logic independent from the Game Boy presentation layer.
+
+Current pinned versions:
+- Phaser 3.90.0
+- Vite 6.4.3
+- TypeScript 5.9.3
+- Playwright 1.62.1 for browser tests
+- Node.js 22.19.0 or newer
+
+Phaser Arcade Physics is already used by the Phase B movement prototype. No new framework or stack migration is required.
+
+PROPOSED SCENE ARCHITECTURE
+
+BootScene
+PreloadScene
+TitleScene
+AdventureMenuScene
+MapScene
+JungleHijinxsScene
+RopeyRampageScene
+ReptileRumbleScene
+BirthdayRevealScene (presentation/reveal, not a playable bonus room)
+EndingScene
+
+Do not assume this architecture is final.
+Evaluate it first.
+
+The list above is the proposed final architecture, not a list of completed scenes.
+
+Currently implemented:
+- BootScene
+- DiagnosticScene (Phase A, still available via /?diagnostic=1)
+- MovementLabScene (Phase B, the default scene after boot)
+
+Current modules separate input, player movement, movement tuning, the lab scene and HTML/CSS presentation. Keep shared level abstractions light until Jungle Hijinxs works; do not implement a generic engine or all scenes in advance.
+
+DEVELOPMENT PHILOSOPHY
+
+This is extremely important:
+
+DO NOT IMPLEMENT EVERYTHING AT ONCE.
+
+We previously tried building another birthday game too quickly and the project became difficult to control.
+
+This project must be incremental.
+
+Each stage should be independently testable and approved before continuing.
+
+Do not redesign approved systems unless explicitly requested.
+
+Especially:
+once player movement / physics are approved, do not silently modify them while implementing art, levels or UI.
+
+The user has now approved both Phase A and Phase B. Movement B-01 is the accepted baseline. Preserve its values while developing art or levels. Rolling, ropes, crouching and barrel handling are later extensions requiring separate review, not reasons to silently retune approved walking/running/jumping.
+
+We have time and creative freedom. The previously discussed "safe to omit" recommendations are useful scope guidance, not arbitrary deadlines or blanket prohibitions. Explicit decisions remain: one playable character, three short levels, no optional bonus rooms/minigames, and incremental approval between stages.
+
+INITIAL DEVELOPMENT ORDER
+
+Phase 0
+Research + architecture + reference collection.
+
+Status: initial research/planning and sampled-frame review of the supplied video completed. Exact palette, animation timing and individual audio effects still need dedicated review before final asset work.
+
+Phase 1
+Technical skeleton.
+
+Also called Phase A / Phase 1A. Implemented, tested and approved by the user.
+
+Phase 2
+Movement prototype using placeholders ONLY:
+- rectangle/player placeholder
+- ground
+- gravity
+- left/right movement
+- run
+- jump
+- collision
+- camera follow
+
+Also called Phase B. Implemented, tested and approved by the user. The movement preset is B-01; see CURRENT IMPLEMENTATION STATUS below.
+
+Phase 3
+Greybox Jungle Hijinxs.
+
+Not started. This is the next planned stage after the approved movement prototype. Do not begin it solely because this brief was shared for review.
+
+Phase 4
+Gameplay systems:
+- bananas
+- personalized letter collectibles (BERTO; proposed B/E in Level 1)
+- basic enemy
+- barrels
+- checkpoint
+- exit
+
+Phase 5
+Actual pixel art and animations.
+
+Phase 6
+Finish Jungle Hijinxs.
+
+ONLY AFTER LEVEL 1 IS APPROVED:
+
+Phase 7
+Ropey Rampage.
+
+Phase 8
+Reptile Rumble.
+
+Phase 9
+World map and progression.
+
+Phase 10
+Personalized special collectibles / comodines within the main levels. No optional bonus rooms or minigames. Designs and effects remain to be decided.
+
+Phase 11
+Game Boy shell/interface.
+
+Phase 12
+Game Boy intro + zoom transitions.
+
+Phase 13
+Birthday ending.
+
+Phase 14
+Audio, polish, balancing and final QA.
+
+CURRENT IMPLEMENTATION STATUS — UPDATED SEPTEMBER 25, 2026
+
+Phase A — complete and user-approved:
+- TypeScript + Vite + Phaser project with pinned dependencies and package-lock.json.
+- 160 × 144 logical canvas, 10:9 proportions, no smoothing.
+- Automatic integer scaling and selectable 1×–5× scales, clamped to available space.
+- BootScene → DiagnosticScene path preserved for diagnostics.
+- Shared keyboard state for Phaser and HTML indicators, including simultaneous keys and alternative directional bindings.
+- Focus handling and input release to avoid stuck controls.
+- Local development server, TypeScript checks, production build and browser tests.
+
+Phase B — complete and user-approved:
+- Rectangle placeholder (12 × 16 logical pixels).
+- Arcade Physics gravity, ground and solid platform collisions.
+- Walk, run, horizontal acceleration/braking, jump and early-release short jump.
+- Coyote time and jump buffering.
+- No automatic repeated jumping just from holding K.
+- Wider test course with flat ground, raised platforms, steps and a 32-pixel gap.
+- Horizontal camera follow and world boundaries.
+- Automatic return to the starting point after falling.
+- Space pause/resume, automatic pause on focus loss, and a reset button.
+- Diagnostic readout of position, velocity and grounded/airborne/paused state.
+
+Accepted movement preset B-01, in src/tuning.ts:
+- walkSpeed: 60 logical pixels/second
+- runSpeed: 102 logical pixels/second
+- acceleration: 650 logical pixels/second²
+- braking: 850 logical pixels/second²
+- gravity: 640 logical pixels/second²
+- jumpSpeed: 235 logical pixels/second (upward impulse)
+- jumpCutSpeed: 105 logical pixels/second
+- maxFallSpeed: 280 logical pixels/second
+- coyoteMs: 100
+- bufferMs: 110
+- width: 12 logical pixels
+- height: 16 logical pixels
+
+Arcade Physics uses a fixed 60 Hz step and resolves the horizontal collision axis first (forceX: true), following a correction for a corner snag during testing. These are prototype settings accepted by the user, not claimed measurements of original GBC physics.
+
+Verification completed:
+- TypeScript checks and production build passed.
+- Browser checks covered boot/scenes, logical resolution, inputs, focus release, scales 1×–5×, responsive widths and device pixel ratios.
+- Movement checks covered floor contact, walk/run difference, braking, short/full jumps, no automatic jump repeat, pause/focus, side collisions, camera follow, traversable platforms, fall recovery and the left world boundary.
+- The user tested movement and approved walking, running, jumping and getting onto platforms.
+- Coyote time and buffering are implemented; do not claim that their individual timing windows were exhaustively tested just because the general movement tests passed.
+
+Still NOT implemented:
+- All three actual level layouts; the existing course is only a movement laboratory.
+- Rolling, carrying/throwing barrels, climbing/swinging ropes, tires/bounce mechanics and crouching.
+- Enemies, combat, damage system and in-level checkpoints. The prototype's return-to-start is not a checkpoint system.
+- Bananas, BERTO letters, their HUD/progression, and special comodines.
+- Final DK sprite/animations, enemy art, jungle/cave art, tilesets and final fonts/UI.
+- Title, Adventure menu, world map and level progression.
+- Physical Game Boy shell, final physical-button styling, power LED, power-on and zoom transitions.
+- Birthday reveal, ending and zoom-out.
+- Music, sound effects and final audio balancing.
+- Final duration/difficulty playtests, accessibility/polish and complete game QA.
+
+No optional bonus rooms or extra minigames are pending: they were removed from the scope.
+
+PROJECT FILES AND HANDOFF
+
+Verified main project and working directory:
+C:\Users\Abraham\Documents\Donkey Kong
+
+This project contains both approved Phase A and Phase B. All further project work belongs in this folder.
+
+Previous project location, retained only as a backup:
+C:\Users\Abraham\Documents\Codex\2026-09-23\files-pasted-by-the-user-we\outputs\berto-phase-a
+
+Relocation is now complete: after the user created the destination folder, the source, configuration, tests, dependencies and documentation were copied here. Code/configuration/test files were checked against the original. Do not resume development in the previous Codex outputs folder. No runtime files depend on that previous location. The reference video remains at its original Zoom path and is not required to run the project.
+
+Useful files in the verified project:
+- README.md: how to run, controls and implementation notes.
+- src/input.ts: shared keyboard actions/focus state.
+- src/tuning.ts: approved B-01 movement values.
+- src/player.ts: rectangle movement controller.
+- src/movement.ts: lab geometry, camera, pause, reset and telemetry.
+- src/scenes.ts: BootScene and DiagnosticScene.
+- src/main.ts: game initialization and HTML integration.
+- src/pixels.ts: temporary diagnostic pixel font.
+- src/style.css and index.html: prototype presentation.
+- tests/smoke.mjs and tests/movement.mjs: browser tests.
+
+Other handoff files in this project's docs folder:
+- PROJECT_PLAN.md: historical initial plan, superseded where it conflicts with later decisions.
+- PLAN_ACTUALIZADO.md: later plan; distinguish proposed future mechanics from actual implemented behavior.
+- REFERENCIA_INICIO.png: extracted opening reference sheet with timestamps.
+- REFERENCIA_NIVELES.png: extracted level reference sheet with timestamps.
+
+Run from the project directory:
+- npm ci (if dependencies are not already installed)
+- npm run dev
+- npm run typecheck
+- npm run build
+- npm test
+
+The tests use installed Microsoft Edge through Playwright by default. The previous local preview URL was http://127.0.0.1:5173/; it is only available while the local server is running and is not a publicly deployed website.
+
+When reviewing with another model, share this brief and provide the actual project folder/files as well if code review is wanted. A model cannot inspect these local paths merely because they are mentioned in text.
+
+ORIGINAL FIRST TASK — RETAINED AS CONTEXT, NOT A REQUEST TO RESTART
+
+The following was the initial planning assignment. Its research/architecture/asset-inventory/milestone work has been documented, with visual and audio limitations stated above. Phase A and Phase B were subsequently authorized, implemented and approved. Use this list as context for reviewing completeness; do not discard the existing implementation or assume the project is still at its first task.
+
+Do NOT write the complete game.
+
+Do NOT generate final sprites.
+
+Do NOT implement the three levels.
+
+Instead:
+
+1. Research Donkey Kong Country for Game Boy Color, especially its first three levels.
+
+2. Analyze the supplied screenshots/video and external references.
+
+3. Verify the proposed technical stack.
+
+4. Create a concise project architecture.
+
+5. Create an asset inventory grouped by:
+   - player
+   - enemies
+   - environment
+   - collectibles
+   - barrels/interactive objects
+   - UI
+   - maps
+   - audio
+   - Game Boy interface
+
+6. Identify which original mechanics are essential for nostalgia and which ones can safely be omitted for a 6–8 minute game.
+
+7. Propose how to shorten Jungle Hijinxs, Ropey Rampage and Reptile Rumble without losing their recognizable identity.
+
+8. Create a milestone checklist.
+
+9. Identify technical risks before implementation.
+
+10. Recommend the smallest possible FIRST implementation task after this planning stage. This resulted in Phase A, which is now complete; Phase B is also complete.
+
+The original requirement was not to begin implementation until I approved the plan. Authorization was subsequently given for Phase A and Phase B, and both were approved after testing. Further phases still require explicit authorization; sharing this updated brief is for review, not authorization to implement the rest.
+
+The priority order is:
+
+1. Nostalgia / recognizable Game Boy Color Donkey Kong feeling
+2. Fun and responsive movement
+3. Clear beginning-to-end progression
+4. Personalization
+5. Visual polish
+6. Technical complexity
+
+Keep the project intentionally small.

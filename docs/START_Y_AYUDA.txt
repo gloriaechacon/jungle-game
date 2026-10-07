@@ -1,0 +1,71 @@
+CONTROLES DE CONSOLA — 04/10/2026
+
+Pedido: jugar desde el Game Boy, sin atajos redundantes en Ayuda/footer.
+Cambios públicos (/?adventure=1):
+
+- A inicia/confirma; equivalente de teclado K. START/Espacio ya no inicia
+  la portada ni confirma una nueva partida desde resultados.
+- START abre pausa en tutorial, tarjeta previa, niveles, mina y extra.
+  Arriba/abajo (W/S) eligen; A/K confirma; B/J retrocede/cancela.
+  Opciones: SEGUIR, OMITIR TUTORIAL solo en práctica, VOLVER AL MAPA.
+  Ir al mapa requiere confirmar y explica que descarta el intento actual;
+  conserva lo guardado de niveles completados. START también reanuda.
+- El tutorial no comienza solo tras la tarjeta previa: A/K lo inicia.
+  La tarjeta enseña START para pausa/mapa/omitir, dentro del LCD.
+  Salir al mapa NO marca el tutorial completado. Solo terminar las diez
+  lecciones u OMITIR TUTORIAL lo hace. Se elimina Esc directo en modo público.
+- Ayuda conserva solamente Reiniciar Game Boy (además de la X de cierre).
+  Abre confirmación de pérdida de progreso; cancelar conserva la partida.
+  Aceptar vuelve al encendido desde cero. Preferencias de sonido se conservan.
+  Footer: Controles y ayuda / Sonido. Sin Mapa, activar teclado, repetir
+  práctica ni reiniciar etapa. El laboratorio conserva sus herramientas.
+- BIEN! aparece solo dentro de la consola, no como coach/pie HTML.
+  Lección de salto: tocar A para saltar, mantener A para mayor altura.
+- Candados grandes con volumen/sombra y cerradura; intentar entrar en un
+  nivel cerrado muestra COMPLETA EL NIVEL n. No altera desbloqueos reales.
+- Sonido ofrece música audible mientras se ajusta el volumen, con la
+  simulación detenida. Silenciar y perder foco/ocultar pestaña siguen
+  suspendiendo audio. Ajustes previos al encendido no desbloquean audio.
+  No se modificó ninguna pista, nivel, física B-01, cámara ni celebración.
+
+Implementación:
+src/pause-menu.ts: navegación por flancos + vista Phaser fija al LCD.
+Comparte el mismo menú en las escenas; consumir A al reanudar no salta.
+Diagnóstico de solo lectura: #lab-panel[data-pause-menu].
+tests/support/navigation.mjs usa controles públicos para repetir intentos;
+no agrega teletransportes ni mutadores de campaña.
+
+VERIFICACIÓN
+- Build/tipos y unitarias de juego, input/menú, tutorial/encuentros/terreno,
+  audio, mina, extra y resultados: PASS después de adaptar expectativas.
+- Edge154 --navigation-only: PASS teclado + touch nativo emulado, cero errores.
+  Tutorial completo en teclado; touch verifica éxito solo LCD, salto alto,
+  skip explícito, map/cancel, reinicio, candados, música con juego congelado.
+  Caminar sin actuar en Jungle encuentra un rival; no completa el nivel.
+- 43 archivos protegidos comparados por SHA256: idénticos (37 audios,
+  B-01/cámara/celebración y consola). Capturas desktop/móvil revisadas.
+- Edge154 --panels-only y --audio-mobile-only: PASS, cero errores.
+  Paneles/reinicio a varios tamaños, guardar preferencias, almacenamiento
+  bloqueado, audio PCM real durante ajuste, recuperación y silencio.
+- Edge154 --touch-only: PASS, cero errores. Cuatro tamaños de teléfono,
+  multitouch/rotación/liberación de dedos, START/mapa y las diez lecciones
+  completas con dedos emulados. No equivale a prueba física de Safari/iOS.
+- Recorrido público: diez lecciones, Jungle, Ropey, Reptile y mina táctil
+  completa/reintento PASS. El test integral se detuvo al entrar al extra
+  porque aún pulsaba START después de A para reanudar: A ahora ya reanuda,
+  así que aquella segunda pulsación lo pausaba otra vez. Corregido el test.
+  La escena real de extra/mina tiene unitarias nuevas que verifican que A
+  reanuda sin iniciar la tarjeta ni saltar; PASS. NO declarar que se repitió
+  el cierre integral completo después de esa última adaptación del test.
+- Las pruebas históricas se adaptan al flujo A/START y a la retirada de
+  los botones de laboratorio de la UI pública. Registrar recorridos
+  adicionales solo al completarlos, no inferirlos de las unitarias.
+
+LIMITACIONES / SIGUIENTE PLAYTEST
+No es una nueva evaluación completa de dificultad ni cambia los terrenos.
+La prueba humana de pasar todos los niveles sin saltar sigue siendo útil.
+No se probó hardware iPhone/Safari; el touch aquí es Edge emulado.
+Sin cambios de música, publicación, GitHub, Vercel ni configuración de red.
+Revisión OWASP y permisos de publicación siguen pendientes.
+URL LAN: http://192.168.1.55:4173/?adventure=1&revision=start-y-ayuda
+Preview4173 HTTP200, bundle index-BL2n_bL9.js. No npm test íntegro este turno.

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#111b20" />
+    <link rel="icon" href="data:," />
+    <title>Aventura en la jungla · Demo</title>
+  </head>
+  <body>
+    <main>
+      <header class="page-header">
+        <div><p class="eyebrow">AVENTURA / DIARIO DE DESARROLLO</p><h1>Primero, que se sienta bien.</h1></div>
+        <span class="phase-tag"><i></i> FASE B · MOVIMIENTO</span>
+      </header>
+      <div class="workspace">
+        <section class="screen-card" aria-label="Prueba de pantalla y teclado">
+          <div class="card-top"><span>PANTALLA DE PRUEBA</span><span id="scene-name">BootScene</span></div>
+          <div id="lab-panel" tabindex="0" aria-label="Área de prueba. WASD para direcciones, J botón B, K botón A, Espacio Start.">
+            <div id="screen-space"><div id="game"></div></div>
+          </div>
+          <div class="screen-footer"><span id="display-size">160 × 144 · 10:9</span><label>Escala <select id="scale-select" aria-label="Escala de pantalla"><option value="auto">Automática</option><option value="1">1×</option><option value="2">2×</option><option value="3">3×</option><option value="4">4×</option><option value="5">5×</option></select></label></div>
+          <p class="scale-note" id="scale-note">Los píxeles mantienen su proporción.</p>
+        </section>
+        <aside class="control-card">
+          <p class="eyebrow">02 / LABORATORIO DE MOVIMIENTO</p>
+          <h2>Controles del juego</h2>
+          <p class="intro"><kbd>A</kbd>/<kbd>D</kbd> para moverte, <kbd>J</kbd> para correr y <kbd>K</kbd> para saltar. Suelta K antes para un salto corto.</p>
+          <div class="input-status" id="input-status" role="status">Activando teclado…</div>
+          <button type="button" id="activate-input">Activar teclado</button>
+          <button type="button" id="restart-lab">Volver al inicio</button>
+          <div class="lab-readout"><p id="movement-stats">Iniciando laboratorio…</p><small id="tuning-version"></small></div>
+          <p id="gameplay-stats" class="footnote" hidden></p>
+          <fieldset id="visual-options" hidden><legend>Validación de proporciones</legend><label><input id="show-silhouette" type="checkbox" checked> <span id="label-sprites">Silueta provisional 24×28</span></label><label><input id="show-body" type="checkbox" checked> <span id="label-body">Colisión aprobada 12×16</span></label><p>No cambia la física. Haz clic en la pantalla para volver a jugar.</p></fieldset>
+          <div class="controls" aria-label="Indicadores de entrada">
+            <div class="dpad">
+              <div class="key up" data-action="up"><b>↑</b><small>W</small></div>
+              <div class="key left" data-action="left"><b>←</b><small>A</small></div>
+              <div class="dpad-center"></div>
+              <div class="key right" data-action="right"><b>→</b><small>D</small></div>
+              <div class="key down" data-action="down"><b>↓</b><small>S</small></div>
+            </div>
+            <div class="action-pair"><div class="key round" data-action="b"><b>B</b><small>J</small></div><div class="key round raised" data-action="a"><b>A</b><small>K</small></div></div>
+          </div>
+          <div class="start-row"><div class="key start" data-action="start"><b>START</b><small>ESPACIO</small></div><span>Select sin asignar</span></div>
+          <dl class="mapping"><div><dt>A/D <span>/ ← →</span></dt><dd>Moverse</dd></div><div><dt>J → B</dt><dd>Mantener para correr</dd></div><div><dt>K → A</dt><dd>Saltar</dd></div><div><dt>Espacio → Start</dt><dd>Pausa / continuar</dd></div></dl>
+          <p class="footnote">Suelo seguro, plataformas, escalones y un hueco con regreso automático. W/S siguen encendiendo el D-pad; aún no hay cuerdas ni agacharse.</p>
+          <p class="footnote"><a href="?diagnostic=1">Fase A</a> · <a href="?lab=1">B-01</a> · <a href="?greybox=1">Bloques</a> · <a href="/">Jungle</a></p>
+        </aside>
+      </div>
+      <footer class="page-footer"><span><i></i> <span id="scene-path">Iniciando…</span></span><span>160 × 144 · píxel nítido · sin recursos externos</span></footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
