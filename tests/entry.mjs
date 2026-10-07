@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { GAME_TITLE } from '../src/branding.ts';
 
 export async function testEntry(page, browser) {
   const base = 'http://127.0.0.1:4174';
@@ -19,9 +20,10 @@ export async function testEntry(page, browser) {
   for (const [path, cinematic, scene] of routes) {
     const response = await page.goto(base + path);
     assert.equal(response.status(), 200, path);
+    assert((await response.text()).includes('<title>' + GAME_TITLE + '</title>'), 'Initial HTML has the edition name');
     assert.equal(response.request().redirectedFrom(), null, 'No HTTP redirect: ' + path);
     await page.waitForFunction(name => document.querySelector('#scene-name').textContent === name, scene);
-    assert.equal(await page.title(), 'Going Bananas', 'Brand name stays after scene boot: ' + path);
+    assert.equal(await page.title(), GAME_TITLE, 'Brand name stays after scene boot: ' + path);
     assert.equal(page.url(), base + path, 'No client redirect or URL replacement: ' + path);
     assert.equal(await page.locator('body').evaluate(e => e.classList.contains('cinematic-console')), cinematic, path);
     if (cinematic) {
@@ -46,6 +48,11 @@ export async function testEntry(page, browser) {
         assert.equal(png.readUInt32BE(20), 32);
         assert.equal(png[25], 6, 'RGBA favicon supports a transparent background');
         await page.screenshot({path: 'artifacts/entry-desktop.png'});
+        await page.locator('#power-start').click();
+        await page.waitForFunction(() => document.querySelector('#console-shell')?.dataset.power === 'ready');
+        await page.waitForTimeout(500);
+        assert.equal(await page.locator('canvas').getAttribute('aria-label'), GAME_TITLE + ', pantalla de juego 160 por 144');
+        await page.screenshot({path: 'artifacts/title-desktop.png'});
       }
     } else {
       assert.equal(await page.locator('.console-photo').count(), 0, path);
@@ -64,7 +71,7 @@ export async function testEntry(page, browser) {
       await mobile.waitForFunction(() => document.querySelector('#console-shell')?.dataset.power === 'ready');
       await mobile.waitForFunction(() => document.querySelector('#scene-name').textContent === 'TitleScene');
       assert.equal(mobile.url(), base + '/');
-      assert.equal(await mobile.title(), 'Going Bananas');
+      assert.equal(await mobile.title(), GAME_TITLE);
       assert(await mobile.locator('#touch-a').isVisible());
       assert(await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       await mobile.waitForTimeout(500); // Let the existing boot overlay fade out before the screenshot.

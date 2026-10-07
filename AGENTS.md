@@ -1,5 +1,17 @@
 # Donkey Kong — contexto para continuar
 
+## Vigente — nombres y reinicio visible en ambas versiones, 07/10/2026
+
+Petición para las DOS carpetas independientes: título LCD GOING / BANANAS en general; GOING / BANANAS / ROBERTO en la personal. src/branding.ts guarda el nombre de cada edición, compartido por pestaña y etiquetas accesibles; index.html personal usa también Going Bananas Roberto desde la carga. Carcasa, favicon, música, niveles, letras BONUS/BERTO y cierre personal intactos. No sincronizar carpetas completas.
+
+Reinicio sí existía, pero se reprodujo fuera de la vista inicial del panel en375x667 y320x568. Se mueve el mismo botón Reiniciar Game Boy debajo de Cómo jugar, antes de las instrucciones, en ambas versiones. Conserva confirmación/cancelación, reseteo completo y preferencias de audio; no añade Mapa ni Reiniciar etapa. tests/panels.mjs ahora comprueba posición visible sin auto-scroll. Verificación final de este turno se registra debajo; no commit/push/despliegue ni servidor persistente nuevo.
+
+Verificado en ambas: build/tipos y test:ending PASS; Edge154 --entry-only y --panels-only PASS, doce rutas sin redirección, títulos de pestaña/HTML, encendido/mapa/recarga, ayuda y reinicio táctil/teclado con cancelación segura, autoguardado de audio y almacenamiento bloqueado. Reinicio visible sin deslizar en390x844,375x667,320x568; capturas de títulos y ayuda inspeccionadas sin recorte del nombre/botón. Cero errores de ejecución. Bundles general index-UH9bKqlY.js / Roberto index-CIIqOdK1.js. No suite integral ni Safari/iPhone físico; no actualización GitHub/Vercel. Servidores temporales de pruebas cerrados.
+
+## Vigente — primera instrucción A/D en ambas versiones, 07/10/2026
+
+Usuario autoriza el mismo ajuste en general Y Roberto: paso1 del tutorial de teclado dice TECLA A: IZQUIERDA / TECLA D: DERECHA / MANTEN D PARA AVANZAR. Tres líneas dentro de la tarjeta actual, sin texto externo nuevo ni cambio de condición de acierto: permite probar A y avanzar con D. Táctil mantiene cruceta; su botón A sigue siendo salto/confirmación. Solo copy y pruebas, sin tocar letras, final personal, música, física o niveles. No commit/push/despliegue. En AMBAS carpetas: unitarias fase10/input/pausa y build/tipos PASS; Edge154 --phase10-only PASS, diez lecciones, movimiento real A/D, reintentos, transición, repetir/omitir y cero errores. Captura sin recorte. Bundles general index-CWy-yMB9.js / Roberto index-CsOU2pdS.js. No suite integral ni teléfono físico en este turno.
+
 ## Vigente — consola desde el primer render, 07/10/2026
 
 Usuario reporta destello del HTML verde «Primero, que se sienta bien» antes del Game Boy. No era redirección: index.html mostraba el laboratorio mientras descargaba/ejecutaba el bundle. Ahora el HTML inicial muestra la misma foto de consola apagada, fondo claro y estado de carga con reintento; main permanece hidden/inert hasta terminar el montaje. La presentación reutiliza esa imagen y mide el encuadre antes de revelar, en la misma tarea. Sin texto del laboratorio en la carga ni cambio de URL. Laboratorios explícitos siguen disponibles. Música, arte, gameplay y encendido por gesto intactos; cambios locales sin commit/push/despliegue.

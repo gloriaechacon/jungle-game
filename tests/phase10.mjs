@@ -10,6 +10,7 @@ export async function testPhase10(page,inDemo=false) {
   await page.waitForFunction(()=>JSON.parse(document.querySelector('#movement-stats').dataset.state||'{}').practice?.step===0);
   await installBot(page);
   await page.screenshot({path:'artifacts/phase-10-practice.png'});
+  await page.locator('canvas').screenshot({path:'artifacts/tutorial-walk-keys.png'});
   await page.evaluate(async()=>{
     const b=window.__bot;
     const lesson=async n=>{
@@ -33,7 +34,11 @@ export async function testPhase10(page,inDemo=false) {
       await b.until(s=>s.practice?.step===n&&!s.practice.retrying&&s.grounded&&s.x<40&&s.gameplay.enemies.every(e=>e.alive),`fresh attempt ${n}`,4000);
       if(Object.values(b.S().gameplay.kills).some(Boolean))throw new Error('Retry must reset attempt kills');
     };
-    await lesson(0);b.down('KeyD');await b.until(s=>s.practice?.complete,'walk');await lesson(1);
+    await lesson(0);
+    if(b.S().practice.instruction!=='TECLA A: IZQUIERDA\nTECLA D: DERECHA\nMANTEN D PARA AVANZAR')throw new Error('First lesson must explain both A/left and D/right');
+    b.down('KeyA');await b.until(s=>s.x<27,'A moves left');b.up('KeyA');
+    if(b.S().practice.complete)throw new Error('Trying A must not finish the rightward task');
+    b.down('KeyD');await b.until(s=>s.practice?.complete,'walk right with D');await lesson(1);
     b.down('KeyK');await b.until(s=>s.practice?.complete,'jump');await lesson(2);
     b.down('KeyJ');await b.until(s=>s.practice?.complete,'roll');await lesson(3);
     b.down('KeyJ');b.down('KeyD');await b.until(s=>s.practice?.complete,'run');await lesson(4);

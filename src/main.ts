@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { GAME_TITLE } from './branding';
 import './style.css';
 import { ACTIONS, InputController } from './input';
 import { BootScene, DiagnosticScene, SCENE_CHANGED } from './scenes';
@@ -110,7 +111,7 @@ if (jungle && !greybox) {
   document.querySelector('.control-card')!.append(link);
 }
 if (adventure) {
-  document.querySelector('h1')!.textContent = 'Aventura en la jungla';
+  document.querySelector('h1')!.textContent = GAME_TITLE;
   document.querySelector('.phase-tag')!.textContent = 'FASE 10 · APRENDER Y EXPLORAR';
   document.querySelector('.intro')!.textContent = 'Antes de Jungle: práctica breve jugando. A/D mover, K saltar, J rodar / correr / barril, Espacio pausar. Esc vuelve al mapa. Busca bananas y BONUS por las rutas altas, o sigue por debajo. Sin comodines adicionales.';
   document.querySelector('.control-card > .footnote:not(#gameplay-stats)')!.textContent = 'Tres etapas en orden. K vuelve al mapa tras completar cada una. Bananas y BONUS se acumulan sin duplicarse al repetir niveles. Las letras son opcionales. Recargar la página borra la aventura; reiniciar una etapa conserva lo guardado en las ya completadas.';
@@ -164,7 +165,7 @@ const game = new Phaser.Game({
         element('restart-lab').hidden = data.screen !== 'level';
         toMapButton.hidden = !['level','intro','ending','bonus','minecart'].includes(data.screen);
         element('restart-lab').textContent = 'Reiniciar esta etapa';
-        document.querySelector('h1')!.textContent = data.screen === 'map' ? 'Aventura en la jungla' : ['Jungle Hijinxs', 'Ropey Rampage', 'Reptile Rumble'][data.selected];
+        document.querySelector('h1')!.textContent = data.screen === 'map' ? GAME_TITLE : ['Jungle Hijinxs', 'Ropey Rampage', 'Reptile Rumble'][data.selected];
         element('gameplay-stats').textContent = `Aventura: ${data.bananas} bananas · ${data.letters}`;
         element('movement-stats').hidden = data.screen !== 'level';
         if (data.screen !== 'level') element('movement-stats').dataset.state = '{}';
@@ -201,7 +202,7 @@ function resize() {
   const canvas = game.canvas;
   if (!canvas) return;
   if(presentation){
-    canvas.setAttribute('role','img');canvas.setAttribute('aria-label','Aventura en la jungla, pantalla de juego 160 por 144');
+    canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${GAME_TITLE}, pantalla de juego 160 por 144`);
     presentation.resize();game.scale.refresh();return;
   }
   const maxFit = Math.floor(Math.min((panel.clientWidth-(jungle ? 64 : 32))/160, (panel.clientHeight-(jungle ? 152 : 32))/144));

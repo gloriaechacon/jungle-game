@@ -1,4 +1,5 @@
 import type { InputController } from './input';
+import { GAME_TITLE } from './branding';
 import { mountTouchControls } from './touch-controls';
 import { controlText } from './control-labels';
 import { mountPanel } from './ui-panel';
@@ -15,7 +16,7 @@ const ZOOM_MS=1800,READY_MS=3400;
 
 export function mountConsole(panel:HTMLElement,controls:InputController,onEndingAction:(choice:EndingChoice)=>void,onPowerStart:()=>void) {
   document.body.classList.add('cinematic-console');
-  document.title='Going Bananas';
+  document.title=GAME_TITLE;
   const shell=document.querySelector<HTMLElement>('#console-shell')!;
   const space=document.querySelector<HTMLElement>('#screen-space')!;
   // Keep the first-paint photo: no second image/decode flash on a slow connection.
@@ -70,7 +71,8 @@ export function mountConsole(panel:HTMLElement,controls:InputController,onEnding
   const help=button('console-help','Controles y ayuda',()=>{});
   const helpPanel=mountPanel(helpCard,help,controls,{title:'Cómo jugar',closeId:'console-help-close',onChange:open=>document.body.classList.toggle('console-help-open',open)});
   const restart=button('restart-game','Reiniciar Game Boy',()=>{});restart.hidden=true;
-  helpCard.append(restart);
+  // Keep restart discoverable when the instructions scroll on short phones.
+  helpSummary.before(restart);
   const restartDialog=mountRestartDialog(restart,controls,()=>ready&&!document.body.classList.contains('touch-landscape'));
   const rotate=document.createElement('div');rotate.className='rotate-phone';rotate.textContent='Gira el teléfono en vertical para jugar con la consola completa.';panel.append(rotate);
   const hint=document.createElement('p');hint.className='console-caption';hint.id='console-caption';hint.textContent='Una pequeña máquina. Toda una aventura.';

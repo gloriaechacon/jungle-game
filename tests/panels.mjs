@@ -52,6 +52,16 @@ export async function testPanels(browser) {
       assert(labels.every(n=>n>=13),'Key labels remain readable, not legacy 10px spans');
       for(const size of mobile?[{width:390,height:844},{width:375,height:667},{width:320,height:568}]:[{width:1366,height:768},{width:844,height:390}]){
         await page.setViewportSize(size);await fits('#controls-panel','#console-help-close',size);
+        // isVisible()/tap() alone miss this regression: Playwright auto-scrolls.
+        // On opening help, restart must already be inside the visible panel.
+        await page.locator('#controls-panel').evaluate(e=>e.scrollTop=0);
+        const restart=await page.locator('#restart-game').boundingBox();
+        const helpBox=await page.locator('#controls-panel').boundingBox();
+        const heading=await page.locator('#controls-panel .panel-heading').boundingBox();
+        assert(restart&&helpBox&&heading);
+        assert(restart.y>=heading.y+heading.height&&restart.y+restart.height<=helpBox.y+helpBox.height,
+          'Restart visible immediately, without scrolling, at '+size.width+'x'+size.height);
+        assert(restart.height>=44,'Restart remains a full touch target');
         await page.locator('#controls-panel').evaluate(e=>e.scrollTop=e.scrollHeight);
         await page.locator('#console-help-close').click({trial:true});
         await page.locator('#controls-panel').evaluate(e=>e.scrollTop=0);

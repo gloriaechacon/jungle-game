@@ -1,4 +1,28 @@
-LATEST UPDATE — OCTOBER 7, 2026 — CONSOLE FIRST PAINT
+LATEST UPDATE — OCTOBER 7, 2026 — EDITION NAMES AND VISIBLE RESTART
+
+Both independent folders updated, never copied wholesale over one another.
+General LCD: GOING / BANANAS. Personal LCD adds ROBERTO on a third line.
+src/branding.ts owns each edition name; browser title/accessibility and the
+personal static loading HTML agree. No new query parameter or redirect.
+Restart existed below the scroll fold on short phones. The same confirmed
+Reiniciar Game Boy action now sits below Como jugar, above the help rows,
+in BOTH folders. No changes to audio, physics, levels, BONUS/BERTO, or ending.
+Tests now check restart is initially in view, without Playwright auto-scroll.
+Final verification and limitations are recorded at the top of AGENTS.md.
+No commit, push, remote change or deployment. Separate repos remain separate.
+
+LATEST UPDATE — OCTOBER 7, 2026 — EXPLICIT A/LEFT AND D/RIGHT
+
+User authorizes this narrow copy change in BOTH independent folders.
+First keyboard lesson: TECLA A: IZQUIERDA / TECLA D: DERECHA /
+MANTEN D PARA AVANZAR. Same LCD card and success condition; A can be tried
+without finishing, D advances. Touch lesson stays on the directional pad,
+never suggests its A button moves left. No physics, levels, audio, ending,
+collectible-word or remote changes. Phase10 unit/build/types PASS, screenshot
+inspected without clipping. Final browser verification is recorded in AGENTS.
+No commit/push/deployment. Existing personal changes remain only in Roberto.
+
+PREVIOUS UPDATE — OCTOBER 7, 2026 — CONSOLE FIRST PAINT
 
 User captured the old green laboratory flashing before the public console.
 Cause: visible static HTML painted before the game bundle mounted the console,

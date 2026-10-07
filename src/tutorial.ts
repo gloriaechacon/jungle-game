@@ -4,7 +4,7 @@ import { HITBOX, type LevelRules } from './gameplay';
 export const PRACTICE_RETRY_MS=1200;
 
 export const LESSONS = [
-  ['MANTEN LA TECLA D', 'CAMINA A LA DERECHA'],
+  ['TECLA A: IZQUIERDA', 'TECLA D: DERECHA', 'MANTEN D PARA AVANZAR'],
   ['TECLA K PARA SALTAR', 'MANTEN K: MAS ALTO'],
   ['PULSA LA TECLA J', 'PARA RODAR'],
   ['MANTEN TECLAS D Y J', 'PARA CORRER'],

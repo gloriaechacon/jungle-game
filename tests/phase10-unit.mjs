@@ -4,6 +4,10 @@ import { JUNGLE_PHASE6 } from '../src/jungle-layout.ts';
 import { ROPEY } from '../src/ropey-layout.ts';
 import { REPTILE } from '../src/reptile-layout.ts';
 import { LESSONS,practiceLevel,lessonDone,lessonNeedsRetry,lessonRetryInstruction } from '../src/tutorial.ts';
+import { TOUCH_LESSONS } from '../src/control-labels.ts';
+assert.deepEqual(LESSONS[0],['TECLA A: IZQUIERDA','TECLA D: DERECHA','MANTEN D PARA AVANZAR']);
+assert(LESSONS[0].every(line=>line.length<=21),'Left/right keyboard explanation fits the existing LCD card');
+assert.deepEqual(TOUCH_LESSONS[0],['MANTEN FLECHA DERECHA','PARA CAMINAR'],'Phone A remains jump/confirm, never left');
 const options={gravity:640,playerWidth:12,playerHeight:16};
 for(const level of [JUNGLE_PHASE6,ROPEY,REPTILE]) {
   const r=new LevelRules(level,options);
@@ -21,6 +25,8 @@ r.respawn();assert.deepEqual(r.spawn,ROPEY.extraCheckpoints[0].spawn);
 r.step(16,p(ROPEY.checkpoint));assert.equal(r.checkpointIndex,1,'Backtracking cannot lose later checkpoint');
 assert.equal(new LevelRules(ROPEY,options).checkpointIndex,-1,'Restart resets checkpoints');
 const idle={x:36,y:116,vy:0,vx:0,rolling:false,stomp:0,roll:0,barrel:0,tires:0,rope:false,dropped:false,grounded:true};
+assert(!lessonDone(0,{...idle,x:20,vx:-60},false),'Trying left is allowed without completing the rightward task');
+assert(lessonDone(0,{...idle,x:80,vx:60},false),'Walking right still completes the first lesson');
 for(let i=0;i<LESSONS.length;i++){
   assert(!lessonDone(i,idle,false),'Idle never completes a lesson');
   assert.equal(practiceLevel(i).width,160,'Practice is one screen');
