@@ -1,5 +1,11 @@
 # Donkey Kong — contexto para continuar
 
+## Vigente — consola desde el primer render, 07/10/2026
+
+Usuario reporta destello del HTML verde «Primero, que se sienta bien» antes del Game Boy. No era redirección: index.html mostraba el laboratorio mientras descargaba/ejecutaba el bundle. Ahora el HTML inicial muestra la misma foto de consola apagada, fondo claro y estado de carga con reintento; main permanece hidden/inert hasta terminar el montaje. La presentación reutiliza esa imagen y mide el encuadre antes de revelar, en la misma tarea. Sin texto del laboratorio en la carga ni cambio de URL. Laboratorios explícitos siguen disponibles. Música, arte, gameplay y encendido por gesto intactos; cambios locales sin commit/push/despliegue.
+
+Verificado: build/tipos y Edge154 --startup-only, --entry-only, --phase11-only PASS. Bundle index-CtHJNAHo.js. JS retenido en desktop y móviles emulados390/320: auditoría por fotograma sin laboratorio, sin salto de foto ni redirección, audio bloqueado hasta gesto. También JS/CSS bloqueados con reintento, JavaScript desactivado con aviso, doce rutas, encendido/mapa/recarga, zoom/controles/movimiento reducido. Capturas revisadas. No suite integral, Android/iPhone físico ni actualización Vercel. Nueva prueba tests/startup.mjs; revisión final de publicación sigue pendiente.
+
 ## Vigente — paso 5 del tutorial más claro, 07/10/2026
 
 Usuario pide explicar para qué se salta sobre el rival. Paso5/10 ahora dice MANTEN D Y PULSA K / SALTA SOBRE EL RIVAL / CAE ENCIMA Y VENCELO; móvil MANTEN DER Y TOCA A y mismo objetivo. Tres renglones de hasta21 caracteres dentro de la tarjeta LCD existente, sin aumentar su tamaño, sin texto duplicado fuera y conservando ambos círculos de botones. Solo copy/expectativas de prueba: no cambia física, enemigos, condición de acierto, música ni los otros pasos. Sin commit/push/despliegue.

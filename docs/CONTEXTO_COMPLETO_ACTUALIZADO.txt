@@ -1,4 +1,23 @@
-LATEST UPDATE — OCTOBER 7, 2026 — CLEARER STOMP LESSON
+LATEST UPDATE — OCTOBER 7, 2026 — CONSOLE FIRST PAINT
+
+User captured the old green laboratory flashing before the public console.
+Cause: visible static HTML painted before the game bundle mounted the console,
+not a redirect. index.html now renders the same powered-off console photo with
+critical inline styles and a loading/retry state; legacy main starts hidden
+and inert. mountConsole adopts that photo. main.ts reveals/measures the final
+presentation synchronously only after setup. No URL changes, automatic power-on
+or sound, gameplay/art/music edits. Explicit diagnostic URLs remain available.
+
+Verified: build/types, Edge154 --startup-only / --entry-only / --phase11-only
+PASS. Delayed JS: frame-level no-lab audit, unchanged photo geometry, desktop
+and emulated390/320 phones, power-on/map. Blocked JS+CSS still shows console;
+retry recovers at same URL. No-JS message works. Twelve routes, mobile reload,
+zoom/keys/reduced motion regressions pass; screenshots inspected. Final bundle
+index-CtHJNAHo.js. No full suite, physical phones, commit/push or Vercel update.
+The final release/security gate remains pending. tests/startup.mjs documents
+the slow-load regression and runs via smoke --startup-only or the full suite.
+
+PREVIOUS UPDATE — OCTOBER 7, 2026 — CLEARER STOMP LESSON
 
 Tutorial5/10 explains holding the direction, pressing jump, and landing ON
 the enemy to defeat it. Keyboard: MANTEN D Y PULSA K / SALTA SOBRE EL RIVAL /

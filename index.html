@@ -3,12 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#111b20" />
+    <meta name="theme-color" content="#dfe9e4" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/going-bananas-icon.png" />
     <title>Going Bananas</title>
+    <!-- Critical first paint: do not wait for Phaser or the stylesheet bundle. -->
+    <style>
+      html { background: #dfe9e4; }
+      #app[hidden] { display: none !important; }
+      #startup { position: fixed; inset: 0; z-index: 100; overflow: hidden; background: #dfe9e4; color: #193a3b; color-scheme: light; font: 16px/1.3 'Trebuchet MS', Arial, sans-serif; }
+      #startup-panel { --panel-height: max(280px, calc(100svh - 100px)); --padding-y: 24px; --padding-x: 20px; position: relative; height: var(--panel-height); background: radial-gradient(ellipse at 48% 40%, #f5f5ed 0%, #dfe9e4 48%, #b9cdc7 100%); }
+      #startup-shell { position: absolute; left: 50%; top: 50%; height: max(180px, min(calc(var(--panel-height) - var(--padding-y) - 96px), calc((100vw - var(--padding-x)) * 1604 / 981), 790px)); aspect-ratio: 981 / 1604; transform: translate(-50%, calc(-50% + 48px)); filter: drop-shadow(12px 18px 12px #28454055); }
+      #startup-photo { display: block; width: 100%; height: 100%; }
+      #startup-shell::before { content: ''; position: absolute; z-index: 1; left: 25.1784%; top: 11.409%; width: 49.5413%; height: 27.27%; background: #474f47; }
+      #startup-shell::after { content: ''; position: absolute; left: 12.97%; top: 19.27%; width: 2.5%; height: 1.55%; border-radius: 50%; background: #360b10; box-shadow: inset 0 0 1px #17080a; }
+      #startup-status { position: absolute; z-index: 2; top: 16px; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 40px); box-sizing: border-box; margin: 0; padding: 12px 22px; border: 1px solid #ffffffa6; border-radius: 14px; background: #edf1ee; box-shadow: 0 4px 18px #24474122; text-align: center; }
+      #startup-status strong { display: block; font-size: 18px; }
+      #startup-status a { display: inline-block; margin-top: 6px; color: #466264; font-size: 12px; }
+      #startup-status noscript { display: block; margin-top: 6px; font-size: 14px; }
+      @media (max-width: 600px) { #startup-panel { --panel-height: max(280px, calc(100svh - 128px)); } }
+      @media (any-pointer: coarse) and (max-width: 1000px) {
+        #startup-panel { --panel-height: max(320px, calc(100svh - 104px - env(safe-area-inset-top) - env(safe-area-inset-bottom))); --padding-y: 8px; --padding-x: 8px; margin-top: env(safe-area-inset-top); }
+        #startup-status { top: 12px; padding: 10px 12px; }
+      }
+    </style>
   </head>
   <body>
-    <main>
+    <div id="startup" aria-label="Cargando Going Bananas">
+      <div id="startup-panel">
+        <div id="startup-shell">
+          <img id="startup-photo" src="/assets/console-teal.png" width="981" height="1604" fetchpriority="high" alt="Consola Game Boy Color teal, vista frontal con botones y carcasa de textura realista" draggable="false" />
+        </div>
+        <div id="startup-status">
+          <strong role="status">Cargando Going Bananas…</strong>
+          <a href="">¿No carga? Reintentar</a>
+          <noscript>Activa JavaScript para jugar.</noscript>
+        </div>
+      </div>
+    </div>
+    <!-- Legacy tools stay available through explicit URLs, never as a loading screen. -->
+    <main id="app" hidden inert>
       <header class="page-header">
         <div><p class="eyebrow">AVENTURA / DIARIO DE DESARROLLO</p><h1>Primero, que se sienta bien.</h1></div>
         <span class="phase-tag"><i></i> FASE B · MOVIMIENTO</span>

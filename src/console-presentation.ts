@@ -18,7 +18,9 @@ export function mountConsole(panel:HTMLElement,controls:InputController,onEnding
   document.title='Going Bananas';
   const shell=document.querySelector<HTMLElement>('#console-shell')!;
   const space=document.querySelector<HTMLElement>('#screen-space')!;
-  const image=document.createElement('img');image.className='console-photo';image.src='/assets/console-teal.png';
+  // Keep the first-paint photo: no second image/decode flash on a slow connection.
+  const image=document.querySelector<HTMLImageElement>('#startup-photo')??document.createElement('img');
+  image.removeAttribute('id');image.className='console-photo';image.src='/assets/console-teal.png';
   image.alt='Consola Game Boy Color teal, vista frontal con botones y carcasa de textura realista';image.draggable=false;
   shell.prepend(image);
   const led=document.createElement('span');led.className='power-led';led.setAttribute('aria-hidden','true');shell.append(led);

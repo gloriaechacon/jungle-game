@@ -1,5 +1,7 @@
 # Going Bananas
 
+**Sin destello del laboratorio (07/10):** el HTML inicial muestra la consola apagada mientras carga el juego; el contenido de pruebas permanece oculto hasta montar la presentación definitiva, sin redirecciones ni movimiento de la foto. Incluye reintento si no carga y aviso sin JavaScript. Verificado con carga lenta en escritorio/móvil emulado y regresión de rutas/encendido: `npm run build`, `node tests/smoke.mjs --startup-only`, `--entry-only` y `--phase11-only` (cada opción por separado). Cambio local, todavía no desplegado en Vercel.
+
 **Tutorial, paso 5 (07/10):** ahora explica mantener la dirección, pulsar salto y **caer encima del rival para derrotarlo**, en tres líneas dentro de la misma tarjeta. Teclado D/K y teléfono derecha/A; sin instrucciones duplicadas ni cambios de mecánica.
 
 **Nombre e icono (07/10):** pestaña «Going Bananas» y favicon PNG transparente con la banana original del sprite, centrada y ampliada sin suavizado. `npm run art:icon` regenera solo el icono; `npm run art` también lo incluye. No cambia la carcasa, el título dentro del juego, la música ni los niveles. Cambios locales, sin commit/push/despliegue.

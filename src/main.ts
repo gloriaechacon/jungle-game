@@ -275,6 +275,14 @@ if (diagnostic) {
   element('movement-stats').textContent = 'Diagnóstico de Phase A';
 }
 
+// Reveal only after the final presentation is mounted. Unhide and measure in
+// this same task so the browser never paints the legacy laboratory in between.
+const app=element('app');
+app.hidden=false;
+app.inert=false;
+presentation?.resize();
+document.querySelector('#startup')?.remove();
+
 if (import.meta.hot) import.meta.hot.dispose(() => {
   sound?.destroy();
   presentation?.destroy();
