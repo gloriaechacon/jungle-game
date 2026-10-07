@@ -244,7 +244,7 @@ export async function testPhase5(page) {
 export async function testPhase5Framing(page) {
   for (const size of [{ width: 1280, height: 720 }, { width: 1366, height: 768 }, { width: 1440, height: 900 }]) {
     await page.setViewportSize(size);
-    await page.goto('http://127.0.0.1:4174/');
+    await page.goto('http://127.0.0.1:4174/?level=jungle');
     await page.waitForFunction(() => !!document.getElementById('movement-stats').dataset.state);
     await page.locator('#activate-input').click();
     await page.waitForTimeout(400);

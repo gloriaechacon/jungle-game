@@ -15,6 +15,7 @@ export async function testPhase10(page,inDemo=false) {
     const lesson=async n=>{
       for(const k of [...b.held])b.up(k);
       const s=await b.until(s=>s.practice?.step===n&&s.grounded,`lesson ${n}`);
+      if(n===4&&s.practice.instruction!=='MANTEN D Y PULSA K\nSALTA SOBRE EL RIVAL\nCAE ENCIMA Y VENCELO')throw new Error('Stomp lesson must explain holding D, jumping with K and landing to defeat the rival');
       await b.until(()=>JSON.parse(document.querySelector('#audio-toggle').dataset.audio).wantedTrack==='soundtrack/tutorial-ending',`tutorial music in lesson ${n}`);
       const bg=s.view.backdrop;
       if(bg.farTint!==0x718889||bg.shadeColor!==0x0b2423||bg.shadeAlpha!==.55)throw new Error(`Lesson ${n} must use the unchanged rope-practice backdrop`);

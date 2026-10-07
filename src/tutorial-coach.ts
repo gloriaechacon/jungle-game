@@ -18,7 +18,7 @@ export function tutorialCoach(screen:string,practice:PracticeHint|undefined,touc
     [`${touch?'Toca':'Presiona'} ${key('K','A')} para saltar; mantenlo para subir más`,'','a'],
     [`${touch?'Toca':'Presiona'} ${key('J','B')} una vez para rodar`,'','b'],
     [touch?'Para correr, mantén → y el botón B':'Para correr, mantén las teclas D y J','','b'],
-    [touch?'Mantén → y toca el botón A para saltar sobre el rival':'Mantén la tecla D y presiona K para saltar sobre el rival','','a'],
+    [touch?'Mantén → y toca el botón A para saltar. Cae encima del rival para derrotarlo.':'Mantén la tecla D y pulsa K para saltar. Cae encima del rival para derrotarlo.','','a'],
     [`Acércate al rival y ${touch?'toca':'presiona'} ${key('J','B')} para rodar`,'','b'],
     [`Mantén presionado ${key('J','B')}`,'Acércate al barril. Suelta el botón cuando lo levantes para lanzarlo.','b'],
     [`Mantén ${key('K','A')} al caer en la llanta para rebotar alto`,'','a'],

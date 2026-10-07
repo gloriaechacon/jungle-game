@@ -5,7 +5,7 @@ import { focusGame, restartStage } from './support/navigation.mjs';
 
 export async function testPhase6(page, inAdventure = false) {
   await page.setViewportSize({width:1366,height:768});
-  if (!inAdventure) await page.goto('http://127.0.0.1:4174/');
+  if (!inAdventure) await page.goto('http://127.0.0.1:4174/?level=jungle');
   await focusGame(page);
   const state = () => page.locator('#movement-stats').evaluate(el => JSON.parse(el.dataset.state));
   const wait = fn => page.waitForFunction(fn);

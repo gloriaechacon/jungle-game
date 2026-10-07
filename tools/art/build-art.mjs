@@ -16,6 +16,7 @@ import * as V from './env.mjs';
 import * as T from './terrain.mjs';
 import * as L from './jungle-landmarks.mjs';
 import * as M from './minecart.mjs';
+import './build-favicon.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const assets = root + 'public/assets/';

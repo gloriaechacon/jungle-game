@@ -15,7 +15,7 @@ const ZOOM_MS=1800,READY_MS=3400;
 
 export function mountConsole(panel:HTMLElement,controls:InputController,onEndingAction:(choice:EndingChoice)=>void,onPowerStart:()=>void) {
   document.body.classList.add('cinematic-console');
-  document.title='Aventura en la jungla · Game Boy Color';
+  document.title='Going Bananas';
   const shell=document.querySelector<HTMLElement>('#console-shell')!;
   const space=document.querySelector<HTMLElement>('#screen-space')!;
   const image=document.createElement('img');image.className='console-photo';image.src='/assets/console-teal.png';

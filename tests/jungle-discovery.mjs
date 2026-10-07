@@ -4,7 +4,7 @@ import {installBot} from './support/bot.mjs';
 // Input-driven exploration: no teleport or simulation mutation.
 export async function testJungleDiscovery(page){
   await page.setViewportSize({width:1366,height:768});
-  await page.goto('http://127.0.0.1:4174/');
+  await page.goto('http://127.0.0.1:4174/?level=jungle');
   await page.locator('#activate-input').click();
   await page.waitForFunction(()=>JSON.parse(document.querySelector('#movement-stats').dataset.state||'{}').grounded);
   await installBot(page);

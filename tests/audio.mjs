@@ -177,7 +177,7 @@ export async function testAudio(page) {
   }
   // A failed request is recoverable and never prevents playing.
   await page.route('**/audio/soundtrack/level.m4a',route=>route.fulfill({status:503,body:'unavailable'}));
-  await page.goto('http://127.0.0.1:4174/');await page.locator('#activate-input').click();
+  await page.goto('http://127.0.0.1:4174/?level=jungle');await page.locator('#activate-input').click();
   await waitAudio(()=>JSON.parse(document.querySelector('#audio-toggle').dataset.audio).error);
   // A mocked audio 503 can arrive before Phaser finishes loading its art. Wait
   // for the independent game startup before testing that it remains playable.

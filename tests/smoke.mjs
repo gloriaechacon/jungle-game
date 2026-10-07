@@ -25,6 +25,7 @@ import { testJungleDiscovery } from './jungle-discovery.mjs';
 import { testMapCoach } from './map-coach.mjs';
 import { testNavigation } from './navigation.mjs';
 import { testJungleGap } from './jungle-gap.mjs';
+import { testEntry } from './entry.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4174', '--strictPort'], { cwd: root, stdio: 'pipe', windowsHide: true });
@@ -44,7 +45,7 @@ try {
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => { errors.push(error.message); console.error('Runtime:', error.stack); });
-  const only = process.argv.find(a => /^--(?:phase(?:[456789]|10|11)|audio|audio-mobile|demo|bonus-loss|bonus-timeout|touch|panels|readability|terrain|jungle-finale|jungle-gap|jungle-discovery|map-coach|navigation)-only$/.test(a));
+  const only = process.argv.find(a => /^--(?:phase(?:[456789]|10|11)|entry|audio|audio-mobile|demo|bonus-loss|bonus-timeout|touch|panels|readability|terrain|jungle-finale|jungle-gap|jungle-discovery|map-coach|navigation)-only$/.test(a));
   if (!only) {
   await page.goto('http://127.0.0.1:4174/?diagnostic=1');
   await page.waitForFunction(() => document.getElementById('scene-name').textContent === 'DiagnosticScene');
@@ -132,6 +133,7 @@ try {
   if (!only || only === '--phase8-only') await testPhase8(page);
   if (!only || only === '--phase9-only') { await testMapReturn(page); await testPhase10(page); await testPhase9(page); }
   if (only === '--phase10-only') await testPhase10(page);
+  if (!only || only === '--entry-only') await testEntry(page, browser);
   if (!only || only === '--phase11-only') await testPhase11(page);
   if (!only || only === '--map-coach-only') await testMapCoach(page);
   if (!only || only === '--audio-only') await testAudio(page);

@@ -4,7 +4,7 @@ import {returnToMap} from './support/navigation.mjs';
 
 export async function testPhase11(page) {
   await page.setViewportSize({width:1366,height:768});
-  await page.goto('http://127.0.0.1:4174/?adventure=1');
+  await page.goto('http://127.0.0.1:4174/');
   const stage=name=>page.waitForFunction(n=>document.querySelector('#console-shell')?.dataset.power===n,name);
   const scene=name=>page.waitForFunction(n=>document.querySelector('#scene-name').textContent===n,name);
   const state=()=>page.locator('#movement-stats').evaluate(e=>JSON.parse(e.dataset.state));

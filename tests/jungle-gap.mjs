@@ -3,7 +3,7 @@ import {installBot} from './support/bot.mjs';
 
 // Real route + keyboard input: no teleport, physics writes or invulnerability.
 export async function testJungleGap(page){
-  await page.goto('http://127.0.0.1:4174/');
+  await page.goto('http://127.0.0.1:4174/?level=jungle');
   await page.locator('#activate-input').click();
   await page.waitForFunction(()=>JSON.parse(document.querySelector('#movement-stats').dataset.state||'{}').grounded);
   await installBot(page);

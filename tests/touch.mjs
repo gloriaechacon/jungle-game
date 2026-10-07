@@ -138,6 +138,7 @@ export async function testTouch(browser) {
     const lesson=async n=>{
       await allUp();await page.waitForFunction(n=>{const s=JSON.parse(document.querySelector('#movement-stats').dataset.state||'{}');return s.practice?.step===n&&s.grounded;},n);
       assert((await state()).practice.instruction.split('\n').every(t=>t.length<=21));
+      if(n===4)assert.equal((await state()).practice.instruction,'MANTEN DER Y TOCA A\nSALTA SOBRE EL RIVAL\nCAE ENCIMA Y VENCELO');
       assert.equal((await state()).guide.visible,true,'Instruction inside the LCD');
       assert.equal(await page.locator('.console-guide').textContent(),'','No competing instruction below the controls');
       assert.equal(await page.locator('#console-coach').textContent(),'','Rings do not carry a hidden duplicate lesson');

@@ -22,7 +22,7 @@ try {
     const context = await browser.newContext({ viewport: { width: 1366, height: 768 }, ...(video ? { recordVideo: { dir: root + 'artifacts/.video', size: { width: 1366, height: 768 } } } : {}) });
     const page = await context.newPage();
     page.on('pageerror', e => console.error('pageerror', e.message));
-    await page.goto('http://127.0.0.1:4178/');
+    await page.goto('http://127.0.0.1:4178/?level=jungle');
     await page.waitForFunction(() => !!document.getElementById('movement-stats').dataset.state);
     await page.locator('#activate-input').click();
     await page.waitForFunction(() => JSON.parse(document.getElementById('movement-stats').dataset.state).grounded);

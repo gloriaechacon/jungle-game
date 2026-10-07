@@ -1,4 +1,50 @@
-LATEST UPDATE — OCTOBER 4, 2026 — LCD INSTRUCTIONS / STEEPER MINE RAILS
+LATEST UPDATE — OCTOBER 7, 2026 — CLEARER STOMP LESSON
+
+Tutorial5/10 explains holding the direction, pressing jump, and landing ON
+the enemy to defeat it. Keyboard: MANTEN D Y PULSA K / SALTA SOBRE EL RIVAL /
+CAE ENCIMA Y VENCELO. Phone: MANTEN DER Y TOCA A, then the same goal.
+Three lines, each<=21 characters, within the unchanged LCD card. No repeated
+external text; both control rings remain. Only wording/tests changed: all
+practice gates, enemies, physics, other lessons, music and art preserved.
+Local files only; no commit/push/deployment.
+
+Verified: input/pause tests, phase10-unit, build/types and Edge154 browser
+--touch-only / --phase10-only PASS, zero runtime errors. Ten lessons with
+retries; four emulated portrait sizes. Stomp screenshot visually inspected:
+all three lines fit the existing card. Bundle index-Z-J4-yoA.js. No full
+suite, physical iPhone or Vercel update in this turn.
+
+PREVIOUS UPDATE — OCTOBER 7, 2026 — GOING BANANAS TAB BRANDING
+
+User chose Going Bananas and the game's banana sprite (not the monkey) for
+the browser tab. HTML and console runtime title updated; transparent32x32
+favicon from the existing banana[0] procedural source, no atlas edits.
+npm run art:icon rebuilds only the icon; the full art build includes it.
+Console photo, internal game title, music and gameplay unchanged. Local
+only, no commit/push/deployment. Final publication review remains pending.
+
+Verified: deterministic icon SHA256, build/types, Edge154 --entry-only PASS;
+tab title in all twelve routes, PNG served200 with correct32x32 RGBA format,
+mobile emulated boot/map/reload, zero runtime errors. Icon visually inspected.
+Bundle index-C61uDMOn.js. No full suite, physical iPhone or Vercel check.
+
+PREVIOUS UPDATE — OCTOBER 7, 2026 — DIRECT DEFAULT CONSOLE
+
+User requested the approved Game Boy at / directly, without redirects or
+requiring ?adventure=1. The old adventure link still works; explicit labs,
+independent levels and adventure workbench retain their behavior. Jungle's
+independent test entry is now ?level=jungle. Browser checks migrated to that
+explicit URL; phase11 now exercises / and entry.mjs covers route selection
+and mobile boot/reload. No changes to music/art/physics/levels. Local only;
+no commit, push or deployment. Final publication review remains pending.
+
+Verification: build/types, Edge154.0.4258.62 --entry-only and --phase11-only
+PASS, zero runtime errors. Twelve route variants; mobile emulation320/390
+power-on/map/reload at /; desktop boot/zoom/controls/reduced motion. Screenshots
+reviewed. Bundle index-Do3xDbCu.js. Not a full suite or physical iPhone test;
+Vercel was neither inspected nor updated during this change.
+
+PREVIOUS UPDATE — OCTOBER 4, 2026 — LCD INSTRUCTIONS / STEEPER MINE RAILS
 
 Follow-up: public external coach is empty on title/map/tutorial, not merely
 hidden; initial/map LCD says PRESIONA A: COMENZAR/ENTRAR (K keyboard).

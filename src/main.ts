@@ -40,16 +40,20 @@ const activate = () => controls.focus();
 activateButton.addEventListener('click', activate);
 
 const sceneHistory: string[] = [];
-const diagnostic = new URLSearchParams(location.search).has('diagnostic');
-const lab = new URLSearchParams(location.search).has('lab');
-const greybox = new URLSearchParams(location.search).has('greybox');
-const phase5 = new URLSearchParams(location.search).has('phase5');
-const levelParam = !diagnostic && !lab && !greybox && !phase5 ? new URLSearchParams(location.search).get('level') : null;
+const params = new URLSearchParams(location.search);
+const diagnostic = params.has('diagnostic');
+const lab = params.has('lab');
+const greybox = params.has('greybox');
+const phase5 = params.has('phase5');
+const levelParam = !diagnostic && !lab && !greybox && !phase5 ? params.get('level') : null;
 const ropey = levelParam === 'ropey';
 const reptile = levelParam === 'reptile';
 const jungle = !diagnostic && !lab;
-const adventure = jungle && !greybox && !phase5 && new URLSearchParams(location.search).has('adventure');
-const cinematic=adventure&&!new URLSearchParams(location.search).has('workbench');
+// The normal URL opens the complete console directly, without changing the URL.
+// Explicit level/lab routes and the old adventure/workbench links remain usable.
+const adventure = jungle && !greybox && !phase5 &&
+  (params.has('adventure') || (!params.has('level') && !params.has('workbench')));
+const cinematic=adventure&&!params.has('workbench');
 let presentation:ReturnType<typeof mountConsole>|undefined;
 document.body.classList.toggle('visual-validation', jungle);
 if (jungle) {
@@ -91,8 +95,8 @@ if(reptile) {
 }
 if(jungle && !greybox) {
   // Independent test routes (no map or shared progress: that is Phase 9).
-  const links: [string, string][] = ropey ? [['/', 'Volver a Jungle (prueba independiente)'], ['/?level=reptile', 'Probar fase 8: Reptile Rumble']]
-    : reptile ? [['/', 'Volver a Jungle (prueba independiente)'], ['/?level=ropey', 'Probar fase 7: Ropey Rampage']]
+  const links: [string, string][] = ropey ? [['/?level=jungle', 'Volver a Jungle (prueba independiente)'], ['/?level=reptile', 'Probar fase 8: Reptile Rumble']]
+    : reptile ? [['/?level=jungle', 'Volver a Jungle (prueba independiente)'], ['/?level=ropey', 'Probar fase 7: Ropey Rampage']]
     : [['/?level=ropey', 'Probar fase 7: Ropey Rampage'], ['/?level=reptile', 'Probar fase 8: Reptile Rumble']];
   for (const [href, text] of links) {
     const link=document.createElement('a'); link.href=href; link.textContent=text; link.className='level-link';
@@ -101,7 +105,7 @@ if(jungle && !greybox) {
 }
 element('visual-options').hidden = !jungle;
 if (jungle && !greybox) {
-  const link = document.createElement('a'); link.href = '/?adventure=1';
+  const link = document.createElement('a'); link.href = '/';
   link.textContent = 'Jugar aventura completa · fase 9'; link.className = 'adventure-link';
   document.querySelector('.control-card')!.append(link);
 }

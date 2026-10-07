@@ -1,5 +1,23 @@
 # Donkey Kong — contexto para continuar
 
+## Vigente — paso 5 del tutorial más claro, 07/10/2026
+
+Usuario pide explicar para qué se salta sobre el rival. Paso5/10 ahora dice MANTEN D Y PULSA K / SALTA SOBRE EL RIVAL / CAE ENCIMA Y VENCELO; móvil MANTEN DER Y TOCA A y mismo objetivo. Tres renglones de hasta21 caracteres dentro de la tarjeta LCD existente, sin aumentar su tamaño, sin texto duplicado fuera y conservando ambos círculos de botones. Solo copy/expectativas de prueba: no cambia física, enemigos, condición de acierto, música ni los otros pasos. Sin commit/push/despliegue.
+
+Verificado: test:input, phase10-unit, build/tipos, Edge154 --touch-only y --phase10-only PASS; diez lecciones, reintentos y círculos/encuadre en cuatro tamaños táctiles emulados, sin errores de ejecución. Captura touch-two-controls-4 revisada: tres líneas completas. Bundle index-Z-J4-yoA.js. No suite integral, iPhone físico ni actualización Vercel.
+
+## Vigente — nombre de pestaña e icono Going Bananas, 07/10/2026
+
+Usuario elige Going Bananas y banana del sprite como icono de pestaña (sin mono). index.html y console-presentation.ts usan el título Going Bananas; PNG32 transparente generado desde banana[0] sin alterar atlas, carcasa ni título interno del juego. Fuente tools/art/build-favicon.mjs, comando npm run art:icon; npm run art lo incluye. tests/entry.mjs comprueba título/PNG además de la entrada directa del turno anterior. Cambios locales, sin commit/push/despliegue; revisión final de publicación pendiente.
+
+Verificado: art:icon reproducible por SHA256, build/tipos y Edge154 --entry-only PASS (título en doce rutas, PNG servido200/dimensiones/formato, encendido/mapa/recarga en móvil emulado320/390), cero errores. Icono inspeccionado. Bundle index-C61uDMOn.js; no suite integral ni prueba física iPhone/Vercel. Los cambios locales de entrada predeterminada del turno anterior siguen pendientes de commit junto con estos.
+
+## Vigente — Game Boy por defecto en la URL normal, 07/10/2026
+
+Usuario pide que `/` abra directamente la consola aprobada, SIN redirección ni `?adventure=1`. main.ts selecciona aventura/cinematic por defecto, conservando el enlace antiguo, `?adventure=1&workbench=1` y todas las rutas explícitas de laboratorio. Jungle independiente pasa a `?level=jungle`; enlaces y pruebas ajustados. Música, arte, física y niveles intactos. Solo modificación local: no commit, push ni despliegue. Revisión final de publicación sigue pendiente. Ver README y tests/entry.mjs (smoke --entry-only).
+
+Verificado: npm run build (incluye tipos) PASS; Edge154.0.4258.62 --entry-only y --phase11-only PASS, cero errores de ejecución. Doce variantes de URL sin redirección, encendido/mapa/recarga móviles emulados320/390, encendido/zoom/controles/encuadre y movimiento reducido desde `/`. Capturas revisadas; bundle index-Do3xDbCu.js. No suite integral ni iPhone físico; no se ha verificado ni actualizado Vercel en este turno.
+
 ## Requisito permanente — NO PUBLICAR sin revisión final
 
 Petición explícita del usuario (03/10/2026): cuando diga que el juego está listo para publicar, recordar y completar primero la revisión de seguridad basada en OWASP y los pendientes de lanzamiento. NO interpretar «ya está listo» como permiso para saltarla. No publicar repositorio, desplegar ni exponer el servidor local a internet mientras falte este control y la confirmación de destino/visibilidad. Ver docs/ANTES_DE_PUBLICAR.txt. Esa revisión está PENDIENTE; tests funcionales no equivalen a auditoría ni certificación. Este turno solo registra el requisito, no declara el juego seguro.

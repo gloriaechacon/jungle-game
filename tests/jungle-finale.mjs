@@ -4,7 +4,7 @@ import {installBot} from './support/bot.mjs';
 // Public input only: no teleport, invulnerability or enemy/physics mutation.
 export async function testJungleFinale(page){
   await page.setViewportSize({width:1366,height:768});
-  await page.goto('http://127.0.0.1:4174/');
+  await page.goto('http://127.0.0.1:4174/?level=jungle');
   await page.locator('#activate-input').click();
   await page.waitForFunction(()=>JSON.parse(document.querySelector('#movement-stats').dataset.state||'{}').grounded);
   await installBot(page);

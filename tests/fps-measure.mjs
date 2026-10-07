@@ -42,7 +42,7 @@ async function measure(rate) {
     }, 1000 / Number(rate));
   }
   const page = await context.newPage();
-  await page.goto(`http://127.0.0.1:${port}/`);
+  await page.goto(`http://127.0.0.1:${port}/?level=jungle`);
   await page.waitForFunction(() => !!document.getElementById('movement-stats').dataset.state);
   await page.locator('#activate-input').click();
   // Phaser clamps delta for 120 frames after a focus change (engine cooldown);

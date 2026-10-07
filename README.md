@@ -1,4 +1,10 @@
-# Aventura en la jungla — Demo
+# Going Bananas
+
+**Tutorial, paso 5 (07/10):** ahora explica mantener la dirección, pulsar salto y **caer encima del rival para derrotarlo**, en tres líneas dentro de la misma tarjeta. Teclado D/K y teléfono derecha/A; sin instrucciones duplicadas ni cambios de mecánica.
+
+**Nombre e icono (07/10):** pestaña «Going Bananas» y favicon PNG transparente con la banana original del sprite, centrada y ampliada sin suavizado. `npm run art:icon` regenera solo el icono; `npm run art` también lo incluye. No cambia la carcasa, el título dentro del juego, la música ni los niveles. Cambios locales, sin commit/push/despliegue.
+
+**Entrada predeterminada (07/10):** abrir `/` muestra directamente el Game Boy y su invitación de encendido, sin redirigir ni añadir parámetros. Los enlaces anteriores `/?adventure=1` siguen funcionando. La prueba independiente de Jungle se abre ahora en `/?level=jungle`; los otros niveles y laboratorios conservan sus rutas. Prueba específica: `npm run build` y `node tests/smoke.mjs --entry-only`. Este cambio local no publica ni despliega el proyecto.
 
 **Inicio y tutorial (04/10, seguimiento vigente):** «Presiona A: comenzar/entrar» en el visor (K en computadora), fuera solo círculos; también al reiniciar. «Aprende jugando» ya no repite círculo A. Excepción: primera llanta con aviso compacto arriba y A señalado, sin duplicado dentro. Mina/arte/música intactos; rival gris pendiente de diseño. [Detalle y pruebas](docs/GUIA_LCD_Y_CURVAS_MINA.txt). Ruta local `/?adventure=1&revision=circulos-y-llanta`.
 
@@ -104,7 +110,8 @@ Carpeta principal: `C:\Users\Abraham\Documents\Donkey Kong`. Contexto: [docs/CON
 
 ## Qué hay
 
-- `/` — Jungle Hijinxs abreviado con arte propio: DK animado (quieto, caminar, correr, saltar, rodar, cargar el barril sobre la cabeza, lanzar, pose al borde, festejo), enemigos tipo Gnawty, bananas, letras B/E, barriles, barril estrella (checkpoint), salida con EXIT y cueva, fondo con paralaje, HUD temporal y resumen final.
+- `/` — aventura completa dentro del Game Boy, con encendido, tutorial, mapa, tres niveles y cierre; no necesita parámetros. `/?adventure=1` es compatible con los enlaces anteriores.
+- `/?level=jungle` — Jungle Hijinxs independiente, con herramientas de pruebas; sustituye la antigua entrada de laboratorio `/`.
 - `/?level=ropey` — Ropey Rampage (fase 7, corregida en fase 8): lianas, selva nocturna, R/T.
 - `/?level=reptile` — Reptile Rumble (fase 8): cueva, serpientes, llantas, O.
 - `/?greybox=1` — recorrido de fase 3 en bloques con silueta 24×28 (sin sistemas).

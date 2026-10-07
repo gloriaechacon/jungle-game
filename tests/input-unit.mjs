@@ -55,6 +55,9 @@ assert.equal(controlText('A/D ELEGIR - K ENTRAR',true),'IZQ/DER ELEGIR - A ENTRA
 assert.equal(controlText('A/D ELEGIR - K ENTRAR',false),'A/D ELEGIR - K ENTRAR');
 assert.equal(TOUCH_LESSONS.length,10);assert(TOUCH_LESSONS.flat().every(s=>s.length<=21));
 assert(LESSONS.flat().every(s=>s.length<=21));
+assert.deepEqual(LESSONS[4],['MANTEN D Y PULSA K','SALTA SOBRE EL RIVAL','CAE ENCIMA Y VENCELO']);
+assert.deepEqual(TOUCH_LESSONS[4],['MANTEN DER Y TOCA A','SALTA SOBRE EL RIVAL','CAE ENCIMA Y VENCELO']);
+assert(LESSONS.every(lines=>lines.length<=3)&&TOUCH_LESSONS.every(lines=>lines.length<=3),'Copy stays within the existing LCD card');
 for(const touch of [false,true]){
   assert.deepEqual(tutorialCoach('title',undefined,touch),{title:'',action:touch?'Toca el botón A para empezar':'Pulsa la tecla K para empezar',detail:'',target:'a'});
   assert.deepEqual(tireCoach(touch),{title:'',action:touch?'Mantén A para saltar más alto':TIRE_GUIDE,detail:'',target:'a'});
@@ -77,6 +80,7 @@ for(const touch of [false,true]){
       assert.equal(hint.detail,'','No redundant footnote or two-finger instruction');
     }
     if([3,4].includes(step))assert.deepEqual(hint.targets,[step===3?'b':'a','right']);
+    if(step===4)assert.match(hint.action,/Cae encima del rival para derrotarlo/,'Explain why to land on top, not simply jump past');
     assert.equal(hint.title,'','Progress remains on the LCD, not repeated on the card');
     assert.doesNotMatch(hint.action,/^[A-Z]:/,'No cryptic key-colon instructions');
     assert.match(hint.action,touch?/botón|flecha/:/tecla/,'Explicit input device');

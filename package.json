@@ -9,6 +9,7 @@
     "build": "npm run typecheck && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "art": "node tools/art/build-art.mjs",
+    "art:icon": "node tools/art/build-favicon.mjs",
     "audio": "node tools/audio/build-audio.mjs",
     "audio:recordings": "python tools/audio/build-recordings.py",
     "audio:intro": "python tools/audio/build-intro.py",
