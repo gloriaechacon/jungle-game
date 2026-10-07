@@ -118,13 +118,12 @@ export async function testDemo(page, bonusWin=true) {
     for(const k of [...b.held])b.up(k);
   });
   const replayOverlay=await page.locator('#movement-stats').evaluate(e=>JSON.parse(e.dataset.state).view.overlay);
-  assert(replayOverlay.includes('K: VER RESUMEN'),'Replayed level must not advertise another bonus');
-  await page.keyboard.press('KeyK');await scene('DemoEndingScene');
-  await page.locator('#ending-actions').waitFor({state:'visible'});
+  assert(replayOverlay.includes('K: VOLVER AL MAPA'),'Replayed level advertises map, not another finale');
+  await page.keyboard.press('KeyK');await scene('WorldMapScene');
+  assert.equal(await page.locator('#ending-actions').isVisible(),false);
   assert.equal((await progress()).bonusBananas,expectedBonus);
-  await shot('replay-jungle-summary');
-  await page.locator('#ending-map').click();await scene('WorldMapScene');
-  console.log('PASS bonus once: completed bonus + keep campaign + real Jungle replay goes directly to summary, prize retained.');
+  await shot('replay-jungle-map');
+  console.log('PASS ending once: keep campaign + real Jungle replay goes directly to map, prize retained.');
   // Tutorial replay/skip is covered by navigation.mjs; Help no longer offers it.
   await page.keyboard.press('KeyD');await page.waitForFunction(()=>!JSON.parse(document.querySelector('#lab-panel').dataset.campaign).moving);
   await page.keyboard.press('KeyK');await scene('StageIntroScene');
@@ -154,10 +153,15 @@ export async function testDemo(page, bonusWin=true) {
   });
   await page.evaluate(async()=>{const {onTire,hop,go}=window.__r8;await onTire(1150,124);await hop(1244);await hop(1310);await hop(1400);await hop(1436);await go(1640);await go(1778,{run:false});});
   await page.evaluate(async()=>{const {onTire,hop,go}=window.__r8,b=window.__bot;await onTire(1818,124);await hop(1916);await hop(1980);await go(2240,{run:false});for(const k of [...b.held])b.up(k);});
-  await testMinecart(page,false);await scene('DemoEndingScene');await page.locator('#ending-actions').waitFor({state:'visible'});
+  await testMinecart(page,false);await scene('WorldMapScene');
+  assert.equal(await page.locator('#ending-actions').isVisible(),false,'Cave/mine replay also skips the finale');
   assert.equal((await progress()).bonusBananas,expectedBonus,'Cave replay also skips the bonus and retains the original result');
   const settings=await audio();
-  await page.locator('#ending-replay').click();await scene('TitleScene');
+  await page.locator('#console-help').click();await page.locator('#restart-game').click();
+  await Promise.all([page.waitForEvent('load'),page.locator('#restart-confirm').click()]);
+  await page.locator('#power-start').click();
+  await page.waitForFunction(()=>document.querySelector('#console-shell').dataset.power==='ready');
+  await scene('TitleScene');
   assert.equal(await page.locator('#ending-actions').isVisible(),false);
   assert.deepEqual((await progress()).completed,[]);assert.equal((await progress()).letters,'-----');assert.equal((await progress()).bananas,0);
   for(const name of ['muted','music','effects'])assert.equal((await audio())[name],settings[name],'New game keeps sound preferences');

@@ -61,7 +61,7 @@ export class MinecartScene extends Phaser.Scene {
       if(this.paused||!this.controls.isActive){this.run.sync(state.a);this.accumulator=0;this.pendingJump=false;}
       else if(confirm)this.pendingJump=true;
       if(confirm&&this.controls.isActive&&!this.paused&&this.committed&&!this.leaving){
-        this.leaving=true;this.controls.clear();this.scene.start(this.campaign.canPlayFinalBonus()?'FinalBonusScene':'DemoEndingScene');
+        this.leaving=true;this.controls.clear();this.scene.start(this.campaign.completionScene());
       }
     });
     this.game.events.on('berto:to-map',toMap);
@@ -118,7 +118,11 @@ export class MinecartScene extends Phaser.Scene {
     let text='',guide='';
     if(r.phase==='launch'){guide='';}
     else if(r.phase==='retry'){text=`OTRA OPORTUNIDAD\nPULSA ${key}: REINTENTAR`;guide=`Vuelve a pulsar ${key} para reintentar desde el carrito. Conservas las bananas de este intento y no repites la cueva.`;}
-    else if(r.phase==='complete'){text=`MINA COMPLETADA!\nPULSA ${key}: ${this.campaign.canPlayFinalBonus()?'NIVEL EXTRA':'VER RESUMEN'}`;guide=`Nivel 3 completado · Presiona ${key} para ${this.campaign.canPlayFinalBonus()?'jugar el nivel extra de barriles':'ver el resumen'}.`;}
+    else if(r.phase==='complete'){
+      const destination=this.campaign.completionScene();
+      text=`MINA COMPLETADA!\nPULSA ${key}: ${destination==='WorldMapScene'?'VOLVER AL MAPA':destination==='FinalBonusScene'?'NIVEL EXTRA':'VER RESUMEN'}`;
+      guide=`Nivel 3 completado · Presiona ${key} para ${destination==='WorldMapScene'?'volver al mapa':destination==='FinalBonusScene'?'jugar el nivel extra de barriles':'ver el resumen'}.`;
+    }
     else if(r.phase==='riding'&&x>340&&x<630){guide='SALTO: primeras bananas';}
     if(guide!==this.guideKey){this.guideKey=guide;this.game.events.emit('berto:guide',guide);}
     // Keep the airborne rider and bananas visible; the external guide remains.

@@ -13,7 +13,15 @@ export class Campaign {
   private items = new Map<Stage, Map<string, SavedItem>>();
   private bonus = 0;
   private finalBonusPlayed = false;
-  canPlayFinalBonus() { return this.done.size===STAGES.length&&!this.finalBonusPlayed; }
+  private endingSeen = false;
+  canShowEnding() { return this.done.size===STAGES.length&&!this.endingSeen; }
+  markEndingSeen() { if(this.canShowEnding())this.endingSeen=true; }
+  /** First completion gets the extra/finale; later completed runs return to map. */
+  completionScene() {
+    if(!this.canShowEnding())return 'WorldMapScene';
+    return this.canPlayFinalBonus()?'FinalBonusScene':'DemoEndingScene';
+  }
+  canPlayFinalBonus() { return this.canShowEnding()&&!this.finalBonusPlayed; }
   /** Running out of play time consumes the one round, without awarding a prize. */
   expireFinalBonus() {
     if(!this.canPlayFinalBonus())return;

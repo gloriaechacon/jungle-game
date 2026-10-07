@@ -40,6 +40,12 @@ function fixture(finished=true){
   const f=fixture(false);assert.deepEqual(f.transitions,['WorldMapScene']);assert.equal(f.events.listenerCount(ENDING_ACTION),0);
 }
 {
+  const f=fixture();
+  assert(!f.campaign.canShowEnding(),'Entering the finale records it in this campaign');
+  f.scene.create();
+  assert.deepEqual(f.transitions,['WorldMapScene'],'Direct stale finale entry is guarded too');
+}
+{
   const f=fixture(),before=f.campaign.summary();
   assert(f.texts.includes('GANASTE!')&&f.texts.includes('BANANAS: 3'));
   assert(!f.texts.some(t=>t==='BONUS!'||t?.startsWith('NIVELES:')),'No duplicate BONUS title or misleading levels count');

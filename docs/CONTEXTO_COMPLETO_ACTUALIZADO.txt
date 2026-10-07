@@ -1,3 +1,18 @@
+LATEST UPDATE — OCTOBER 7, 2026 — ONCE-ONLY ENDING IN BOTH EDITIONS
+
+After the first finale, keeping the campaign and completing ANY replayed
+stage returns to WorldMapScene, including the cave/mine exit. Campaign owns
+endingSeen and completionScene; stale ending/extra entries are guarded too.
+Replay completion prompts say VOLVER AL MAPA. Scores, letters and extra
+reward remain; only a fresh campaign restores eligibility for the finale.
+The Roberto photo/results interaction stays personal, with no asset changes.
+Build/types, phase9/ending/final-bonus/minecart units PASS in both folders.
+node tests/replay-ending-browser.mjs PASS keyboard + emulated touch in both:
+seeded campaign/exit positions, real completion and new-game transitions.
+Not a full level playthrough. Roberto ending-browser also PASS at desktop,
+390px and320px. Full demo expectations updated but not rerun this turn.
+No physical phone, commit, push, deployment or persistent server started.
+
 LATEST UPDATE — OCTOBER 7, 2026 — EDITION NAMES AND VISIBLE RESTART
 
 Both independent folders updated, never copied wholesale over one another.

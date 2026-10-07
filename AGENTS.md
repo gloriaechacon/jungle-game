@@ -1,5 +1,11 @@
 # Donkey Kong — contexto para continuar
 
+## Vigente — final una sola vez por partida, 07/10/2026
+
+AMBAS versiones: tras ver el final de los tres niveles y elegir Volver al mapa, completar de nuevo cualquier nivel devuelve al mapa, sin repetir GANASTE, foto ni extra. Campaign registra endingSeen por partida; completionScene centraliza el destino de plataformas, mina y entradas antiguas al extra/final. La confirmación del nivel repetido dice VOLVER AL MAPA. Progreso, letras y puntajes se conservan; una campaña nueva vuelve a habilitar extra y final. La presentación personal de Roberto no se copia a la general.
+
+Verificado en ambas: build/tipos y unitarias fase9/cierre/extra/mina PASS. node tests/replay-ending-browser.mjs PASS en Edge154 con teclado y táctil emulado390x844: primer final, mapa, salidas reales de los tres niveles (incluida mina), guardia de entrada antigua y reinicio real. Son fixtures con campaña/posición sembradas SOLO en el test, NO recorrido integral. Roberto también test:ending-browser PASS en1366x768,390x844,320x568: foto interactiva, resumen, mapa, nueva partida y fallo de imagen. Cero errores de ejecución. Bundles general index-CU0pXs81.js / Roberto index-CSO6Z-68.js. tests/demo.mjs adaptado, no recorrido completo repetido en este turno. Sin teléfono físico, commit/push/despliegue ni servidor persistente nuevo.
+
 ## Vigente — nombres y reinicio visible en ambas versiones, 07/10/2026
 
 Petición para las DOS carpetas independientes: título LCD GOING / BANANAS en general; GOING / BANANAS / ROBERTO en la personal. src/branding.ts guarda el nombre de cada edición, compartido por pestaña y etiquetas accesibles; index.html personal usa también Going Bananas Roberto desde la carga. Carcasa, favicon, música, niveles, letras BONUS/BERTO y cierre personal intactos. No sincronizar carpetas completas.

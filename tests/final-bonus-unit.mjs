@@ -95,9 +95,10 @@ console.log('PASS final bonus: 4 symbols, rising contacts, 1 lock per barrel, no
 // Real scene lifecycle with inert rendering/physics adapter. Browser tests cover
 // the actual Arcade collision/jumps; this fixture checks focus and exit cleanup.
 const keys=(state={})=>({up:false,down:false,left:false,right:false,a:false,b:false,start:false,...state});
-function fixture(finished=true,initial={},result){
+function fixture(finished=true,initial={},result,endingSeen=false){
   const campaign=new Campaign();if(finished)for(const stage of ['jungle','ropey','reptile'])campaign.complete(stage,[]);
   if(result)campaign.awardFinalBonus(result);
+  if(endingSeen)campaign.markEndingSeen();
   const listeners=new Set();let current=keys(initial),telemetry;
   const controls={isActive:true,touchLayout:true,snapshot:()=>current,
     subscribe(fn){listeners.add(fn);fn(current);return()=>listeners.delete(fn);},
@@ -164,6 +165,8 @@ console.log('PASS bonus onboarding: safe spawn, no timer pressure, held/early in
   assert(!f.campaign.canPlayFinalBonus(),'Returning to map/replaying cannot reset a timeout');
 }
 const blocked=fixture(false);assert.deepEqual(blocked.transitions,['WorldMapScene']);
+const alreadyFinished=fixture(true,{},[0,0,0],true);
+assert.deepEqual(alreadyFinished.transitions,['WorldMapScene'],'A stale extra entry cannot replay the finale');
 for(const result of [[0,0,0],[0,0,1]]){
   const played=fixture(true,{},result);
   assert.deepEqual(played.transitions,['DemoEndingScene'],'Completed bonus is guarded even if the scene is entered directly');

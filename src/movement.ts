@@ -282,8 +282,7 @@ export class MovementLabScene extends Phaser.Scene {
         this.mapConfirm = true;
       }
       if (this.finished && this.committed && this.campaign && !this.minecartExit && confirm && this.controls.isActive) {
-        const ending=this.registry.get('cinematic')&&this.campaign.summary().finished;
-        this.scene.start(ending?(this.campaign.canPlayFinalBonus()?'FinalBonusScene':'DemoEndingScene'):'WorldMapScene'); return;
+        this.scene.start(this.registry.get('cinematic')?this.campaign.completionScene():'WorldMapScene'); return;
       }
       // Completion is final until an explicit restart: Start cannot toggle pause.
       if (!this.pauseMenu && (!this.finished||this.minecartExit) && state.start && !this.previousStart) { this.pausedByUser = !this.pausedByUser; this.mapConfirm = false; }
@@ -553,7 +552,7 @@ export class MovementLabScene extends Phaser.Scene {
       const slope = attached ? (ropeX(attached,attached.bottom,this.gameTime)-attached.x)/(attached.bottom-attached.top) : 0;
       this.view.render({ menuOpen: this.pauseMenu?.open, paused: this.pausedByUser && (!this.finished||this.minecartExit), mapOption: !!this.campaign, mapConfirm: this.mapConfirm && this.pausedByUser, focusLost: !this.controls.isActive, showSprites: this.showSilhouette, showBodies: this.showBody, hurt: this.hurt, onRope:!!attached,
         ropeGrip: attached ? {x:ropeX(attached,gripY,this.gameTime),y:gripY,angle:-Math.atan(slope)*180/Math.PI} : undefined,
-        campaign: this.campaign?.summary(this.stage, this.rules?.pickups),demoEnding:!!this.registry.get('cinematic')&&!!this.campaign?.summary().finished,
+        campaign: this.campaign?.summary(this.stage, this.rules?.pickups),demoEnding:!!this.registry.get('cinematic')&&!!this.campaign?.canShowEnding(),
         finalBonusAvailable:this.campaign?.canPlayFinalBonus(),minecartExit:this.minecartExit,minecartLaunchMs:this.minecartLaunchMs,touch:this.controls.touchLayout });
     } else this.renderPlaceholder(paused);
     this.ropeView?.render(this.gameTime, this.showSilhouette);

@@ -85,7 +85,7 @@ export async function testMinecart(page,detailed=true){
   assert.equal((await page.locator('#audio-toggle').evaluate(e=>JSON.parse(e.dataset.audio))).track,'soundtrack/level');
   await page.locator('canvas').screenshot({path:'artifacts/minecart-exit.png'});
   await press();
-  await page.waitForFunction(()=>['FinalBonusScene','DemoEndingScene'].includes(document.querySelector('#scene-name').textContent));
+  await page.waitForFunction(()=>['FinalBonusScene','DemoEndingScene','WorldMapScene'].includes(document.querySelector('#scene-name').textContent));
   if(cdp){await cdp.send('Emulation.setTouchEmulationEnabled',{enabled:false});await cdp.detach();await page.setViewportSize({width:1366,height:768});}
   console.log('PASS minecart: automatic barrel/cart entry, 16s curved ride, natural drop without jumping, two real gaps, pause/focus/retry, stable LCD with keycap/touch hints, pickups and completion.');
 }

@@ -43,7 +43,7 @@ export class FinalBonusScene extends Phaser.Scene {
     const campaign=this.registry.get('campaign') as Campaign;
     if(!campaign?.summary().finished){this.scene.start('WorldMapScene');return;}
     // Defensive entry guard: a completed losing round counts just like a win.
-    if(!campaign.canPlayFinalBonus()){this.scene.start('DemoEndingScene');return;}
+    if(!campaign.canPlayFinalBonus()){this.scene.start(campaign.completionScene());return;}
     this.controls=this.registry.get('controls');
     this.round=new FinalBonusRound();this.elapsed=0;this.paused=false;this.frozen=false;this.leaving=false;
     this.resultAt=undefined;this.awarded=0;this.distance=0;this.lastX=BONUS_SPAWN_X;this.lastHead=96;this.facing=1;

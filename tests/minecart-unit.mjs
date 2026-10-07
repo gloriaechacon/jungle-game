@@ -93,3 +93,15 @@ function fixture(allowed=true){
   f.input.set();f.input.set(true);assert.deepEqual(f.transitions,['FinalBonusScene']);assert.equal(f.listeners.size,0);
 }
 console.log('PASS minecart scene: guards, short press capture, held entry, pause/focus, map discards unfinished attempt, single commit, next scene and cleanup.');
+{
+  const f=fixture();f.c.complete('reptile',[]);f.c.awardFinalBonus([0,0,0]);f.c.markEndingSeen();
+  const before=f.c.summary().bonusBananas;
+  f.input.set();f.advance(180);
+  for(let i=0;i<2400&&!f.scene.committed;i++){
+    const r=f.scene.run,next=RAIL_GAPS.find(([a])=>a>r.x);
+    f.input.set(!!next&&r.grounded&&next[0]-r.x<20);f.advance();
+  }
+  assert(f.scene.committed);assert.equal(f.c.summary().bonusBananas,before);
+  f.input.set();f.input.set(true);
+  assert.deepEqual(f.transitions,['WorldMapScene'],'Completed mine replay returns directly to map');
+}

@@ -152,9 +152,10 @@ export class StageIntroScene extends DemoScene {
 export class DemoEndingScene extends DemoScene {
   constructor(){super('DemoEndingScene');}
   create() {
-    // A replay can only celebrate a genuinely finished campaign.
+    // The finale belongs to the first completed campaign, not every level replay.
     const campaign=this.registry.get('campaign') as Campaign;
-    if(!campaign.summary().finished){this.scene.start('WorldMapScene');return;}
+    if(!campaign.canShowEnding()){this.scene.start('WorldMapScene');return;}
+    campaign.markEndingSeen();
     this.setup('ending','¡Demo completada! Un momento para celebrar…');
     const summary=campaign.summary();this.jungle();
     const complete=summary.letters===COLLECTIBLE_WORD;

@@ -12,6 +12,26 @@ c.complete('ropey',[banana]); assert.equal(c.summary().bananas,2,'Same banana id
 c.complete('reptile',[]); assert(c.summary().finished,'Letters are never an exit gate');
 assert.equal(c.summary('jungle',[banana]).bananas,2,'Live HUD cannot double count a restored pickup');
 assert.equal(new Campaign().summary().bananas,0);
+for(const outcome of ['win','loss','timeout']){
+  const replay=new Campaign();
+  replay.markEndingSeen(); // An unfinished campaign cannot consume its future ending.
+  assert.equal(replay.completionScene(),'WorldMapScene');
+  for(const stage of ['jungle','ropey','reptile'])replay.complete(stage,[banana]);
+  assert(replay.canShowEnding());assert.equal(replay.completionScene(),'FinalBonusScene');
+  if(outcome==='timeout')replay.expireFinalBonus();
+  else replay.awardFinalBonus(outcome==='win'?[0,0,0]:[0,1,2]);
+  assert.equal(replay.completionScene(),'DemoEndingScene','Extra result still leads to the FIRST finale');
+  const saved=replay.summary();replay.markEndingSeen();replay.markEndingSeen();
+  assert(!replay.canShowEnding());assert(!replay.canPlayFinalBonus());
+  for(const stage of ['jungle','ropey','reptile']){
+    replay.complete(stage,[banana]);
+    assert.equal(replay.completionScene(),'WorldMapScene',stage+' replay returns to map, not finale');
+    assert.deepEqual(replay.summary(),saved,'Replay keeps score/letters/extra; no duplicate rewards');
+  }
+  const fresh=new Campaign();
+  for(const stage of ['jungle','ropey','reptile'])fresh.complete(stage,[]);
+  assert(fresh.canShowEnding()&&fresh.canPlayFinalBonus(),'Only a fresh campaign restores both');
+}
 const frames = buildDK();
 const climb = Array.from({length:4},(_,i)=>frames[`dk-climb-${i}`]);
 assert.equal(new Set(climb.map(p=>Buffer.from(p.d).toString('base64'))).size,4);
