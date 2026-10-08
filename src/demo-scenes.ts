@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import { COLLECTIBLE_WORD } from './collectibles';
-import { TITLE_EDITION } from './branding';
 import { ATLAS, FONTS } from './art-spec';
 import { Campaign } from './campaign';
 import { InputController } from './input';
@@ -81,9 +80,8 @@ export class TitleScene extends DemoScene {
   create() {
     this.setup('title','Pulsa la tecla K para comenzar.');
     this.jungle();
-    this.add.rectangle(80,TITLE_EDITION?35:31,148,TITLE_EDITION?59:51,0x10251f,.92);
+    this.add.rectangle(80,31,148,51,0x10251f,.92);
     this.text(8,'GOING',18,true);this.text(29,'BANANAS',18,true);
-    if(TITLE_EDITION)this.text(51,TITLE_EDITION.toUpperCase(),10);
     this.add.ellipse(80,115,32,6,0x302c20,.55);
     const dk=this.add.image(80,116,ATLAS,'dk-idle-0').setOrigin(.5,1).setScale(1.5);
     const button=this.add.rectangle(80,130,154,20,0xe5ede7).setStrokeStyle(1,0x7e9892);

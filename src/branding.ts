@@ -1,3 +1,2 @@
-// Each independent edition keeps its own name; no runtime version switch.
-export const TITLE_EDITION: string = '';
+// Public edition: the personalized subtitle belongs only in the Roberto copy.
 export const GAME_TITLE = 'Going Bananas';

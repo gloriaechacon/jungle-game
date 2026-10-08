@@ -1,5 +1,11 @@
 # Donkey Kong — contexto para continuar
 
+## Vigente — portada general sin subtítulo personal, 07/10/2026
+
+Usuario insiste en retirar ROBERTO de la pantalla de inicio SOLO en esta carpeta general. TITLE_EDITION ya estaba vacío al inspeccionar (árbol limpio), pero se elimina por completo esa opción de branding y su línea condicional en TitleScene: portada fija GOING / BANANAS y panel de dos líneas. No se modifica Going Bananas Roberto, que conserva su nombre/subtítulo y árbol limpio. No se ha identificado el enlace/origen exacto de la captura aportada; no afirmar que se reparó un despliegue remoto.
+
+Verificado: test:ending incluye ahora regresión de TitleScene para texto exacto de portada pública y confirmación K/A en teclado/táctil; PASS. Build/tipos y Edge154 --entry-only PASS, doce rutas, encendido/mapa/recarga y móviles emulados390/320, cero errores. Capturas de portada escritorio/320 inspeccionadas, sin ROBERTO. Bundle index-DgZRZTTo.js idéntico al anterior porque el subtítulo vacío ya se eliminaba al compilar. Sin commit/push/despliegue ni servidor persistente; revisión final de publicación pendiente.
+
 ## Vigente — avisos contextuales alineados con la mina, 07/10/2026
 
 AMBAS versiones, por petición explícita del usuario: en teléfono, el recordatorio «Mantén A para saltar más alto» pasa del borde superior a la misma zona bajo el LCD que el aviso de la mina, con flecha al botón A y su círculo. Se elimina solo la excepción de posición/estilo de llanta; no cambia encuadre ni geometría de controles. Conserva la frecuencia vigente: SOLO primera llanta, incluidos reintentos; las siguientes no repiten. También se unifica el recordatorio de la primera liana de Ropey (antes de x250): acercarse/agarrar con ↑; al colgarse, ↑/↓ para trepar y A para soltar/saltar. Una única tarjeta externa, sin copia LCD/pie. El tutorial sigue dentro del LCD con círculos fuera; laboratorio conserva sus instrucciones. Desktop mantiene teclas K/W/S y ubicación de aviso de mina existente. No cambia física, dificultad, terrenos, música, arte ni finales distintos de ambas ediciones.

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
 import { Campaign } from '../src/campaign.ts';
-import { DemoEndingScene, ENDING_ACTION, ENDING_MENU } from '../src/demo-scenes.ts';
+import { DemoEndingScene, TitleScene, ENDING_ACTION, ENDING_MENU } from '../src/demo-scenes.ts';
+import { GAME_TITLE } from '../src/branding.ts';
 import { FONT_CHARS } from '../src/art-spec.ts';
 import { FONT_CHARS as GENERATED_CHARS, fontSheet } from '../tools/art/env.mjs';
 assert.equal(FONT_CHARS,GENERATED_CHARS);
@@ -13,19 +14,19 @@ for(const symbol of ['+','>']){
 }
 
 const empty=()=>({up:false,down:false,left:false,right:false,a:false,b:false,start:false});
-function fixture(finished=true){
+function fixture(finished=true,Scene=DemoEndingScene,touch=false){
   const campaign=new Campaign();
   if(finished)for(const [stage,letters] of [['jungle','BO'],['ropey','NU'],['reptile','S']])
     campaign.complete(stage,[{id:'banana',collected:true},...[...letters].map(letter=>({id:letter,letter,collected:true}))]);
   if(finished)campaign.awardFinalBonus([2,2,2]);
   const store=new Map([['campaign',campaign],['practiceDone',true],['practiceStep',8],['ropey',true],['reptile',true],['audio-preference','untouched']]);
   const listeners=new Set();let snapshot=empty();
-  const input={isActive:true,touchLayout:false,snapshot:()=>snapshot,subscribe(fn){listeners.add(fn);fn(snapshot);return()=>listeners.delete(fn);},
+  const input={isActive:true,touchLayout:touch,snapshot:()=>snapshot,subscribe(fn){listeners.add(fn);fn(snapshot);return()=>listeners.delete(fn);},
     clear(){snapshot=empty();for(const fn of listeners)fn(snapshot);},set(state){snapshot={...empty(),...state};for(const fn of listeners)fn(snapshot);}};
   store.set('controls',input);
   // Rendering is deliberately inert: this suite checks REAL scene logic, not art.
   const display=()=>{const obj={};for(const method of ['setOrigin','setDepth','setLetterSpacing','setText','setScale','setAlpha','setFrame','setY','setX','fillStyle','fillRect','fillEllipse','clear','setStrokeStyle','setVisible','setPosition','setSize','setFontSize','add'])obj[method]=()=>obj;return obj;};
-  const scene=new DemoEndingScene(),events=new EventEmitter(),transitions=[],texts=[];let menu;
+  const scene=new Scene(),events=new EventEmitter(),transitions=[],texts=[];let menu;
   scene.registry={get:key=>store.get(key),set:(key,value)=>store.set(key,value),remove:key=>store.delete(key)};
   scene.game={events};scene.events=new EventEmitter();scene.cache={bitmapFont:{exists:()=>true}};
   scene.add=Object.fromEntries(['bitmapText','graphics','tileSprite','rectangle','ellipse','image','container'].map(name=>[name,display]));
@@ -35,6 +36,13 @@ function fixture(finished=true){
   scene.create();
   const advance=()=>{for(let i=0;i<118;i++)scene.update(0,50);};
   return {scene,events,store,campaign,input,transitions,listeners,advance,texts,menu:()=>menu};
+}
+for(const touch of [false,true]){
+  const f=fixture(false,TitleScene,touch);
+  assert.equal(GAME_TITLE,'Going Bananas','Public browser title never includes a personal name');
+  assert.deepEqual(f.texts,['GOING','BANANAS',touch?'PRESIONA A: COMENZAR':'PRESIONA K: COMENZAR'],
+    'Public LCD title has exactly two name lines, with no personal subtitle');
+  f.input.set({a:true});assert.deepEqual(f.transitions,['WorldMapScene']);
 }
 {
   const f=fixture(false);assert.deepEqual(f.transitions,['WorldMapScene']);assert.equal(f.events.listenerCount(ENDING_ACTION),0);
